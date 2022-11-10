@@ -18,9 +18,47 @@
     --color-status-edit: #9A7631;
     --color-status-finished: #346E4E;
 
-    --background-gradient: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(90,214,181,1) 0%, rgba(113,238,170,1) 100%);
+    --background-gradient: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(90,214,181,1) 0%, rgba(113,238,170,1) 100%);
 
-    --font: 'Poppins', serif;   
+    --font: 'Poppins', sans-serif;
+    --font-weight--thin: 100;
+    --font-weight--ExtraLight: 200;
+    --font-weight--Light: 300;
+    --font-weight--Regular: 400;
+    --font-weight--Medium: 500;
+    --font-weight--SemiBold: 600;
+    --font-weight--Bold: 700;
+    --font-weight--ExtraBold: 800;
+    --font-weight--Black: 900;
+
+    --font-size-link-nav: 24px;
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--font);
+}
+.bg-header{
+    background: var(--background-gradient);
+}
+
+.nav-li-regular{
+    font-weight: var(--font-weight--Regular);
+    font-size: var(--font-size-link-nav); 
+}
+
+.nav-li-bold{
+    font-weight: var(--font-weight--Bold);
+    font-size: var(--font-size-link-nav); 
+}
+
+.nav-li-Extrabold{
+    font-weight: var(--font-weight--Bold);
+    font-size: var(--font-size-link-nav);    
+}
+
+.btn{
+    font-size: var(--font-size-link-nav)
 }
 
 
