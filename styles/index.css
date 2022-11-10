@@ -75,12 +75,19 @@ header li{
     margin-right: 20px;
 }
 
+.btn-style:hover{
+    background-color: var(--color-filter);
+    transition: .5s;
+}
 
 main{
     height: 100px;
 }
 
-
+header li a:hover{
+    color: rgba(0, 0, 0, 0.700) !important;
+    transition: .5s;
+}
 /*------------------------Footer-----------------------*/
 
 footer {
@@ -119,6 +126,7 @@ footer li a {
 
 footer li a:hover{
     background-color: var(--color-filter);
+    transition: .5s;
 }
 footer li{
     margin-bottom: 20px;
