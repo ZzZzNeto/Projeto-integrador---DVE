@@ -61,4 +61,12 @@
     font-size: var(--font-size-link-nav)
 }
 
+/*------------------------Footer-----------------------*/
 
+footer {
+    background: var(--background-gradient);
+}
+
+footer.a {
+    text-decoration: None;
+}
