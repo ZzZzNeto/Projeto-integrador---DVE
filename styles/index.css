@@ -38,6 +38,7 @@
     padding: 0;
     font-family: var(--font);
 }
+
 .bg-header{
     background: var(--background-gradient);
 }
@@ -61,6 +62,7 @@
     font-size: var(--font-size-link-nav)
 }
 
+<<<<<<< HEAD
 /*------------------------Footer-----------------------*/
 
 footer {
@@ -69,4 +71,8 @@ footer {
 
 footer.a {
     text-decoration: None;
+=======
+main{
+    height: 1500px;
+>>>>>>> d830f93c9ca61bf42f3763dcc7d2e0e4d2107546
 }
