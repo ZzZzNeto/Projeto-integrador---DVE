@@ -84,7 +84,7 @@ main{
     height: 100px;
 }
 
-header li a:hover{
+.nav-link:hover{
     color: rgba(0, 0, 0, 0.700) !important;
     transition: .5s;
 }
