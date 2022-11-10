@@ -61,5 +61,27 @@
 .btn{
     font-size: var(--font-size-link-nav)
 }
+.space-right{
+    margin-right: 80px;
+}
+.btn-style{
+    background: #346E4E;
+    
+}
+header li{
+    margin-right: 20px;
+}
+
+main{
+    height: 100px;
+}
+/*------------------------Footer-----------------------*/
+
+footer {
+    background: var(--background-gradient);
+}
+
+footer.a {
+    text-decoration: None;
 
 
