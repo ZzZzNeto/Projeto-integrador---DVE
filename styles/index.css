@@ -38,6 +38,7 @@
     padding: 0;
     font-family: var(--font);
 }
+
 .bg-header{
     background: var(--background-gradient);
 }
@@ -61,4 +62,6 @@
     font-size: var(--font-size-link-nav)
 }
 
-
+main{
+    height: 1500px;
+}
