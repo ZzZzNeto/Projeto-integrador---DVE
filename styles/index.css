@@ -17,6 +17,7 @@
     --color-status-ad: #346E4E;
     --color-status-edit: #9A7631;
     --color-status-finished: #346E4E;
+    --color-if: #0D8565;
 
     --background-gradient: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(90,214,181,1) 0%, rgba(113,238,170,1) 100%);
 
@@ -147,7 +148,150 @@ footer h3, footer h4{
     margin-bottom: 0px;
     font-size: 15px;
 }
+
+/*------------------------Main-----------------------*/
+
 main{
-    height: 1500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#VerAnuncios{
+    width: 200px;
+    border-radius: 15px;
+    margin-top: 20px;
+    font-weight: var(--font-weight--Bold);
+}
+
+.section1Homapage{
+    background: linear-gradient(180deg, rgba(113,238,170,1) 0%, rgb(114, 238, 170) 100%);
+    padding: 0px 250px;
+    flex-wrap: wrap;
+}
+
+.section1Text{
+    width: 600px;
+    margin-right: 0px;
+}
+
+.section1Text h1{
+    font-weight: 600px;
+}
+
+.imagecontainerhomepage{
+    width: 700px;
+}
+
+.section2Homapage{
+    padding: 50px 200px;
+    flex-wrap: wrap;
+}
+
+.section3Homapage{
+    padding: 100px 200px;
+}
+
+.section4Homapage{
+    margin: 50px 300px;
+    padding-top: 100px;
+    background: var(--color-green-dark);
+    border-radius: 20px;
+}
+
+.section2Homapage a{
+    text-decoration: none;
+    color: black;
+}
+
+.imagecontainerhomepage img{
+    width: 700px;
+}
+
+.logincardHomepage{
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px 2px var(--color-alert-light);
+    width: 450px;
+    height: 200px;
+    margin-top: 50px;
+}
+
+#imageEmpresa{
+    margin: 0px;
+    padding: 0px;
+}
+
+#textEmpresa{
+    color: var(--color-red);
+}
+
+#textIF{
+    color: var(--color-if);
+}
+
+.logincardHomepage div{
+    margin: 20px 10px;
+    padding: 0px 10px;
+}
+
+.logincardHomepage h3{
+    font-weight: var(--font-weight--Bold);
+}
+
+.section3Homapage h1{
+    font-weight: var(--font-weight--Bold);
+    margin-top: 20px;
+}
+
+.section3Homapage section{
+    width: 700px;
+    margin: 0px;
+}
+
+.newTag{
+    background: var(--color-tag-new);
+    border-radius: 10px;
+    width: 150px;
+    padding: 5px;
+}
+
+.newTag h3{
+    margin-bottom: 0px;
+}
+
+.newTag img{
+    height: 30px;
+}
+
+#novidades{
+    color: var(--color-scrollbar);
+}
+
+.textSec3{
+    font-size: 25px;
+    text-align: justify;
+}
+
+.textSec3 span{
+    font-weight: var(--font-weight--Bold);
+}
+
+.section4Homapage a{
+    border-radius: 15px;
+    border: white solid 3px;
+    margin-top: 30px;
+    font-weight: var(--font-weight--Bold);
+    font-size: 25px;
+}
+
+.section4Homapage h1{
+    font-weight: var(--font-weight--Bold);
+    font-size: 50px;
+}
+
+.section4Homapage img{
+    width: 100%;
 }
 
