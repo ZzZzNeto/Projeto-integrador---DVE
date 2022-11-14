@@ -7,156 +7,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/loginStudant.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Slab:wght@900&display=swap"
         rel="stylesheet">
-
     <title>DVE</title>
 </head>
 
 <body>
-    <main class="main-login">
-        <section class="container-fluid d-flex align-items-center justify-content-center">
-
-            <div class="box">
-
-                <!-- barra lateral -->
-                <div class="container-fluid">
-                    <div class="row">
-
-                        <section class="sidebar teste col-4">
-                            <section class=" d-flex flex-wrap justify-content-center align-items-center logo-margin  ">
-
-                                <div>
-                                    <div class="block-center">
-                                        <a href="../templates/index.html">
-                                            <img src="../imgs/Logo.png" alt="logo do site">
-                                        </a>
-
-                                        <a href="../templates/index.html"><img src="../imgs/DVE.png"
-                                                alt="Nome do site"></a>
-                                    </div>
-                                </div>
-
-                            </section>
-
-                            <section>
-                                <div class=" d-flex align-items-center justify-content-center">
-                                    <p class="font-black">Bem vindo de volta!</p>
-                                </div>
-                                <div class=" d-flex align-items-center justify-content-center">
-                                    <p class="font-bold">acesse sua conta agora mesmo!</p>
-                                </div>
-
-                            </section>
-
-                            <section class="logo-button">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <a class="nav-link text-white button-login" href="">ENTRAR</a>
-                                </div>
-                                <div class=" d-flex align-items-center justify-content-center">
-                                    <a class="nav-link text-white button-forgot" href="">
-                                        <p>esqueci minha senha</p>
-                                    </a>
-                                </div>
-                            </section>
-
-                            <section
-                                class="h d-flex align-items-center flex-wrap flex-column justify-content-center logo-button">
-                                <div class="d-flex align-items-center justify-content-center button-login">
-
-                                    <img src="../imgs/imgIF.png" alt="logo do if">
-                                    <a class="nav-link text-white"
-                                        href="https://suap.ifrn.edu.br/accounts/login/">SUAP</a>
-
-                                </div>
-                                <div class=" d-flex align-items-center justify-content-center">
-                                    <a class="nav-link text-white button-forgot"
-                                        href="https://suap.ifrn.edu.br/accounts/login/">
-                                        <p>esqueci minha senha</p>
-                                    </a>
-                                </div>
-                            </section>
-
-                            <section
-                                class="mt-4 d-flex align-items-center flex-wrap flex-column justify-content-center text-white ">
-
-                                <div class="d-flex align-items-center justify-content-center font-bold sign-in-company">
-                                    <a class="nav-link text-white" href="../templates/loginEmpresa.html">
-                                        <p class=" margin-company">Quero anunciar</p>
-                                    </a>
-
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center ">
+    <main class="main-login-studant d-flex align-items-center justify-content-center">
+        <section class="box">
+            <div class="container-fluid">
 
 
-                                    <img class=" margin-company" src="../imgs/empresaIcon.png" alt="icon empresa">
-                                    <a class="nav-link p-0 text-white" href="../templates/loginEmpresa.html">
-                                        <p class="button-forgot margin-company ">Faça login aqui</p>
-                                    </a>
+                <section class="d-flex align-items-center justify-content-center">
+                    <div class="logo ">
+                        <a href="../templates/index.html">
+                            <img src="../imgs/Logo.png" alt="logo so site">
+                            <img src="../imgs/DVE.png" alt="nome do site">
+                        </a>
+                    </div>
 
-                                </div>
-
-                            </section>
-
-
-                        </section>
-
-                        <!-- corpo da box -->
-                        <div class="col-8 p-0">
-
-                            <div class="title-login">
-                                <h1>Crie sua conta</h1>
-                                <p>preencha seus dados</p>
-                            </div>
-
-                            <div>
-                                <form class="form-sign-in d-flex flex-column justify-content-center align-items-center"
-                                    action="">
-                                    <div>
-                                        <label for="">Nome</label>
-                                        <div class="input-container">
-                                            <img src="../imgs/userIcon.png" alt="">
-                                            <input type="text" placeholder="Insira seu nome">
-
-                                        </div>
-
-                                    </div>
-                                    <div>
-
-                                        <label for="">E-mail</label>
-                                        <div class="input-container">
-                                            <img src="../imgs/emailIcon.png" alt="">
-                                            <input type="email" placeholder="Insira seu e-mail">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="">Senha</label>
-                                        <div class="input-container">
-                                            <img src="../imgs/passwordIcon.png" alt="">
-                                            <input type="password" placeholder="Insira sua senha">
-                                        </div>
-
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <p class="alert-info-sign-in">Ao clicar abaixo, concordo com os Termos de Uso e
-                                            li a
-                                            Declaração de Privacidade.
-                                        </p>
-                                    </div>
-                                    <button type="submit" class="btn-sing-in">CADASTRAR</button>
-                                </form>
+                </section>
 
 
+                <section class="logo text-white d-flex flex-column align-items-center justify-content-center">
+                    <div>
+                        <h1 class="font-bold">Faça login</h1>
+                    </div>
+                    <div>
+                        <p class="font-regular">Preencha seus dados</p>
+                    </div>
+                </section>
+
+                <section>
+                    <form class="form-sign-in d-flex flex-column justify-content-center align-items-center" action="">
+
+                        <div>
+                            <label for="">E-mail</label>
+                            <div class="input-container">
+                                <img src="../imgs/emailIcon.png" alt="">
+                                <input type="email" placeholder="Insira seu e-mail">
                             </div>
                         </div>
 
-                    </div>
-                </div>
+                        <div>
+                            <label for="">Senha</label>
+                            <div class="input-container">
+                                <img src="../imgs/passwordIcon.png" alt="">
+                                <input type="password" placeholder="Insira sua senha">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div>
+                                <a href="" class="nav-link m-0 p-0 text-white">
+                                    <p class="forgot-password">Esqueceu a senha?</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex flex-column justify-content-start">
+                                        <p class="label-suap">Entrar com</p>
+                                        <div class="d-flex align-items-center justify-content-center button-login">
+
+                                            <img src="../imgs/imgIF.png" alt="logo do if">
+                                            <a class="nav-link text-white"
+                                                href="https://suap.ifrn.edu.br/accounts/login/">SUAP</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col p-0 align-items-center">
+                                    <div class="d-flex justify-content-end a">
+                                        <button type="submit" class="btn-log-in">Entrar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
             </div>
         </section>
     </main>
