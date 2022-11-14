@@ -38,19 +38,22 @@
 
     --font-size-link-nav: 24px;
 }
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font);
+    color: var(--color-white);
 }
+
 body {
     margin: 0;
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 50%, rgba(246,246,246,1) 100%);
 }
 
-.main-login{
-    height: 100vh;
+.main-login-empresa{
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,145 +61,61 @@ body {
 
 .box {
     
-    width: 1020px;
-    height: 632px;
-    background: var(--background-color-white);
+    width: 1239px;
+    height: 750px;
+    background: var(--background-sidebar);
     border-radius: 16px;
     box-shadow: 5px 4px 10px 2px var(--color-alert-light);
     
 }
 
 
-.sidebar{
-    flex: 1;
-    height: 632px;
-    width: 30%;
-    background-color: var(--background-sidebar);
-    border-radius:  16px 0px 0px 16px;
-    padding: auto;
+
+.logo{
+    margin-top: 40px;
 }
 
-
-.logo-margin div{
-    display: block;
-
-    margin-top: 2em;
+.tested{
+    width: 10px;
 }
 
-.font-black, .font-bold{
-    color: var(--color-white);
-}
-.block-center{
-    width: 170px;
-}
-.font-black{
-    margin-top: 20px;
-    font-weight: var(--font-weight--Black);
-    font-size: 26px;
-    display: block;
-    width: 150px;
-    
-}
-
-.font-bold{
+.title h1{
     font-weight: var(--font-weight--Bold);
-    font-size: 16px;
-    display: block;
-    width: 150px;
 }
 
-.button-login{
-    border: 3px solid var(--color-white);
-    border-radius: 30px;
-    width: 150px;
+.title p{
+    font-weight: var(--font-weight--Regular);
     text-align: center;
-    font-weight: var(--font-weight--ExtraBold);
-}
-
-.logo-button{
-    margin-top: 1em;
-}
-
-.button-forgot{
-    font-weight: var(--font-weight--Light);
-    font-size: 12px;
-    text-align: center;
-    
-}
-.t{
-    padding: 0 !important;
-}
-.button-login-suap{
-    border: 3px solid var(--color-white);
-    border-radius: 30px;
-    text-align: center;
-    font-weight: var(--font-weight--ExtraBold);
-}
-
-.margin-company{
-
-    margin-bottom: 0px;
-}
-
-.font-medium{
-    font-weight: var(--font-weight--Medium);
-    font-size: 14px;
-}
-
-.text-company{
-    margin-bottom: 0px !important;
-}
-
-.title-login{
-    text-align: center;
-    margin-top:100px;
-}
-
-.title-login h1{
-    color: var(--color-text-input-ad-font);
-    font-weight: var(--font-weight--Black);
-    font-size: 24px;
-}
-.title-login p{
-    color: var(--color-text-info);
-    font-weight: var(--font-weight--Bold);
-    font-size: 14px;
 }
 
 .form-sign-in{
-    width: 60%;
+    display: flex;
     margin: auto;
+    flex-direction: column;
+    justify-content:center;
+    align-self:center;
     gap: 10px;
+    width:45%;
 }
 
-.form-sign-in div{
-    width: 100%;
-}
-
-.form-sign-in label{
-    color: var(--color-text-input-ad-font);
-    font-size: 14px;
-    align-self: flex-start;
-}
 .form-sign-in input{
     padding-left: 80px;
     margin-bottom: 0.6em;
-    background: var(--background-color);
+    background: var(--background-color-white);
     width: 100%;
     height: 50px;
-    border-radius: 16px;
     border: none;
-    border-radius: 10px;
+    border-radius: 16px;
     transition: 0.2s;
     color: var(--color-alert-light);
 }
 
 .form-sign-in input::placeholder{
-    
     font-weight: var(--font-weight--Medium);
     color: var(--color-alert-light);
     
 }
+
 .form-sign-in input:focus{
     outline: none;
     color: var(--color-text-blue-dark);
@@ -208,6 +127,11 @@ body {
 
 .form-sign-in input:focus::placeholder{
     font-weight: var(--font-weight--Bold);
+    
+}
+
+.form-sign-in label{
+    font-weight: var(--font-weight--Regular);
 }
 
 .input-container{
@@ -220,26 +144,42 @@ body {
     left: 30px;
 }
 
-.alert-info-sign-in{
+.form-sign-in button{
+    border: 2px solid var(--color-white);
+    background-color: var(--background-sidebar);
+    padding: 10px 20px;
+    font-weight: var(--font-weight--Bold);
+    border-radius: 16px;
+}
+
+.back-page{
+    
+    padding: 10px 30px;
+    border-radius: 16px;
+    border: 2px solid var(--color-success-light);
+}
+
+.back-page p{
+   
     display: block;
-    width: 100%;
-    color: var(--color-text-info);
+    text-align: center;
+    font-weight: var(--font-weight--Bold);
+    color: var(--color-success-light);
+    font-size: 22px;
+}
+
+.back-page img{
+    padding-right: 10px;
+}
+
+.container-button{
+    width: 180px;
+    height:10%;
+    margin-top: 2%;
+    margin-left: 16.9%;
+    
+}
+
+.font-bold{
     font-weight: var(--font-weight--Bold);
 }
-
-.btn-sing-in{
-    background-color: var(--color-menu);
-    width: 100%;
-    border: none;
-    border-radius: 30px;
-    color: var(--color-white);
-    padding: 10px;
-    font-weight: var(--font-weight--Bold);
-    font-size: 14px;
-}
-
-.sign-in-company{
-    display: block;
-    width: 100%;
-}
-
