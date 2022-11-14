@@ -38,16 +38,18 @@
 
     --font-size-link-nav: 24px;
 }
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font);
-    color: var(--color-white);
+}
+body {
+    margin: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 50%, rgba(246,246,246,1) 100%);
 }
 
-.main-login-studant{
+.main-login{
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -56,24 +58,109 @@
 
 .box {
     
-    width: 690px;
-    height: 600px;
-    background: var(--background-sidebar);
+    width: 1020px;
+    height: 632px;
+    background: var(--background-color-white);
     border-radius: 16px;
     box-shadow: 5px 4px 10px 2px var(--color-alert-light);
     
 }
 
-.logo{
-    margin-top: 30px;
+
+.sidebar{
+    flex: 1;
+    height: 632px;
+    width: 30%;
+    background-color: var(--background-sidebar);
+    border-radius:  16px 0px 0px 16px;
+    padding: auto;
+}
+
+
+.logo-margin div{
+    display: block;
+
+    margin-top: 2em;
+}
+
+.font-black, .font-bold{
+    color: var(--color-white);
+}
+.block-center{
+    width: 170px;
+}
+.font-black{
+    margin-top: 20px;
+    font-weight: var(--font-weight--Black);
+    font-size: 26px;
+    display: block;
+    width: 150px;
+    
 }
 
 .font-bold{
     font-weight: var(--font-weight--Bold);
+    font-size: 16px;
+    display: block;
+    width: 150px;
 }
 
-.font-regular{
-    font-weight: var(--font-weight--Regular);
+.button-login{
+    border: 3px solid var(--color-white);
+    border-radius: 30px;
+    width: 150px;
+    text-align: center;
+    font-weight: var(--font-weight--ExtraBold);
+}
+
+.logo-button{
+    margin-top: 1em;
+}
+
+.button-forgot{
+    font-weight: var(--font-weight--Light);
+    font-size: 12px;
+    text-align: center;
+    
+}
+.t{
+    padding: 0 !important;
+}
+.button-login-suap{
+    border: 3px solid var(--color-white);
+    border-radius: 30px;
+    text-align: center;
+    font-weight: var(--font-weight--ExtraBold);
+}
+
+.margin-company{
+
+    margin-bottom: 0px;
+}
+
+.font-medium{
+    font-weight: var(--font-weight--Medium);
+    font-size: 14px;
+}
+
+.text-company{
+    margin-bottom: 0px !important;
+}
+
+.title-login{
+    text-align: center;
+    margin-top:100px;
+}
+
+.title-login h1{
+    color: var(--color-text-input-ad-font);
+    font-weight: var(--font-weight--Black);
+    font-size: 24px;
+}
+.title-login p{
+    color: var(--color-text-info);
+    font-weight: var(--font-weight--Bold);
+    font-size: 14px;
 }
 
 .form-sign-in{
@@ -87,15 +174,14 @@
 }
 
 .form-sign-in label{
-    color: var(--color-white);
+    color: var(--color-text-input-ad-font);
     font-size: 14px;
     align-self: flex-start;
-    font-weight: var(--font-weight--Regular);
 }
 .form-sign-in input{
     padding-left: 80px;
     margin-bottom: 0.6em;
-    background: var(--background-color-white);
+    background: var(--background-color);
     width: 100%;
     height: 50px;
     border-radius: 16px;
@@ -123,41 +209,6 @@
 .form-sign-in input:focus::placeholder{
     font-weight: var(--font-weight--Bold);
 }
-.forgot-password{
-    text-align: right;
-    font-weight: var(--font-weight--Light);
-
-}
-
-.label-suap{
-    width: 144px;
-    text-align: center;
-    font-weight: var(--font-weight--Light);
-}
-.button-login{
-    border: 2px solid var(--color-white);
-    border-radius: 16px;
-    display: block;
-    width: 150px !important;
-    padding: 0 !important;
-    text-align: center;
-    font-weight: var(--font-weight--ExtraBold);
-}
-
-.btn-log-in{
-    background-color: transparent;
-    border: 2px solid var(--color-white);;
-    border-radius: 16px;
-    color: var(--color-white);
-    padding: 10px 40px;
-    font-weight: var(--font-weight--Bold);
-    font-size: 14px;
-}
-
-.a{
-   height: 44px;
-   margin-top: 40px;
-}
 
 .input-container{
     position: relative;
@@ -168,3 +219,27 @@
     top: 15px;
     left: 30px;
 }
+
+.alert-info-sign-in{
+    display: block;
+    width: 100%;
+    color: var(--color-text-info);
+    font-weight: var(--font-weight--Bold);
+}
+
+.btn-sing-in{
+    background-color: var(--color-menu);
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    color: var(--color-white);
+    padding: 10px;
+    font-weight: var(--font-weight--Bold);
+    font-size: 14px;
+}
+
+.sign-in-company{
+    display: block;
+    width: 100%;
+}
+
