@@ -51,8 +51,7 @@ body{
     overflow: hidden;
 }
 
-.a{
-    background-color: red;
+.container-profile{
     flex: 1;
 }
 .sidebar{
@@ -63,7 +62,7 @@ body{
 
 .font-bold{
     font-weight: var(--font-weight--Bold);
-    font-size: 30px;
+    font-size: 48px;
     padding-left: 10px;
 }
 
@@ -82,5 +81,14 @@ body{
 .exit{
     flex: 1;
 }
-
-.t{}
+.exit li{
+    list-style: none;
+}
+.exit p{
+    font-size: 30px;
+}
+.container-profile h1{
+    font-weight: var(--font-weight--Bold);
+    color: var(--color-text-input-ad-font);
+    font-size:60px;
+}
