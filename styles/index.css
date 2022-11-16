@@ -18,6 +18,7 @@
     --color-status-edit: #9A7631;
     --color-status-finished: #346E4E;
     --color-if: #0D8565;
+    --color-why-use-dve: #6DEAAD;
 
     --background-gradient: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(90,214,181,1) 0%, rgba(113,238,170,1) 100%);
 
@@ -150,9 +151,6 @@ footer h3, footer h4{
 }
 
 /*------------------------Main-----------------------*/
-html{
-    width: 100%;
-}
 
 main{
     height: 100%;
@@ -206,7 +204,10 @@ main{
     padding-top: 100px;
     background: var(--color-green-dark);
     border-radius: 20px;
+}
 
+.section6Homapage{
+    padding: 100px 10%;
 }
 
 .section2Homapage a{
@@ -314,15 +315,53 @@ main{
         width: 71%;
         position: absolute;
         left: 14%;
-        top: 220%;
+        top: 210%;
         display: block;
     }
     
     .section4Homapage{
-        padding-bottom: 500px;
+        padding-bottom: 400px;
     }
 }
 
-.section5Homapage img{
-    height: 700px;
+.tittle{
+    margin-bottom: 50px;
+}
+
+.tittle h1{
+    margin-left: 30px;
+    margin-bottom: 0px;
+    color: var(--color-text-blue-dark);
+    font-weight: var(--font-weight--Bold);
+}
+
+.tittle img{
+    width: 40px;
+}
+
+.cardSec6{
+    margin-top: 50px;
+    width: 450px;
+    height: 600px;
+    text-align: center;
+    border-radius: 20px;
+    background: var(--color-why-use-dve);
+    padding: 30px;
+    box-shadow: 1px 1px 10px 2px var(--color-alert-light);
+}
+
+.cardSec6 img{
+    padding: 40px 0px;
+    width: 170px;
+}
+
+.cardSec6 h3{
+    padding-bottom: 20px;
+    font-weight: var(--font-weight--Bold);
+    font-size: 36px;
+}
+
+.cardSec6 p{
+    font-size: 28px;
+    text-align: justify;
 }
