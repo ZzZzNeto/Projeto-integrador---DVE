@@ -34,7 +34,7 @@
     --font-weight--SemiBold: 600;
     --font-weight--Bold: 700;
     --font-weight--ExtraBold: 800;
-    --font-weight--Black: 900;
+    --font-weight--Black: 900; 
 
     --font-size-link-nav: 24px;
 }
@@ -49,20 +49,55 @@
 
 body{
     overflow: hidden;
+    height: 100%;
+}
+
+html{
+    height: 100%;
+}
+
+main{
+    height: 100%;
+}
+
+.mainContainer1{
+    height: 80%;
+}
+
+.mainContainer2{
+    height: 100%;
+    box-shadow: 1px 1px 10px 2px var(--color-alert-light);
+    border-radius: 20px;
+}
+
+.btn-sing-in{
+    background-color: var(--color-menu);
+    width: 25%;
+    border: none;
+    border-radius: 30px;
+    color: var(--color-white);
+    padding: 10px;
+    font-weight: var(--font-weight--Bold);
+    font-size: 18px;
+}
+
+.exclude{
+    background-color: var(--color-red);
 }
 
 .container-profile{
     flex: 1;
 }
 .sidebar{
-    height: 100vh;
-
+    height: 100%;
     background-color: var(--background-sidebar);
+    width: 20%;
+    border-radius: 20px 0px 0px 20px;
 }
 
 .font-bold{
     font-weight: var(--font-weight--Bold);
-    font-size: 48px;
+    font-size: 30px;
     padding-left: 10px;
 }
 
@@ -78,17 +113,119 @@ body{
     padding-left: 10px;
 }
 
-.exit{
+.sidebarContent{
     flex: 1;
 }
-.exit li{
+.sidebarContent li{
     list-style: none;
 }
-.exit p{
-    font-size: 30px;
+.sidebarContent p{
+    font-size: 20px;
 }
 .container-profile h1{
     font-weight: var(--font-weight--Bold);
     color: var(--color-text-input-ad-font);
-    font-size:60px;
+    font-size:47px;
+}
+
+.container-profile{
+    padding: 0px 70px;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.profilePicture{
+    border-radius: 50%;
+    border: solid var(--color-text-blue-dark) 5px;
+    height: 150px;
+    width: 150px;
+}
+
+.myData, .myAnnouncements{
+    margin: 50px 4%;
+}
+
+.myData h2, .myAnnouncements h2{
+    font-weight: var(--font-weight--Bold);
+    color: var(--color-text-input-ad-font);
+    margin-bottom: 60px;
+}
+
+form{
+    width: 100%;
+    margin: 0px;
+    gap: 10px;
+}
+
+form div{
+    width: 100%;
+}
+
+form label{
+    color: var(--color-text-input-ad-font);
+    font-size: 14px;
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+form input{
+    padding-left: 80px;
+    margin-bottom: 0.6em;
+    background: var(--background-color);
+    width: 100%;
+    height: 50px;
+    border-radius: 16px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+    color: var(--color-alert-light);
+}
+
+form input::placeholder{
+    
+    font-weight: var(--font-weight--Medium);
+    color: var(--color-alert-light);
+    
+}
+form input:focus{
+    outline: none;
+    color: var(--color-text-blue-dark);
+    border: 0.1px solid var(--color-menu);
+    padding-left: 60px;
+    font-weight: var(--font-weight--SemiBold);
+    
+}
+
+form input:focus::placeholder{
+    font-weight: var(--font-weight--Bold);
+}
+
+.input-container{
+    position: relative;
+}
+
+.input-container img{
+    position: absolute;
+    top: 15px;
+    left: 30px;
+}
+
+.topCard{
+    background-image: url(../imgs/EstagioAguaNaBoca.png);
+    background-repeat: no-repeat;
+    background-size: 250px 280px;
+    height: 280px;
+    width: 250px;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 0px;
+    text-align: right;
+}
+
+.seeMore{
+    background-color: var(--color-buttom);
+    border-radius: 20px;
+    padding: 3px 10px;
+    width: 100px;
+    height: 30px;
+    text-decoration: none;
 }

@@ -13,35 +13,32 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Slab:wght@900&display=swap"
         rel="stylesheet">
-    <title>DVE</title>
+    <title>DVE</title> 
 </head>
-
 <body>
     <main class="d-flex align-items-center justify-content-center">
-        <div class="container-fluid p-0">
-
-            <div class="row">
-                <section class="sidebar 
-                    col-2 p-0 d-flex flex-column align-items-center justify-content-between">
+        <div class="container mainContainer1">
+            <div class="row mainContainer2">
+                <section class="sidebar col-2 p-0 d-flex flex-column align-items-center justify-content-between">
                     <section>
-                        <div class="d-flex align-items-center justify-content-center mt-3 mb-3">
-                            <img src="../imgs/LogoGrande.png" alt="logo">
-                            <img src="../imgs/DVEGrande.png" alt="nome da logo">
-                        </div>
+                        
+                        <a href="">
+                            <div class="d-flex logo align-items-center justify-content-start mt-5 mb-3">
+                                <img src="../imgs/Logo.png" alt="logo">
+                                <img src="../imgs/DVE.png" alt="nome da logo">
+                            </div>
+                        </a>
 
-                        <div class="d-flex align-items-center justify-content-center mt-5">
-
-                            <img src="../imgs/MeuGrande.png" alt="icon do menu">
-
+                        <div class="d-flex align-items-center justify-content-start mt-5 mb-4">
+                            <img src="../imgs/IconMenu.png" alt="icon do menu">
                             <div class="d-flex align-items-center justify-content-center">
                                 <p class="font-bold m-0">Menu</p>
                             </div>
-
                         </div>
 
-                        <div class="d-flex flex-column align-items-center justify-content-center mt-3 exit">
+                        <div class="d-flex flex-column align-items-center justify-content-center mt-3 sidebarContent">
                             <ul class="p-0 w-100">
-                                <li><a class="nav-link font-bold-ul p-0 mb-3" href="">
+                                <li><a class="nav-link font-bold-ul p-0 mb-3" href="index.html">
                                         <p class="m-0"> Inicio </p>
                                     </a></li>
                                 <li><a class="nav-link font-bold-ul p-0 mb-3" href="">
@@ -56,9 +53,7 @@
                                 <li><a class="nav-link font-bold-ul p-0 mb-3" href="">
                                         <p class="m-0"> Criar anúncios</p>
                                     </a></li>
-
                             </ul>
-
                         </div>
                     </section>
                     <div class="d-flex align-items-center justify-content-center pb-5">
@@ -70,15 +65,112 @@
                 </section>
 
                 <section class="col-10 container-profile">
-                    <div class="d-flex align-items-center justify-content-center mt-5">
+                    <div class="d-flex flex-wrap align-items-center justify-content-around mt-5">
                         <h1 class="">Ola, Coordenação do IFRN</h1>
+                        <div class="profilePicture d-flex justify-content-center align-items-center">
+                            <img src="../imgs/PerfilPicture.png" alt="">
+                        </div>
                     </div>
 
-                    <section>
+                    <section class="myData">
                         <h2>Meus dados</h2>
-                        <form action="">
+            
+                        <div class="container p-0">
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div>
+                                            <label for="">E-mail</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/emailIcon.png" alt="">
+                                                <input type="text" disabled placeholder="coordenacao@academico.ifrn.edu.br">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">Telefone</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/TelefoneIcon.png" alt="">
+                                                <input type="text" disabled placeholder="(+55) 84 981183793">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div>
+                                            <label for="">Instagram</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/InstagramIcon.png" alt="">
+                                                <input type="text" disabled placeholder="@ifrnpaudosferros">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">Linkedin</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/LinkedinIcon.png" alt="">
+                                                <input type="text" disabled placeholder="link">
+                                            </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <button type="submit" class="btn-sing-in exclude">Excluir Perfil</button>
+                                <button type="submit" class="btn-sing-in">Editar Perfil</button>
+                            </div>
+                          </div>
 
-                        </form>
+                    </section>
+
+                    <section class="myAnnouncements">
+                        <h2>Meus Anuncios</h2>
+
+                        <section class="d-flex align-items-center justify-content-between flex-wrap">
+                            <div class="cardMyAnnouncements">
+                                <div class="row justify-content-between topCard">
+                                    <div>
+                                        <a class="seeMore text-white">Ver mais</a>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex">
+                                            <p>Agua na boca</p>
+                                            <p>30h/s</p>
+                                        </div>
+                                        <p>Pau dos ferros/RN</p>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="seeCandidates">
+                                    <a href="">Ver candidatos</a>
+                                </div>
+                            </div>
+                            <div class="cardMyAnnouncements">
+                                <div class="topCard">
+                                    <a class="seeMore">Ver mais</a>
+                                    <div>
+                                        <h3>Agua na boca</h3>
+                                        <p>30h/s</p>
+                                    </div>
+                                    <p>Pau dos ferros/RN</p>
+                                </div>
+
+                                <div class="seeCandidates">
+                                    <a href="">Ver candidatos</a>
+                                </div>
+                            </div>
+                            <div class="cardMyAnnouncements">
+                                <div class="topCard">
+                                    <a class="seeMore">Ver mais</a>
+                                    <div>
+                                        <h3>Agua na boca</h3>
+                                        <p>30h/s</p>
+                                    </div>
+                                    <p>Pau dos ferros/RN</p>
+                                </div>
+
+                                <div class="seeCandidates">
+                                    <a href="">Ver candidatos</a>
+                                </div>
+                            </div>
+                        </section>
                     </section>
                 </section>
             </div>
