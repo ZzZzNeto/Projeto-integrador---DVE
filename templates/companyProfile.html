@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles/coordinationProfile.css">
+    <link rel="stylesheet" href="../styles/companyProfile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -68,7 +68,7 @@
 
                 <section class="col-10 container-profile">
                     <div class=" topContent d-flex flex-wrap align-items-center justify-content-between mt-5">
-                        <h1 class="">Ola, Coordenação do IFRN!</h1>
+                        <h1 class="">Ola, Empresa!</h1>
                         <div class="profilePicture d-flex justify-content-center align-items-center">
                             <img src="../imgs/PerfilPicture.png" alt="">
                         </div>
@@ -82,10 +82,31 @@
                                 <div class="row">
                                     <div class="col-sm">
                                         <div>
-                                            <label for="">E-mail</label>
+                                            <label for="">Nome</label>
                                             <div class="input-container">
-                                                <img src="../imgs/emailIcon.png" alt="">
-                                                <input type="text" disabled placeholder="coordenacao@academico.ifrn.edu.br">
+                                                <img src="../imgs/userIcon.png" alt="">
+                                                <input type="text" disabled placeholder="Brisanet">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">CNPJ</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/cnpjIcon.png" alt="">
+                                                <input type="text" disabled placeholder="432235435432">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">Logradouro</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/logradouroIcon.png" class="logradouroIMG" alt="">
+                                                <input type="text" disabled placeholder="Rua das Flores">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">Bairro</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/bairroIcon.png" alt="">
+                                                <input type="text" disabled placeholder="São Januario">
                                             </div>
                                         </div>
                                         <div>
@@ -95,21 +116,55 @@
                                                 <input type="text" disabled placeholder="(+55) 84 981183793">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm">
-                                        <div>
-                                            <label for="">Instagram</label>
-                                            <div class="input-container">
-                                                <img src="../imgs/InstagramIcon.png" alt="">
-                                                <input type="text" disabled placeholder="@ifrnpaudosferros">
-                                            </div>
-                                        </div>
                                         <div>
                                             <label for="">Linkedin</label>
                                             <div class="input-container">
                                                 <img src="../imgs/LinkedinIcon.png" alt="">
                                                 <input type="text" disabled placeholder="link">
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div>
+                                            <label for="">E-mail</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/emailIcon.png" alt="">
+                                                <input type="text" disabled placeholder="empresa@gmail.com">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">Cidade</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/cityIcon.png" alt="">
+                                                <input type="text" disabled placeholder="Pau dos Ferros">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">CEP</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/cepIcon.png" alt="">
+                                                <input type="text" disabled placeholder="5000-43">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">Whatsapp</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/whatsappIcon.png" alt="">
+                                                <input type="text" disabled placeholder="(+55) 84 981183793">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">Instagram</label>
+                                            <div class="input-container">
+                                                <img src="../imgs/InstagramIcon.png" alt="">
+                                                <input type="text" disabled placeholder="@empresa234">
+                                            </div>
+                                        </div>
+                                </div>
+                                <div>
+                                    <label for="">Descrição</label>
+                                    <div class="input-container">
+                                        <textarea type="text" class="description" disabled placeholder="Descreva a empresa"></textarea>
                                     </div>
                                 </div>
                             </form>
@@ -236,8 +291,7 @@
                 </section>
             </div>
         </div>
-
     </main>
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.8/glider.min.js%22%3E"></script>
 </html>

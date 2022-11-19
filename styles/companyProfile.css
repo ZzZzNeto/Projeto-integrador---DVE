@@ -185,6 +185,24 @@ form input{
     color: var(--color-alert-light);
 }
 
+.description{
+    padding: 20px;
+    margin-bottom: 0.6em;
+    background: var(--background-color);
+    width: 100%;
+    height: 200px;
+    border-radius: 16px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+    color: var(--color-alert-light);
+}
+
+.description::placeholder{
+    font-weight: var(--font-weight--Medium);
+    color: var(--color-alert-light);
+}
+
 form input::placeholder{
     
     font-weight: var(--font-weight--Medium);
@@ -212,6 +230,11 @@ form input:focus::placeholder{
     position: absolute;
     top: 15px;
     left: 30px;
+}
+
+.logradouroIMG{
+    top: 10px !important;
+    left: 22px !important;
 }
 
 .topCard{
