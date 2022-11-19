@@ -96,7 +96,6 @@ footer {
     background: var(--background-gradient);
     padding-top: 20px;
     padding-bottom: 20px;
-    width: 100%;
 }
 
 footer.a {
@@ -374,5 +373,3 @@ main{
     margin-left: 10%;
     margin: auto 0;
 }
-
-.card
