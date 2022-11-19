@@ -153,16 +153,36 @@ footer h3, footer h4{
 
 /*------------------------Main-----------------------*/
 
+main{
+    height: 100%;
+}
+
 .container1{
-    padding: 50px 150px;
+    padding: 150px;
 }
 
 .imagecontainer{
     width: 500px;
     height: 500px;
     margin-right: 50px;
+    margin-top: 30px;
 }
 
 .textcontainermain{
-    width: 500px;
+    width: 600px;
+    margin-top: 30px;
 }
+
+.textcontainermain h1{
+    font-weight: var(--font-weight--Bold);
+    color: var(--color-text-blue-dark);
+}
+
+.textcontainermain p{
+    margin-top: 20px;
+    font-size: 20px;
+    text-indent: 50px;
+    text-align: justify;
+    color: var(--color-text-blue-dark);
+}
+
