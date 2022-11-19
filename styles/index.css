@@ -365,3 +365,13 @@ main{
     font-size: 28px;
     text-align: justify;
 }
+
+ 
+.carousel-container{
+    width: 80%;
+    position: relative;
+    margin-left: 10%;
+    margin: auto 0;
+}
+
+.card
