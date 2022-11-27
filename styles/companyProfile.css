@@ -316,3 +316,70 @@ footer h3, footer h4{
     margin-bottom: 0px;
     font-size: 15px;
 }
+
+.carousel-container{
+    width: 90%;
+    position: relative;
+    margin-left: 5%;
+}
+
+
+.link-see-more{
+    top: 8%;
+    right: 12%;
+}
+
+.link-see-more a{
+    text-decoration: none;
+    color: var(--color-white);
+    background-color: var(--color-buttom);
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: var(--font-weight--Bold);
+}
+
+.link-see-more a:hover{
+    background-color: var(--color-filter);
+    transition: .6s;
+}
+
+.size-box{
+    height: 280px !important;
+    width: auto;
+}
+
+.name-company{
+    color: var(--color-white);
+    background-color: var(--color-buttom);
+    border-radius: 20px;
+    bottom: 20%;
+    left: 5%;
+}
+
+.name-company p{
+    padding: 6px 12px;
+    font-weight: var(--font-weight--Bold);
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.name-company span{
+    padding-left: 20px;
+    font-weight: var(--font-weight--Regular);
+}
+
+.name-city{
+    background-color: var(--color-green-dark);
+    border-radius:  0px 0px 20px 20px;
+    color: var(--color-white);
+    bottom: 12%;
+    left: 10%;
+}
+
+.name-city p{
+    margin: 0;
+    font-size: 14px;
+    padding: 1px 8px;
+    font-weight: var(--font-weight--Regular);
+}

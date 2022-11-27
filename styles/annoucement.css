@@ -61,7 +61,7 @@ h1{
 }
 
 .adjust{
-    margin: 0px 8%;
+    margin: 0px 13%;
 }
 
 .nav-li-regular{
@@ -110,21 +110,20 @@ header li{
 .form-sign-in{
     width: 100%;
     margin: auto;
-    gap: 10px;
 }
 
 .form-sign-in div{
     width: 100%;
 }
 
-.form-sign-in label{
+.form-sign-in label, .contacts p{
     color: var(--color-text-input-ad-font);
     font-size: 14px;
     align-self: flex-start;
 }
 .form-sign-in input{
-    padding-left: 60px;
-    margin-bottom: 0.6em;
+    padding-left: 20px;
+    margin-bottom: 0.85em;
     background: var(--background-color);
     width: 100%;
     height: 50px;
@@ -145,7 +144,6 @@ header li{
     outline: none;
     color: var(--color-text-blue-dark);
     border: 0.1px solid var(--color-menu);
-    padding-left: 30px;
     font-weight: var(--font-weight--SemiBold);
     
 }
@@ -164,7 +162,216 @@ header li{
     left: 30px;
 }
 
+.size-district-input{
+    width: 388px !important;  
+}
 
-.a{
-    flex-direction: row !important;
+.size-number-input{
+    width: 200px !important; 
+}
+
+.ch-input{
+    width: 235px !important;
+}
+
+.vacancies-input{
+    width: 117px !important;
+}
+
+.period-input{
+    width: 235px !important;
+}
+.tags{
+    margin-bottom: 0.7em;
+    margin-top: 1em;
+    
+}
+.tags div{
+    padding: 0px 10px 0px 0px;
+    width: auto;
+}
+.tags p{
+    color: var(--color-white);
+    font-weight: var(--font-weight--Bold);
+    
+}
+.new-tag{
+    background: var(--color-tag-new);
+    margin-right: 5px;
+    border-radius: 24px;
+   
+    
+}
+
+.new-tag p{
+    padding: 2px;
+    margin: 0;
+    
+}
+.new-tag img, .technology-tag img, .network-tag img, .cipher-tag img{
+    margin-left: 10px;
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.technology-tag, .network-tag, .cipher-tag{
+    background: var(--color-alert-light);
+    margin-right: 2px;
+    border-radius: 24px;
+    margin-right: 5px;
+}
+
+.benefits textarea{
+    padding: 20px;
+    margin-bottom: 0.6em;
+    background: var(--background-color);
+    width: 100%;
+    height: 120px;
+    border-radius: 16px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+    color: var(--color-alert-light);
+}
+.benefits textarea:focus, .activities textarea:focus, .description textarea:focus{
+    outline: none;
+    color: var(--color-text-blue-dark);
+    border: 0.1px solid var(--color-menu);
+    font-weight: var(--font-weight--SemiBold);
+}
+
+.benefits textarea:focus::placeholder, .activities textarea:focus::placeholder, .description textarea:focus::placeholder{
+    font-weight: var(--font-weight--Bold);
+}
+.benefits textarea::placeholder, .activities textarea::placeholder, .description textarea::placeholder{
+    font-weight: var(--font-weight--Medium);
+    color: var(--color-alert-light);
+}
+
+.activities{
+    margin-left: 45px;
+}
+
+.activities textarea{
+    padding: 20px;
+    margin-bottom: 0.6em;
+    background: var(--background-color);
+    width: 88.5%;
+    height: 120px;
+    border-radius: 16px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+    color: var(--color-alert-light);
+}
+
+.contact-form div{
+    width: 17.6% !important;
+    margin-right: 20px;
+}
+
+
+.contact-form input{
+    padding-left: 50px;
+}
+
+
+.contact-form img{
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+.description textarea{
+    padding: 20px;
+    margin-bottom: 0.6em;
+    background: var(--background-color);
+    width: 94%;
+    height: 120px;
+    border-radius: 16px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+    color: var(--color-alert-light);
+}
+
+.button-estagios{
+    margin-bottom: 20px;
+}
+.button-estagios button{
+    border: none;
+    background: var(--color-buttom);
+    border-radius: 30px;
+    margin-right: 6%;
+    transition: 0.5s;
+}
+.button-estagios button:hover{
+    background: var(--color-if);
+}
+.button-estagios p{
+    color: var(--color-white);
+    font-weight: var(--font-weight--ExtraBold);
+    text-align: center;
+    margin:0;
+    padding: 6px 12px;
+}
+
+
+footer {
+    background: var(--background-gradient);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+footer.a {
+    text-decoration: None;
+
+}
+
+footer a {
+    text-decoration: None !important;
+    color: white;
+}
+
+footer a:hover{
+    color: var(--color-buttom);
+}
+
+.logoFooter {
+    height: 250px;
+}
+
+footer li a {
+    background-color: var(--color-buttom);
+    padding: 10px 0px;
+    display: block;
+    width: 200px;
+    border-radius: 1em;
+    font-size: 20px;
+    font-weight: var(--font-weight--Bold);
+}
+
+footer li a:hover{
+    background-color: var(--color-filter);
+    transition: .5s;
+}
+footer li{
+    margin-bottom: 20px;
+}
+
+footer h3, footer h4{
+    margin-bottom: 30px;
+    font-weight: var(--font-weight--Bold);
+}
+
+.footerSection1 {
+    margin: 0px 50px;
+    margin-top: 50px;
+}
+
+.copyright{
+    margin-top: 60px;
+    margin-bottom: 0px;
+    font-size: 15px;
 }
