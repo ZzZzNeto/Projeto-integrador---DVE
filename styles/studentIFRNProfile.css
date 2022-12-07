@@ -311,8 +311,9 @@ footer li a {
 }
 
 footer li a:hover{
-    background-color: var(--color-filter);
-    transition: .5s;
+    border:none;
+    
+    
 }
 footer li{
     margin-bottom: 20px;
