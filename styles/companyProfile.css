@@ -18,11 +18,11 @@
     --color-status-edit: #9A7631;
     --color-status-finished: #346E4E;
 
-    --background-gradient: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(90,214,181,1) 0%, rgba(113,238,170,1) 100%);
+    --background-gradient: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(90, 214, 181, 1) 0%, rgba(113, 238, 170, 1) 100%);
     --background-color: #F0EEEE;
     --background-color-white: #fff;
     --background-sidebar: #5AD6B5;
-    --background-gradient-login: linear-gradient(180deg, rgba(194,194,194,1) 0%, rgba(171,171,171,1) 50%, rgba(134,134,134,1) 100%);
+    --background-gradient-login: linear-gradient(180deg, rgba(194, 194, 194, 1) 0%, rgba(171, 171, 171, 1) 50%, rgba(134, 134, 134, 1) 100%);
 
 
     --font: 'Poppins', sans-serif;
@@ -34,12 +34,12 @@
     --font-weight--SemiBold: 600;
     --font-weight--Bold: 700;
     --font-weight--ExtraBold: 800;
-    --font-weight--Black: 900; 
+    --font-weight--Black: 900;
 
     --font-size-link-nav: 24px;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -48,52 +48,55 @@
 }
 
 
-.bg-header{
+.bg-header {
     background: var(--background-gradient);
 }
 
-.adjust{
+.adjust {
     margin: 0px 8%;
 }
 
-.nav-li-regular{
+.nav-li-regular {
     font-weight: var(--font-weight--Regular);
-    font-size: var(--font-size-link-nav); 
+    font-size: var(--font-size-link-nav);
 }
 
-.nav-li-bold{
-    font-weight: var(--font-weight--Bold);
-    font-size: var(--font-size-link-nav); 
-}
-
-.nav-li-Extrabold{
+.nav-li-bold {
     font-weight: var(--font-weight--Bold);
     font-size: var(--font-size-link-nav);
 }
 
-.btn{
+.nav-li-Extrabold {
+    font-weight: var(--font-weight--Bold);
+    font-size: var(--font-size-link-nav);
+}
+
+.btn {
     font-size: var(--font-size-link-nav)
 }
-.space-right{
+
+.space-right {
     margin-right: 80px;
 }
-.btn-style{
+
+.btn-style {
     background-color: var(--color-buttom);
-    border-radius:1em;
+    border-radius: 1em;
     display: block;
-    width:150px;
-    padding: 10px 0px ;
+    width: 150px;
+    padding: 10px 0px;
 }
-header li{
+
+header li {
     margin-right: 20px;
 }
 
-.btn-style:hover{
+.btn-style:hover {
     background-color: var(--color-filter);
     transition: .5s;
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: rgba(0, 0, 0, 0.700) !important;
     transition: .5s;
 }
@@ -118,7 +121,7 @@ footer a {
     color: white;
 }
 
-footer a:hover{
+footer a:hover {
     color: var(--color-buttom);
 }
 
@@ -136,15 +139,17 @@ footer li a {
     font-weight: var(--font-weight--Bold);
 }
 
-footer li a:hover{
+footer li a:hover {
     background-color: var(--color-filter);
     transition: .5s;
 }
-footer li{
+
+footer li {
     margin-bottom: 20px;
 }
 
-footer h3, footer h4{
+footer h3,
+footer h4 {
     margin-bottom: 30px;
     font-weight: var(--font-weight--Bold);
 }
@@ -154,7 +159,7 @@ footer h3, footer h4{
     margin-top: 50px;
 }
 
-.copyright{
+.copyright {
     margin-top: 60px;
     margin-bottom: 0px;
     font-size: 15px;
@@ -162,15 +167,15 @@ footer h3, footer h4{
 
 /*------------------------Main-----------------------*/
 
-body{
+body {
     height: 100%;
 }
 
-html{
+html {
     height: 100%;
 }
 
-.btn-sing-in{
+.btn-sing-in {
     background-color: var(--color-menu);
     width: 25%;
     border: none;
@@ -181,105 +186,113 @@ html{
     font-size: 18px;
 }
 
-.exclude{
+.exclude {
     background-color: var(--color-red);
 }
 
-.container-profile{
+.container-profile {
     flex: 1;
 }
 
-.teste{
+.teste {
     width: 80%;
     display: flex;
     margin: 100px 100px;
 }
-.sidebar{
+
+.sidebar {
     height: 700px;
     background-color: var(--background-sidebar);
     width: 20%;
     border-radius: 20px;
 }
 
-.font-bold{
+.font-bold {
     font-weight: var(--font-weight--Bold);
     font-size: 30px;
     padding-left: 10px;
 }
 
-.font-bold-ul{
+.font-bold-ul {
     font-weight: var(--font-weight--Bold);
     font-size: 20px;
 }
 
-.text-exit{
+.text-exit {
     color: var(--color-red);
     font-weight: var(--font-weight--Bold);
     font-size: 20px;
     padding-left: 10px;
 }
 
-.sidebarContent{
+.sidebarContent {
     flex: 1;
 }
-.sidebarContent li{
+
+.sidebarContent li {
     list-style: none;
 }
-.sidebarContent p{
+
+.sidebarContent p {
     font-size: 20px;
 }
-.container-profile h1{
+
+.container-profile h1 {
     font-weight: var(--font-weight--Bold);
     color: var(--color-text-input-ad-font);
-    font-size:47px;
+    font-size: 47px;
 }
 
-.container-profile{
+.container-profile {
     padding: 0px;
 }
 
-.profilePicture{
+.profilePicture {
     border-radius: 50%;
     border: solid var(--color-text-blue-dark) 5px;
     height: 150px;
     width: 150px;
 }
 
-.exitButton{
+.exitButton {
     text-decoration: none;
 }
 
-.myData, .myAnnouncements, .topContent{
+.myData,
+.myAnnouncements,
+.topContent {
     margin: 50px 8%;
 }
 
-.topContent{
+.topContent {
     margin-top: 0px !important;
 }
 
-.myData h2, .myAnnouncements h2{
+.myData h2,
+.myAnnouncements h2 {
     font-weight: var(--font-weight--Bold);
     color: var(--color-text-input-ad-font);
     margin-bottom: 40px;
 }
 
-form{
+form {
     width: 100%;
     margin: 0px;
     gap: 10px;
 }
 
-form div{
+form div {
     width: 100%;
 }
 
-form label{
+form label {
     color: var(--color-text-input-ad-font);
     font-size: 14px;
     align-self: flex-start;
     margin-bottom: 10px;
 }
-form input{
+
+form input {
     padding-left: 80px;
     margin-bottom: 0.6em;
     background: var(--background-color);
@@ -292,7 +305,7 @@ form input{
     color: var(--color-alert-light);
 }
 
-.description{
+.description {
     padding: 20px;
     margin-bottom: 0.6em;
     background: var(--background-color);
@@ -305,46 +318,47 @@ form input{
     color: var(--color-alert-light);
 }
 
-.description::placeholder{
+.description::placeholder {
     font-weight: var(--font-weight--Medium);
     color: var(--color-alert-light);
 }
 
-form input::placeholder{
-    
+form input::placeholder {
+
     font-weight: var(--font-weight--Medium);
     color: var(--color-alert-light);
-    
+
 }
-form input:focus{
+
+form input:focus {
     outline: none;
     color: var(--color-text-blue-dark);
     border: 0.1px solid var(--color-menu);
     padding-left: 60px;
     font-weight: var(--font-weight--SemiBold);
-    
+
 }
 
-form input:focus::placeholder{
+form input:focus::placeholder {
     font-weight: var(--font-weight--Bold);
 }
 
-.input-container{
+.input-container {
     position: relative;
 }
 
-.input-container img{
+.input-container img {
     position: absolute;
     top: 15px;
     left: 30px;
 }
 
-.logradouroIMG{
+.logradouroIMG {
     top: 10px !important;
     left: 22px !important;
 }
 
-.topCard{
+.topCard {
     background-image: url(../imgs/EstagioAguaNaBoca.png);
     background-repeat: no-repeat;
     background-size: 250px 280px;
@@ -356,7 +370,7 @@ form input:focus::placeholder{
     text-align: right;
 }
 
-.seeMore{
+.seeMore {
     background-color: var(--color-buttom);
     border-radius: 20px;
     padding: 3px 10px;
@@ -371,8 +385,9 @@ form input:focus::placeholder{
     margin-left: 5%;
 }
 
+
 .link-see-more{
-    top: 8%;
+    top: 3%;
     right: 12%;
 }
 
@@ -380,9 +395,9 @@ form input:focus::placeholder{
     text-decoration: none;
     color: var(--color-white);
     background-color: var(--color-buttom);
-    padding: 7px 14px;
+    padding: 6px 12px;
     border-radius: 30px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: var(--font-weight--Bold);
 }
 
@@ -392,8 +407,8 @@ form input:focus::placeholder{
 }
 
 .size-box{
-    height: 330px !important;
-    width: auto;
+    height: 280px !important;
+    width: 500px !important;
 }
 
 .name-company{
@@ -401,13 +416,13 @@ form input:focus::placeholder{
     background-color: var(--color-buttom);
     border-radius: 20px;
     bottom: 20%;
-    left: 3%;
+    left: 5%;
 }
 
 .name-company p{
     padding: 6px 12px;
     font-weight: var(--font-weight--Bold);
-    font-size: 18px;
+    font-size: 14px;
     margin-bottom: 0;
 }
 
@@ -421,12 +436,12 @@ form input:focus::placeholder{
     border-radius:  0px 0px 20px 20px;
     color: var(--color-white);
     bottom: 12%;
-    left: 10%;
+    left: 12%;
 }
 
 .name-city p{
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
     padding: 1px 8px;
     font-weight: var(--font-weight--Regular);
 }
