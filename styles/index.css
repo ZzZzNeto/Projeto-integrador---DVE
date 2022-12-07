@@ -315,12 +315,12 @@ main{
         width: 71%;
         position: absolute;
         left: 14%;
-        top: 210%;
+        top: 220%;
         display: block;
     }
     
     .section4Homapage{
-        padding-bottom: 400px;
+        padding-bottom: 500px;
     }
 }
 
@@ -466,3 +466,4 @@ main{
     padding: 3px 20px;
     font-weight: var(--font-weight--Regular);
 }
+ 
