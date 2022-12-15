@@ -176,13 +176,19 @@ main{
     outline: none;
 }
 
+.ordenation{
+    display: flex;
+    align-items: center;
+}
+
 .searchbar button{
     color: var(--color-white);
     border: none;
     border-radius: 0px 10px 10px 0px;
     background-color: var(--color-buttom);
     height: 50px;
-    width: 10%;
+    width: 12%;
+    margin-top: 0px;
     font-weight: var(--font-weight--Bold);
     font-size: 18px;
     text-align: center;
@@ -231,6 +237,7 @@ button img{
 
 .data{
     padding: 30px 10%;
+    width: 100%;
 }
 
 .titleFilter{

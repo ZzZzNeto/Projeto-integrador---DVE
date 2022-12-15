@@ -18,7 +18,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="../imgs/favicon-32x32.png" />
 
     <link rel="stylesheet" href="{% static 'styles/index.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/glider.css' %}">
+    <link rel="stylesheet" href="{% static 'Glider.js-master/glider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Glider.js-master/glider.css' %}">
 
     <title>DVE</title>
 </head>
@@ -27,7 +28,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-header">
             <section class="container-fluid d-flex align-items-center adjust">
-                <a class="navbar-brand" href="#"><img src="{% static 'imgs/LogoNameBottom.png' %}" alt="logo so site" width="241px"
+                <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'imgs/LogoNameBottom.png' %}" alt="logo so site" width="241px"
                         height="257px"></a>
                 <div>
 
@@ -41,19 +42,19 @@
                     <ul class="navbar-nav ">
                         <li class="nav-item">
                             <a class="nav-link nav-li-regular text-white" aria-current="page"
-                                href="index.html">Inicio</a>
+                                href="{% url 'index' %}">Inicio</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link nav-li-regular text-white" href="aboutUs.html">Sobre nós</a>
+                            <a class="nav-link nav-li-regular text-white" href="{% url 'aboutUs' %}">Sobre nós</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link nav-li-regular text-white" href="faq.html">Dúvidas?</a>
+                            <a class="nav-link nav-li-regular text-white" href="{% url 'faq' %}">Dúvidas?</a>
                         </li>
 
                         <li class="nav-item space-right">
-                            <a class="nav-link nav-li-bold text-white" href="stages.html">Anúncios</a>
+                            <a class="nav-link nav-li-bold text-white" href="{% url 'stages' %}">Anúncios</a>
                         </li>
                         <li>
                             <a class="btn btn-style text-white" href="signIn.html">
@@ -118,13 +119,13 @@
                 <h3>Links úteis</h3>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="index.html" class="text-white">Inicio</a>
+                        <a href="{% url 'index' %}" class="text-white">Inicio</a>
                     </li>
                     <li>
-                        <a href="" class="text-white">Sobre nós</a>
+                        <a href="{% url 'aboutUs' %}" class="text-white">Sobre nós</a>
                     </li>
                     <li>
-                        <a href="" class="text-white">Dúvidas</a>
+                        <a href="{% url 'faq' %}" class="text-white">Dúvidas</a>
                     </li>
                 </ul>
             </section>
@@ -147,7 +148,7 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 
-<script src="../Glider.js-master/glider.min.js"></script>
-<script src="../script/index.js"></script>
+<script src="{% static 'Glider.js-master/glider.min.js' %}"></script>
+<script src="{% static 'script/index.js' %}"></script>
 
 </html>

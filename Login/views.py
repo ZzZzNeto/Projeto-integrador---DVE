@@ -4,35 +4,47 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView, View)
 
-from .models import User
+from .models import CompanyUser, CoordinationUser, ExternalUser, InternalUser
 
 
-class ExternalUser(View):
+class CompanyUserView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'profile.html')
+        
+class CoordinationUserView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'profile.html')
 
-class InternalUser(View):
+class ExternalUserView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'profile.html')
 
-class UserCreate(CreateView):
+class InternalUserView(View):
+    template_name = 'profile.html'
+    queryset = InternalUser.objects.all()
+    model = InternalUser
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'profile.html')
+
+class InternalUserCreate(CreateView):
     template_name = 'singIn.html'
-    model = User
+    model = InternalUser
     fields = '__all__'
-    success_url = reverse_lazy('Login:index')
+    success_url = reverse_lazy('Login:profile')
 
-class UserUpdate(UpdateView):
+class InternalUserUpdate(UpdateView):
     template_name = 'profile.html'
-    model = User
+    model = InternalUser
     fields = '__all__'
-    success_url = reverse_lazy('Login:index')
+    success_url = reverse_lazy('Login:profile')
 
-class UserDelete(DeleteView):
+class InternalUserDelete(DeleteView):
     template_name = 'profile.html'
-    queryset = User.objects.all()
-    model = User
+    queryset = InternalUser.objects.all()
+    model = InternalUser
     fields = '__all__'
-    success_url = reverse_lazy('Login:index')
+    success_url = reverse_lazy('Login:profile')
 
 
 

@@ -9,3 +9,13 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'index.html')
+
+class FaqView(View):
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'faq.html')
+
+class AboutUsView(View):
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'aboutUs.html')
