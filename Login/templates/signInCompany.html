@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles/signInCompany.css">
+    <link rel="stylesheet" href="{% static 'styles/signInCompany.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -20,9 +22,9 @@
     <section class="container-button">
         <div class="back-page">
             <div>
-                <a class="p-0  nav-link" href="../templates/signIn.html">
+                <a class="p-0  nav-link" href="{% url 'signin' %}">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img src="../imgs/arrowIcon.png" alt="">
+                        <img src="{% static 'imgs/arrowIcon.png' %}" alt="">
                         <p class="m-0">Voltar</p>
                     </div>
                 </a>
@@ -38,11 +40,11 @@
 
                 <div class="logo d-flex justify-content-center align-items-center">
                     <div>
-                        <a href="../templates/index.html">
-                            <img src="../imgs/Logo.png" alt="logo do site">
+                        <a href="{% url 'index' %}">
+                            <img src="{% static 'imgs/Logo.png' %}" alt="logo do site">
                         </a>
 
-                        <a href="../templates/index.html"><img src="../imgs/DVE.png" alt="Nome do site"></a>
+                        <a href="{% url 'index' %}"><img src="{% static 'imgs/DVE.png' %}" alt="Nome do site"></a>
                     </div>
                 </div>
 
@@ -58,7 +60,7 @@
                         <div>
                             <label for="">Nome da empresa</label>
                             <div class="input-container">
-                                <img src="../imgs/companyIcon.png" alt="">
+                                <img src="  {% static 'imgs/companyIcon.png' %}" alt="">
                                 <input type="text" placeholder="Insira o nome da empresa">
                             </div>
                         </div>
@@ -66,7 +68,7 @@
                         <div class="gap">
                             <label for="">CNPJ</label>
                             <div class="input-container">
-                                <img src="../imgs/cnpjIcon.png" alt="">
+                                <img src="{% static 'imgs/cnpjIcon.png' %}" alt="">
                                 <input type="text" placeholder="Insira o CNPJ da empresa">
                             </div>
                         </div>
@@ -74,7 +76,7 @@
                         <div class="gap">
                             <label for="">E-mail</label>
                             <div class="input-container">
-                                <img src="../imgs/emailIcon.png" alt="">
+                                <img src="{% static 'imgs/emailIcon.png' %}" alt="">
                                 <input type="email" placeholder="Insira o seu email">
                             </div>
                         </div>
@@ -82,7 +84,7 @@
                         <div class="gap">
                             <label for="">Senha</label>
                             <div class="input-container">
-                                <img src="../imgs/passwordIcon.png" alt="">
+                                <img src="{% static 'imgs/passwordIcon.png' %}" alt="">
                                 <input type="password" placeholder="Insira a sua senha">
                             </div>
                         </div>

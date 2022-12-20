@@ -149,7 +149,7 @@
     font-weight: var(--font-weight--ExtraBold);
 }
 
-.btn-log-in{
+.btn-log-in, .testing{
     background-color: transparent;
     border: 2px solid var(--color-white);;
     border-radius: 16px;

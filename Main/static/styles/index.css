@@ -431,7 +431,7 @@ main{
 .size-box{
     height: 400px !important;
     width: auto;
-}
+} 
 
 .name-company{
     color: var(--color-white);

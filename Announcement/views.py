@@ -35,3 +35,7 @@ class AnnoucementDelete(DeleteView):
     fields = '__all__'
     success_url = reverse_lazy('Login:profile')
 
+class CandidatesView(ListView):
+    template_name = 'seeCandidates.html'
+    model = Annoucement
+    queryset = Annoucement.objects.all()

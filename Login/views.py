@@ -27,6 +27,11 @@ class InternalUserView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'profile.html')
 
+class SignInView(View):
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'signIn.html')
+
 class InternalUserCreate(CreateView):
     template_name = 'singIn.html'
     model = InternalUser
@@ -46,7 +51,27 @@ class InternalUserDelete(DeleteView):
     fields = '__all__'
     success_url = reverse_lazy('Login:profile')
 
+class SignInCompanyView(View):
 
+    def get(self, request, *args, **kwargs):
+        return render(request, 'signInCompany.html')
 
+class ForgotPasswordView(View):
 
+    def get(self, request, *args, **kwargs):
+        return render(request, 'forgotPassword.html')
 
+class RedefinePasswordView(View):
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'redefinePassword.html')
+
+class VerificationView(View):
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'verification.html')
+
+class LoginView(View):
+    
+    def get(self, request, *args, **kwargs):
+        return render(request, 'login.html')
