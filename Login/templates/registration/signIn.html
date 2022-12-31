@@ -94,7 +94,7 @@
                                     </a>
 
                                 </div>
-                                <div class="d-flex align-items-center justify-content-center ">
+                                <div class="d-flex align-items-center justify-content-center "> 
 
 
                                     <img class=" margin-company" src="{% static 'imgs/empresaIcon.png' %}" alt="icon empresa">
@@ -118,23 +118,28 @@
                             </div>
 
                             <div>
-                                <form class="form-sign-in d-flex flex-column justify-content-center align-items-center"
-                                    action="">
-                                    <div>
+                                <form class="form-sign-in d-flex flex-column justify-content-center align-items-center" action="." method="post">
+                                    {%csrf_token%}
+                                    {%if messages%}
+                                    {%for menssage in messages%}
+                                    {{message}}
+                                    {%endfor%}
+                                    {%endif%}
+                                    
+                                    {{form.as_p}}
+                                    <!-- <div>
                                         <label for="">Nome</label>
                                         <div class="input-container">
                                             <img src="{% static 'imgs/userIcon.png' %}" alt="">
-                                            <input type="text" placeholder="Insira seu nome">
-
+                                            <input id="name" name="name" type="text" placeholder="Insira seu nome">
                                         </div>
-
                                     </div>
                                     <div>
 
                                         <label for="">E-mail</label>
                                         <div class="input-container">
                                             <img src="{% static 'imgs/emailIcon.png' %}" alt="">
-                                            <input type="email" placeholder="Insira seu e-mail">
+                                            <input id="email" name="email" type="email" placeholder="Insira seu e-mail">
                                         </div>
                                     </div>
 
@@ -142,7 +147,7 @@
                                         <label for="">Senha</label>
                                         <div class="input-container">
                                             <img src="{% static 'imgs/passwordIcon.png' %}" alt="">
-                                            <input type="password" placeholder="Insira sua senha">
+                                            <input id="password" name="password" type="password" placeholder="Insira sua senha">
                                         </div>
 
                                     </div>
@@ -151,7 +156,7 @@
                                             li a
                                             Declaração de Privacidade.
                                         </p>
-                                    </div>
+                                    </div> -->
                                     <div>
                                         <button type="submit" class="btn-sing-in">CADASTRAR</button>
                                     </div>

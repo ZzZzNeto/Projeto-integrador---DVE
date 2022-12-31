@@ -25,19 +25,19 @@
                 <div class="d-flex flex-column align-items-center justify-content-center mt-3 sidebarContent">
                     <ul class="p-0 w-100">
                         <li><a class="nav-link font-bold-ul p-0 mb-3" href="#myData">
-                                <p class="m-0"> Meus dados</p>
+                                <p class="m-0 text-white"> Meus dados</p>
                             </a></li>
                         <li><a class="nav-link font-bold-ul p-0 mb-3" href="#myAnnouncements">
-                                <p class="m-0"> Meus anúncios</p>
+                                <p class="m-0 text-white"> Meus anúncios</p>
                             </a></li>
                         <li><a class="nav-link font-bold-ul p-0 mb-3" href="announcement.html">
-                                <p class="m-0"> Criar anúncios</p>
+                                <p class="m-0 text-white"> Criar anúncios</p>
                             </a></li>
                     </ul>
                 </div>
             </section>
             <div class="d-flex align-items-center justify-content-center pb-5">
-                <a href="" class="exitButton">
+                <a href="{%url 'logout'%}" class="exitButton">
                     <div class="d-flex align-items-center justify-content-center flex-start">
                         <img src="{% static 'imgs/ExitIcon.png' %}" alt="icon de saidan" />
                         <p class="m-0 text-exit">Sair</p>

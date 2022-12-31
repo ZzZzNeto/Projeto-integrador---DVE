@@ -44,7 +44,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font);
-    color: var(--color-white);
 }
 
 
@@ -176,7 +175,7 @@ body {
 }
 
 main {
-    height: 1700px;
+    height: fit-content;
 }
 
 html {
@@ -216,6 +215,7 @@ html {
     font-weight: var(--font-weight--Bold);
     font-size: 30px;
     padding-left: 10px;
+    color: var(--color-white);
 }
 
 .font-bold-ul {

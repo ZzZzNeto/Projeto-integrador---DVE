@@ -1,11 +1,36 @@
-from django.shortcuts import (HttpResponseRedirect, get_object_or_404,
-                              redirect, render)
+from django.shortcuts import (HttpResponseRedirect, get_object_or_404, redirect, render)
+from .models import UserExternal
+from django.contrib import messages
 from django.urls import reverse, reverse_lazy
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  UpdateView, View)
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,UpdateView, View)
+from .models import UserCompany, UserExternal, CustomUser
+from . import forms
 
-from .models import CompanyUser, CoordinationUser, ExternalUser, InternalUser
+class SignUpExternalView(CreateView):
+    model = CustomUser
+    form_class = forms.CustomUserExternalCreateForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signIn.html'
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Usuário cadastrado com sucesso!")
+        return response
+
+class SignUpCompanyView(CreateView):
+    model = CustomUser
+    form_class = forms.CustomUserCompanyCreateForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signInCompany.html'
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Usuário cadastrado com sucesso!")
+        return response
+    
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'company'
+        return super().get_context_data(**kwargs)
 
 class CompanyUserView(View):
     def get(self, request, *args, **kwargs):
@@ -19,35 +44,24 @@ class ExternalUserView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'profile.html')
 
-class InternalUserView(View):
+class UserExternalView(View):
     template_name = 'profile.html'
-    queryset = InternalUser.objects.all()
-    model = InternalUser
+    queryset = UserExternal.objects.all()
+    model = UserExternal
 
     def get(self, request, *args, **kwargs):
         return render(request, 'profile.html')
 
-class SignInView(View):
-
-    def get(self, request, *args, **kwargs):
-        return render(request, 'signIn.html')
-
-class InternalUserCreate(CreateView):
-    template_name = 'singIn.html'
-    model = InternalUser
+class UserExternalUpdate(UpdateView):
+    template_name = 'profile.html'
+    model = UserExternal
     fields = '__all__'
     success_url = reverse_lazy('Login:profile')
-
-class InternalUserUpdate(UpdateView):
+   
+class UserExternalDelete(DeleteView):
     template_name = 'profile.html'
-    model = InternalUser
-    fields = '__all__'
-    success_url = reverse_lazy('Login:profile')
-
-class InternalUserDelete(DeleteView):
-    template_name = 'profile.html'
-    queryset = InternalUser.objects.all()
-    model = InternalUser
+    queryset = UserExternal.objects.all()
+    model = UserExternal
     fields = '__all__'
     success_url = reverse_lazy('Login:profile')
 
@@ -74,4 +88,4 @@ class VerificationView(View):
 class LoginView(View):
     
     def get(self, request, *args, **kwargs):
-        return render(request, 'login.html')
+        return render(request, 'registration/login.html')

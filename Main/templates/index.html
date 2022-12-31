@@ -5,7 +5,7 @@
     <section class="section1Homapage container-fluid text-white d-flex align-items-center justify-content-between">
         <section class="container section1Text">
             <h1>Encontre vagas de estagio em qualquer area do mercado! </h1>
-            <a href="" class='btn btn-style text-white' id="VerAnuncios">Ver Anuncios</a>
+            <a href="{% url 'stages' %}" class='btn btn-style text-white' id="VerAnuncios">Ver Anuncios</a>
         </section>
         <section class="container imagecontainerhomepage">
             <img class="img-fluid" src="{% static 'imgs/Images.png' %}" alt="">
@@ -13,7 +13,7 @@
     </section>
 
     <section class="section2Homapage container-fluid  d-flex align-items-center justify-content-between">
-        <a href="signInCompany.html">
+        <a href="{% url 'signincompany' %}">
             <section class="logincardHomepage container d-flex align-items-center justify-content-around">
                 <div id="imageEmpresa">
                     <img src="{% static 'imgs/carbon_location-company-filled.png' %}" alt="">
@@ -25,7 +25,7 @@
                 </div>
             </section>
         </a>
-        <a href="login.html">
+        <a href="{% url 'login' %}">
             <section class="logincardHomepage container d-flex align-items-center justify-content-around">
                 <div>
                     <img src="{% static 'imgs/Escola.png' %}" alt="">

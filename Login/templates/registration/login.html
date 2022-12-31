@@ -45,9 +45,15 @@
                 </section>
 
                 <section>
-                    <form class="form-sign-in d-flex flex-column justify-content-center align-items-center" action="">
-
-                        <div>
+                    {%if messages%}
+                    {%for message in messages%}
+                    {{message}}
+                    {%endfor%}
+                    {%endif%}
+                    <form class="form-sign-in d-flex flex-column justify-content-center align-items-center" action="" method="post">
+                        {%csrf_token%}
+                        {{form.as_p}}
+                        <!-- <div>
                             <label for="">E-mail</label>
                             <div class="input-container">
                                 <img src="{% static 'imgs/emailIcon.png'%}" alt="">
@@ -83,12 +89,11 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col p-0 align-items-center">
                                     <div class="d-flex justify-content-end a">
-                                        <button type="button" class="btn-log-in">Entrar</button>
-                                        <a class="testing" href="{% url 'profile' %}">Testes</a>
+                                        <button type="submit" class="btn-log-in">Entrar</button>
                                     </div>
                                 </div>
 
