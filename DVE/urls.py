@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+ 
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,4 +25,5 @@ urlpatterns = [
     path('user/', include('Login.urls')),
     path('annouces/', include('Announcement.urls')),
     path('user/', include('django.contrib.auth.urls')),
-]
+    path('', include('social_django.urls'), name='social'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

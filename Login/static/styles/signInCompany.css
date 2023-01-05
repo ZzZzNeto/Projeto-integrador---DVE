@@ -62,7 +62,7 @@ body {
 .box {
     
     width: 1239px;
-    height: 750px;
+    height: 800px;
     background: var(--background-sidebar);
     border-radius: 16px;
     box-shadow: 5px 4px 10px 2px var(--color-alert-light);

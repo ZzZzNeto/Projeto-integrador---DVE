@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Tags(models.Model):
     tags = models.CharField(max_length=25, verbose_name='Tags de interesse')
 
@@ -20,22 +19,21 @@ class Course(models.Model):
         return self.course
 
 class Annoucement(models.Model):
-    image_annoucement = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    image_annoucement = models.ImageField('Imagem do estagio', upload_to='imgs/ProfilePictures/', null=True, blank=True, default=None)
     name_of_company = models.CharField(max_length=50, verbose_name='Nome da empresa')
-    cep = models.CharField(max_length=9, verbose_name='CEP')
     district = models.CharField(max_length=80, verbose_name='Bairro')
     street = models.CharField(max_length=80, verbose_name='Rua')
     number = models.CharField(max_length=10, verbose_name="N°")
     tags = models.ManyToManyField(Tags)
     registration_deadline = models.IntegerField(verbose_name='Prazo de inscrções')
-    requirements = models.CharField(max_length=255, verbose_name="Requisitos")
+    requirements = models.CharField(max_length=500, verbose_name="Requisitos")
     workload = models.CharField(max_length=2, verbose_name='CH semanal')
-    Vacancies = models.CharField(max_length=3, verbose_name='Vagas')
+    vacancies = models.CharField(max_length=3, verbose_name='Vagas')
     period = models.ForeignKey(Period, on_delete= models.CASCADE)
-    benefits = models.CharField(max_length=255, verbose_name='Benefícios')
-    activities = models.CharField(max_length=255, verbose_name='Atividades a serem desenvolvidas')
-    description = models.CharField(max_length=255, verbose_name='Descrição')
-    email = models.CharField(max_length=100, verbose_name='E-mail')
+    benefits = models.CharField(max_length=500, verbose_name='Benefícios')
+    activities = models.CharField(max_length=500, verbose_name='Atividades a serem desenvolvidas')
+    description = models.CharField(max_length=500, verbose_name='Descrição')
+    email =  models.EmailField("E-mail")
     linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
     whatsapp = models.CharField(max_length=50, verbose_name='Whatsapp')
     instagram = models.CharField(max_length=50, verbose_name='Instagram')

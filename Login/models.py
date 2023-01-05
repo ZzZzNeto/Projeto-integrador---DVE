@@ -11,7 +11,7 @@ class Schooling(models.Model):
         return self.schooling
 
 class City(models.Model):
-    city = models.CharField(max_length=50, verbose_name='city')
+    city = models.CharField(max_length=50, verbose_name='city', primary_key=True)
 
     def __str__(self):
         return self.city
@@ -20,7 +20,19 @@ class Tags(models.Model):
     tags = models.CharField(max_length=25, verbose_name='Tags de interesse')
 
     def __str__(self):
+
         return self.tags
+class Course(models.Model):
+    course = models.CharField(max_length=50, verbose_name='course')
+
+    def __str__(self):
+        return self.course
+
+class Period(models.Model):
+    period = models.CharField(max_length=25, verbose_name='period')
+
+    def __str__(self):
+        return self.period
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -51,6 +63,8 @@ class CustomUser(AbstractUser):
     name = models.CharField(max_length=50)
     email = models.EmailField("E-mail", unique=True)
     is_staff = models.BooleanField('Membro da equipe', default=True)
+    photo = models.ImageField('Imagem do perfil', upload_to='imgs/ProfilePictures/', null=True, blank=True, default=None)
+    description = models.CharField(max_length=1000, default="Descrição")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -59,10 +73,6 @@ class CustomUser(AbstractUser):
         return self.username
 
     objects = UserManager()
-
-class CompanyManager(models.Manager):
-    def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(CustomUser.Types.COMPANY)
 
 class UserCompany(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
@@ -74,25 +84,38 @@ class UserCompany(models.Model):
     cep = models.CharField(max_length=9, verbose_name='CEP')
     district = models.CharField(max_length=80, verbose_name='Bairro')
     street = models.CharField(max_length=80, verbose_name='Rua')
-    city = models.OneToOneField(City, on_delete= models.CASCADE, null=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.user.name
-
-class ExternalManager(models.Manager):
-    def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(CustomUser.Types.EXTERNAL)
 
 class UserExternal(models.Model):
     user = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
     linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
     birth_date = models.DateField(null=True)
-    city = models.OneToOneField(City, on_delete= models.CASCADE, null=True)
-    schooling = models.OneToOneField(Schooling, on_delete= models.CASCADE, null=True)
-    tags = models.ForeignKey(Tags, on_delete= models.CASCADE, null=True)
+    city = models.ForeignKey(City, on_delete= models.CASCADE, null=True)
+    schooling = models.ForeignKey(Schooling, on_delete= models.CASCADE, null=True)
+    institution = models.CharField(max_length=50, verbose_name='Institution', default="Institution")
+    tags = models.ManyToManyField(Tags)
 
     def __str__(self):
         return self.user.name
+
+class UserInternal(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
+    registration = models.CharField(max_length=50, verbose_name='Matricula')
+    linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
+    birth_date = models.DateField(null=True)
+    city = models.ForeignKey(City, on_delete= models.CASCADE, null=True)
+    schooling = models.ForeignKey(Schooling, on_delete= models.CASCADE, null=True)
+    tags = models.ForeignKey(Tags, on_delete= models.CASCADE, null=True)
+    course = models.ForeignKey(Course, on_delete= models.CASCADE, null=True)
+    period = models.ForeignKey(Period, on_delete= models.CASCADE, null=True)
+    tags = models.ManyToManyField(Tags)
+
+    def __str__(self):
+        return self.user.name
+
 """class Course(models.Model):
     course = models.CharField(max_length=50, verbose_name='course')
 

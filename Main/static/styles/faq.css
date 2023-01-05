@@ -222,7 +222,13 @@ input, label {
     display:block;
 }
 
-button{
+.labelfaq{
+    color: var(--color-white);
+    font-weight: var(--font-weight--Bold);
+    font-size: 30px;
+}
+
+.button{
     margin-top: 10px;
     color: var(--color-white);
     background-color: var(--color-text-blue-dark);
@@ -231,4 +237,5 @@ button{
     font-weight: var(--font-weight--Bold);
     padding: 5px 30px;
     margin-bottom: 30px;
+    text-decoration: none;
 }

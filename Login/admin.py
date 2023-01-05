@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser, UserExternal, UserCompany
+from .models import CustomUser, UserExternal, UserCompany, City, Schooling
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import gettext_lazy as _
 
@@ -7,6 +7,8 @@ from django.utils.translation import gettext_lazy as _
 
 admin.site.register(UserCompany)
 admin.site.register(UserExternal)
+admin.site.register(City)
+admin.site.register(Schooling)
 
 @admin.register(CustomUser)
 class UserAdmin(DjangoUserAdmin):

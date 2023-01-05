@@ -51,6 +51,16 @@ main{
     padding: 30px 0px;
 }
 
+.form-sign-in .inputphoto{
+    width: 148px;
+    height: 30px;
+    position: absolute;
+    padding-left: 0px;
+    border-radius: 0px;
+    left: 760px;
+    top: 263px;
+}
+
 h1{
     font-weight: var(--font-weight--Bold);
     color: var(--color-menu);
@@ -109,8 +119,41 @@ header li{
 
 
 .form-sign-in{
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.col{
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
+.row{
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
+.col .container{
+    padding-right: 0px;
+}
+
+.midcontainer .input-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.period-input, .size-number-input{
+    padding-right: 0px;
+}
+
+.testeing{
+    display: flex;
+    justify-content: space-between;
 }
 
 .form-sign-in div{
@@ -132,7 +175,6 @@ header li{
     border: none;
     border-radius: 10px;
     transition: 0.2s;
-    color: var(--color-alert-light);
 }
 
 .form-sign-in input::placeholder{
@@ -194,14 +236,11 @@ header li{
 .tags p{
     color: var(--color-white);
     font-weight: var(--font-weight--Bold);
-    
 }
 .new-tag{
     background: var(--color-tag-new);
     margin-right: 5px;
     border-radius: 24px;
-   
-    
 }
 
 .new-tag p{
@@ -226,6 +265,7 @@ header li{
 .benefits textarea{
     padding: 20px;
     margin-bottom: 0.6em;
+    margin-top: 0px;
     background: var(--background-color);
     width: 100%;
     height: 120px;
@@ -258,13 +298,18 @@ header li{
     padding: 20px;
     margin-bottom: 0.6em;
     background: var(--background-color);
-    width: 88.5%;
+    margin-top: 0px;
+    width: 100%;
     height: 120px;
     border-radius: 16px;
     border: none;
     border-radius: 10px;
     transition: 0.2s;
     color: var(--color-alert-light);
+}
+
+.contact-form{
+    justify-content: space-between;
 }
 
 .contact-form div{
@@ -272,11 +317,13 @@ header li{
     margin-right: 20px;
 }
 
+.contacts p{
+    margin-top: 0px;
+}
 
 .contact-form input{
     padding-left: 50px;
 }
-
 
 .contact-form img{
     position: absolute;
@@ -284,17 +331,21 @@ header li{
     left: 20px;
 }
 
-.description textarea{
+.descriptione{
+    background-color: white;
+    padding: 0px;
+}
+
+.descriptione textarea{
     padding: 20px;
     margin-bottom: 0.6em;
     background: var(--background-color);
-    width: 94%;
-    height: 120px;
+    width: 100%;
     border-radius: 16px;
     border: none;
     border-radius: 10px;
     transition: 0.2s;
-    color: var(--color-alert-light);
+    margin-top: 0px;
 }
 
 .button-estagios{
@@ -304,7 +355,6 @@ header li{
     border: none;
     background: var(--color-buttom);
     border-radius: 30px;
-    margin-right: 6%;
     transition: 0.5s;
 }
 .button-estagios button:hover{
@@ -313,9 +363,10 @@ header li{
 .button-estagios p{
     color: var(--color-white);
     font-weight: var(--font-weight--ExtraBold);
+    font-size: 20px;
     text-align: center;
     margin:0;
-    padding: 6px 12px;
+    padding: 6px 30px;
 }
 
 

@@ -50,32 +50,36 @@
                     {{message}}
                     {%endfor%}
                     {%endif%}
-                    <form class="form-sign-in d-flex flex-column justify-content-center align-items-center" action="" method="post">
+                    <form class="form-sign-in d-flex flex-column justify-content-center align-items-center" action="."
+                        method="post">
                         {%csrf_token%}
-                        {{form.as_p}}
-                        <!-- <div>
+                        <div>
+                           
                             <label for="">E-mail</label>
                             <div class="input-container">
                                 <img src="{% static 'imgs/emailIcon.png'%}" alt="">
-                                <input type="email" placeholder="Insira seu e-mail">
+                                <input type="email" id="username" name="username" placeholder="Insira o seu email">
                             </div>
                         </div>
 
                         <div>
+                           
                             <label for="">Senha</label>
                             <div class="input-container">
                                 <img src="{% static 'imgs/passwordIcon.png'%}" alt="">
-                                <input type="password" placeholder="Insira sua senha">
+                                <input type="password" id="password" name="password" placeholder="Insira o seu email">
                             </div>
                         </div>
 
                         <div>
-                            <div class=>
-                                <a href="{% url 'forgotpassword' %}" class="nav-link m-0 p-0">
-                                    <p class="forgot-password">Esqueceu a senha?</p>
-                                </a>
-                            </div>
+
+
+                            <a href="{% url 'signin' %}" class="nav-link m-0 p-0">
+                                <p class="forgot-password">Não possui uma conta? Inscreva-se</p>
+                            </a>
+
                         </div>
+
                         <div class="container p-0">
                             <div class="row">
                                 <div class="col">
@@ -85,11 +89,11 @@
 
                                             <img src="{% static 'imgs/imgIF.png'%}" alt="logo do if">
                                             <a class="nav-link text-white"
-                                                href="https://suap.ifrn.edu.br/accounts/login/">SUAP</a>
+                                                href="{% url 'social:begin' 'suap' %}">SUAP</a>
 
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
 
                                 <div class="col p-0 align-items-center">
                                     <div class="d-flex justify-content-end a">

@@ -2,29 +2,44 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'styles/faq.css' %}">
-        <link rel="stylesheet" href="{% static 'styles/aboutUs.css' %}">
-        <link rel="stylesheet" href="{% static 'styles/stages.css' %}">
-        <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
-        <link rel="stylesheet" href="{% static 'Glider.js-master/glider.min.css' %}">
-        <link rel="stylesheet" href="{% static 'Glider.js-master/glider.css' %}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Slab:wght@900&display=swap"
-            rel="stylesheet">
-        <link rel="shortcut icon" type="image/x-icon" href="../imgs/favicon-32x32.png" />
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <title>DVE</title>
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/faq.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/aboutUs.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/stages.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/annoucement.css' %}">
+    <link rel="stylesheet" href="{% static 'Glider.js-master/glider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Glider.js-master/glider.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Slab:wght@900&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="../imgs/favicon-32x32.png" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <title>DVE</title>
+</head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-header">
@@ -42,7 +57,8 @@
                 <div class="collapse navbar-collapse justify-content-end flex-wrap" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ">
                         <li class="nav-item">
-                            <a class="nav-link nav-li-regular text-white" aria-current="page" href="{% url 'index' %}">Inicio</a>
+                            <a class="nav-link nav-li-regular text-white" aria-current="page"
+                                href="{% url 'index' %}">Inicio</a>
                         </li>
 
                         <li class="nav-item">
@@ -57,6 +73,16 @@
                             <a class="nav-link nav-li-bold text-white" href="{% url 'stages' %}">Anúncios</a>
                         </li>
                         <li>
+                            {%if user.is_authenticated%}
+                            <a class="btn btn-style text-white" href="{% url 'profile' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                                    class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                </svg>
+                                <span>Perfil</span>
+                            </a>
+                            {%else%}
                             <a class="btn btn-style text-white" href="{% url 'signin' %}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
                                     class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -65,6 +91,7 @@
                                 </svg>
                                 <span>Login</span>
                             </a>
+                            {%endif%}
                         </li>
                     </ul>
                 </div>
@@ -72,6 +99,10 @@
         </nav>
     </header>
     <main>
+        {%if messages%}
+        {%for message in messages%}
+        {%endfor%}
+        {%endif%}
         {%block main %}
         {%endblock %}
     </main>
@@ -79,9 +110,10 @@
         <footer class="text-white text-center">
             <section class="container p-4 d-flex flex-wrap justify-content-around align-items-center">
                 <section class="footerSection1">
-                    <a href="index.html"><img src="{% static 'imgs/LogoNameBottom.png' %}" class="logoFooter img-fluid mb-2" alt="logo"></a>
+                    <a href="index.html"><img src="{% static 'imgs/LogoNameBottom.png' %}"
+                            class="logoFooter img-fluid mb-2" alt="logo"></a>
                     <section class="socialMidia">
-    
+
                         <h5>Redes sociais</h5>
                         <a href="" class="m-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -150,5 +182,13 @@
 
 <script src="{% static 'Glider.js-master/glider.min.js' %}"></script>
 <script src="{% static 'script/index.js' %}"></script>
+<script src="{% static 'script/message.js' %}"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script>
+    {% for flashmsg in messages %}
+        alertify.set('notifier','position', 'top-center');
+        alertify.success('{{flashmsg}}');
+    {%endfor%}
+</script>
 
 </html>

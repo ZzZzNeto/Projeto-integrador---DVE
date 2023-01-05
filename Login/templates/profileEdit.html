@@ -8,7 +8,7 @@
         <section class="sidebar col-2 p-0 d-flex flex-column align-items-center justify-content-between">
             <section>
                 
-                <a href="{%url 'index' %}">
+                <a href="index.html">
                     <div class="d-flex logo align-items-center justify-content-start mt-5 mb-3">
                         <img src="{% static 'imgs/Logo.png' %}" alt="logo">
                         <img src="{% static 'imgs/DVE.png' %}" alt="nome da logo">
@@ -21,8 +21,8 @@
                         <p class="font-bold m-0">Menu</p>
                     </div>
                 </div>
+                {% for group in user.groups.all %}
                 <div class="d-flex flex-column align-items-center justify-content-center mt-3 sidebarContent">
-                    {% for group in user.groups.all %}
                     <ul class="p-0 w-100">
                         <li><a class="nav-link font-bold-ul p-0 mb-3" href="#myData">
                                 <p class="m-0 text-white"> Meus dados</p>
@@ -33,7 +33,7 @@
                             </a></li>
                         {% endif %}
                         {% if group.name == 'EmpresaCoordenacao' %}
-                        <li><a class="nav-link font-bold-ul p-0 mb-3" href="{%url 'announcementCreate' %}">
+                        <li><a class="nav-link font-bold-ul p-0 mb-3" href="announcement.html">
                                 <p class="m-0 text-white"> Criar anúncios</p>
                             </a></li>
                         {% endif %}
@@ -48,7 +48,6 @@
                         </a></li>
                         {% endif %}
                     </ul>
-                    {% endfor %}
                 </div>
             </section>
             <div class="d-flex align-items-center justify-content-center pb-5">
@@ -64,28 +63,29 @@
         <section class="col-10 container-profile">
             <div class=" topContent d-flex flex-wrap align-items-center justify-content-between mt-5">
                 <h1 class="">Ola, {{user.name}}!</h1>
-                <div class="profilePicture imageedit d-flex justify-content-center align-items-center">
-                    {% if user.photo %}
-                    <img width=100% height=100% class="rounded-circle" src="{{user.photo.url}}" alt="">
-                    {% else %}
-                    <img width=50% height=50%  src="{% static 'imgs/PerfilPicture.png' %}" alt="">
-                    {% endif %}
-                </div>
             </div>
 
             <section class="myData" id="myData">
                 <h2>Meus dados</h2>
     
                 <div class="container p-0">
-                    <form action="">
-                        {% for group in user.groups.all %}
+                    <form action="" enctype="multipart/form-data" method="post">
+                        {%csrf_token%}
+                        <div class="profilePicture imageedit d-flex justify-content-center align-items-center">
+                            {% if user.photo %}
+                            <img width=100% height=100% class="rounded-circle" src="{{user.photo.url}}" alt="">
+                            {% else %}
+                            <img width=50% height=50% src="{% static 'imgs/PerfilPicture.png' %}" alt="">
+                            {% endif %}
+                            <input class="inputphoto" type="file" name="photo" accept="image/*" id="id_photo">
+                        </div>
                         <div class="row">
                             <div class="col-sm">
                                 <div>
                                     <label for="">Nome</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/userIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.name}}" disabled placeholder="Nome">
+                                        {{form.name}}
                                     </div>
                                 </div>
                                 {% if group.name == 'EmpresaCoordenacao' %}
@@ -93,7 +93,7 @@
                                     <label for="">CNPJ</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/cnpjIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.usercompany.cnpj}}" disabled placeholder="CNPJ">
+                                        <input type="text" value="{{user.usercompany.cnpj}}" id="cnpj" name="cnpj" placeholder="CNPJ">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -102,7 +102,7 @@
                                     <label for="">Data de nascimento</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/calendarioIcon.png' %}" alt="">
-                                        <input type="date" value="{{user.userexternal.birth_date|date:"Y-m-d" }}" disabled>
+                                        <input type="date" value="{{user.userexternal.birth_date|date:"Y-m-d" }}" id="birth_date" name="birth_date">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -111,7 +111,7 @@
                                     <label for="">Escolaridade</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/escolaridadeIcon.png' %}" class="escolaridadeIMG" alt="">
-                                        <input type="text" value="{{user.userexternal.schooling}}" disabled placeholder="Escolaridade">
+                                        {{form.schooling}}
                                     </div>
                                 </div>
                                 {% endif %}
@@ -120,7 +120,7 @@
                                     <label for="">Instituição</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/cityIcon.png' %}" alt="">
-                                        <input type="text"  value="{{user.userexternal.institution}}" disabled placeholder="Instituição">
+                                        <input type="text"  value="{{user.userexternal.institution}}" id="institution" name="institution" placeholder="Instituição">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -129,7 +129,7 @@
                                     <label for="">Logradouro</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/logradouroIcon.png' %}" class="logradouroIMG" alt="">
-                                        <input type="text" value="{{user.usercompany.street}}" disabled placeholder="Logradouro">
+                                        <input type="text" value="{{user.usercompany.street}}" placeholder="Logradouro" id="street" name="street">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -138,7 +138,7 @@
                                     <label for="">Bairro</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/bairroIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.usercompany.district}}" disabled placeholder="Bairro">
+                                        <input type="text" value="{{user.usercompany.district}}" id="district" name="district" placeholder="Bairro">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -147,7 +147,7 @@
                                     <label for="">Telefone</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/TelefoneIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.usercompany.phone}}" disabled placeholder="Nº de telefone">
+                                        <input type="text" value="{{user.usercompany.phone}}" id="phone" name="phone" placeholder="Nº de telefone">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -156,7 +156,7 @@
                                     <label for="">Linkedin</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/LinkedinIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.usercompany.linkedin}}" disabled placeholder="Link">
+                                        <input type="text" value="{{user.usercompany.linkedin}}" id="linkedin" name="linkedin" placeholder="Link">
                                     </div>
                                 </div>
                                 {% elif group.name == 'Estudante' %}
@@ -164,7 +164,7 @@
                                     <label for="">Linkedin</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/LinkedinIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.userexternal.linkedin}}" disabled placeholder="Link">
+                                        <input type="text" value="{{user.userexternal.linkedin}}" id="linkedin" name="linkedin" placeholder="Link">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -174,7 +174,7 @@
                                     <label for="">E-mail</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/emailIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.email}}" disabled placeholder="Email">
+                                        <input type="text" value="{{user.email}}" id="email" name="email" placeholder="Email">
                                     </div>
                                 </div>
                                 {% if group.name == 'EmpresaCoordenacao' %}
@@ -182,7 +182,7 @@
                                     <label for="">Cidade</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/cityIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.usercompany.city}}" disabled placeholder="Cidade">
+                                        {{form.city}}
                                     </div>
                                 </div>
                                 {% elif group.name == 'Estudante' %}
@@ -190,7 +190,7 @@
                                     <label for="">Cidade</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/cityIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.userexternal.city}}" disabled placeholder="Cidade">
+                                        {{form.city}}
                                     </div>
                                 </div>
                                 {% endif %}
@@ -199,7 +199,7 @@
                                     <label for="">CEP</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/cepIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.usercompany.cep}}" disabled placeholder="CEP">
+                                        <input type="text" value="{{user.usercompany.cep}}" id="cep" name="cep" placeholder="CEP">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -208,7 +208,7 @@
                                     <label for="">Whatsapp</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/whatsappIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.usercompany.whatsapp}}" disabled placeholder="Whatsapp">
+                                        <input type="text" value="{{user.usercompany.whatsapp}}" id="whatsapp" name="whatsapp" placeholder="Whatsapp">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -217,7 +217,7 @@
                                     <label for="">Instagram</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/InstagramIcon.png' %}" alt="">
-                                        <input type="text" value="{{user.usercompany.instagram}}" disabled placeholder="Instagram">
+                                        <input type="text" value="{{user.usercompany.instagram}}" id="instagram" name="instagram" placeholder="Instagram">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -225,21 +225,16 @@
                         <div>
                             <label for="">Descrição</label>
                             <div class="input-container">
-                                <textarea type="text" class="description" disabled placeholder="Descrição">{{user.description}}</textarea>
+                                <textarea type="text" class="description" placeholder="{{user.description}}" id="description" name="description">{{user.description}}</textarea>
                             </div>
                         </div>
+                        {% endfor %}
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <button type="submit" class="btn-sing-in">Salvar Edição</button>
+                        </div>
                     </form>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <button type="submit" class="btn-sing-in exclude">Excluir Perfil</button>
-                        {% if group.name == 'EmpresaCoordenacao' %}
-                        <a class="btn-sing-in" href="{% url 'updateCompany'%}">Editar Perfil</a>
-                        {% elif group.name == 'Estudante' %}
-                        <a class="btn-sing-in" href="{% url 'updateExternal'%}">Editar Perfil</a>
-                        {% endif %}
-                    </div>
                     </div>
             </section>
-            {% endfor %}
 
             <div class="myAnnouncements" id="myAnnouncements">
                 <h2>Meus anúncios</h2>

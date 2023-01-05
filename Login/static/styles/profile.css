@@ -46,7 +46,6 @@
     font-family: var(--font);
 }
 
-
 .bg-header {
     background: var(--background-gradient);
 }
@@ -191,6 +190,13 @@ html {
     padding: 10px;
     font-weight: var(--font-weight--Bold);
     font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-sing-in:hover{
+    color: white;
 }
 
 .exclude {
@@ -242,6 +248,30 @@ html {
     font-size: 20px;
 }
 
+.messagebox{
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .input-container .escolaridadeIMG{
+    top: 7px;
+    left: 25px;
+ }
+
+ .messagebox p{
+    background-color: var(--color-white);
+    border-radius: 20px;
+    color: var(--color-menu);
+    font-weight: var(--font-weight--Bold);
+    font-size: 25px;
+    padding: 20px 50px;
+    box-shadow: 1px 1px 10px 2px var(--color-alert-light);
+ }
+
 .container-profile h1 {
     font-weight: var(--font-weight--Bold);
     color: var(--color-text-input-ad-font);
@@ -255,8 +285,8 @@ html {
 .profilePicture {
     border-radius: 50%;
     border: solid var(--color-text-blue-dark) 5px;
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
 }
 
 .exitButton {
@@ -295,9 +325,26 @@ form label {
     font-size: 14px;
     align-self: flex-start;
     margin-bottom: 10px;
+    font-weight: var(--font-weight--Regular);
 }
 
-form input {
+.imageedit{
+    position: absolute;
+    right: 270px;
+    top: 220px
+}
+
+.inputphoto{
+    position: absolute;
+    width: 148px;
+    padding: 0px;
+    border-radius: 0px;
+    height: 30px;
+    top: 150px;
+    right: 80px;
+}
+
+form input, form select {
     padding-left: 80px;
     margin-bottom: 0.6em;
     background: var(--background-color);
@@ -307,7 +354,7 @@ form input {
     border: none;
     border-radius: 10px;
     transition: 0.2s;
-    color: var(--color-alert-light);
+    color: var(--color-text-blue-dark);
 }
 
 .description {

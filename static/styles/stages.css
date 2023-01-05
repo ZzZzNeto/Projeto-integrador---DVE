@@ -166,6 +166,11 @@ main{
     padding: 50px 10% 10px 10%;
 }
 
+.ordenation{
+    display: flex;
+    align-items: center;
+}
+
 .searchbar input{
     height: 50px;
     padding: 10px;
@@ -182,7 +187,8 @@ main{
     border-radius: 0px 10px 10px 0px;
     background-color: var(--color-buttom);
     height: 50px;
-    width: 10%;
+    width: 11%;
+    margin-top: 0px;
     font-weight: var(--font-weight--Bold);
     font-size: 18px;
     text-align: center;
@@ -259,6 +265,7 @@ details summary{
     align-items: center;
     margin: 20px 0px;
 }
+
 
 .options{
     padding: 0px 10px;

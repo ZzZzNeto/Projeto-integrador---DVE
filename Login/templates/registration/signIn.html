@@ -63,7 +63,7 @@
                                 <div class=" d-flex align-items-center justify-content-center">
                                     <a class="nav-link text-white button-forgot"
                                         href="{% url 'forgotpassword' %}">
-                                        <p>esqueci minha senha</p>
+                                        <p></p>
                                     </a>
                                 </div>
                             </section>
@@ -74,7 +74,7 @@
 
                                     <img src="{% static 'imgs/imgIF.png' %}" alt="logo do if">
                                     <a class="nav-link text-white"
-                                        href="https://suap.ifrn.edu.br/accounts/login/">SUAP</a>
+                                        href="{% url 'social:begin' 'suap' %}">SUAP</a>
 
                                 </div>
                                 <div class=" d-flex align-items-center justify-content-center">
@@ -86,7 +86,7 @@
                             </section>
 
                             <section
-                                class="mt-4 d-flex align-items-center flex-wrap flex-column justify-content-center text-white ">
+                                class="mt-5 d-flex align-items-center flex-wrap flex-column justify-content-center text-white ">
 
                                 <div class="d-flex align-items-center justify-content-center font-bold sign-in-company">
                                     <a class="nav-link text-white" href="{% url 'signincompany' %}">
@@ -120,18 +120,18 @@
                             <div>
                                 <form class="form-sign-in d-flex flex-column justify-content-center align-items-center" action="." method="post">
                                     {%csrf_token%}
+                                    
                                     {%if messages%}
                                     {%for menssage in messages%}
                                     {{message}}
                                     {%endfor%}
                                     {%endif%}
-                                    
-                                    {{form.as_p}}
-                                    <!-- <div>
+                                    {%if user.first_name %}
+                                    <div>
                                         <label for="">Nome</label>
                                         <div class="input-container">
                                             <img src="{% static 'imgs/userIcon.png' %}" alt="">
-                                            <input id="name" name="name" type="text" placeholder="Insira seu nome">
+                                            <input type="text" id="name" name="name" value="{{user.first_name.lower.title}}" placeholder="Insira o seu nome">
                                         </div>
                                     </div>
                                     <div>
@@ -139,7 +139,7 @@
                                         <label for="">E-mail</label>
                                         <div class="input-container">
                                             <img src="{% static 'imgs/emailIcon.png' %}" alt="">
-                                            <input id="email" name="email" type="email" placeholder="Insira seu e-mail">
+                                            <input type="email" id="email" name="email" value="{{user.email}}" placeholder="Insira o seu email">
                                         </div>
                                     </div>
 
@@ -147,7 +147,15 @@
                                         <label for="">Senha</label>
                                         <div class="input-container">
                                             <img src="{% static 'imgs/passwordIcon.png' %}" alt="">
-                                            <input id="password" name="password" type="password" placeholder="Insira sua senha">
+                                            <input type="password" id="password1" name="password1" placeholder="Insira a sua senha">
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <label for="">Confirmação de senha</label>
+                                        <div class="input-container">
+                                            <img src="{% static 'imgs/passwordIcon.png' %}" alt="">
+                                            <input type="password" id="password2" name="password2" placeholder="Insira a sua senha">
                                         </div>
 
                                     </div>
@@ -156,10 +164,55 @@
                                             li a
                                             Declaração de Privacidade.
                                         </p>
-                                    </div> -->
+                                    </div> 
                                     <div>
                                         <button type="submit" class="btn-sing-in">CADASTRAR</button>
                                     </div>
+                                    {%else%}
+                                    
+                                    <div>
+                                        <label for="">Nome</label>
+                                        <div class="input-container">
+                                            <img src="{% static 'imgs/userIcon.png' %}" alt="">
+                                            <input type="text" id="name" name="name" value="{{user.first_name.lower.title}}" placeholder="Insira o seu nome">
+                                        </div>
+                                    </div>
+                                    <div>
+
+                                        <label for="">E-mail</label>
+                                        <div class="input-container">
+                                            <img src="{% static 'imgs/emailIcon.png' %}" alt="">
+                                            <input type="email" id="email" name="email" placeholder="Insira o seu email">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label for="">Senha</label>
+                                        <div class="input-container">
+                                            <img src="{% static 'imgs/passwordIcon.png' %}" alt="">
+                                            <input type="password" id="password1" name="password1" placeholder="Insira a sua senha">
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <label for="">Confirmação de senha</label>
+                                        <div class="input-container">
+                                            <img src="{% static 'imgs/passwordIcon.png' %}" alt="">
+                                            <input type="password" id="password2" name="password2" placeholder="Insira a sua senha">
+                                        </div>
+
+                                    </div>
+                               
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="alert-info-sign-in">Ao clicar abaixo, concordo com os Termos de Uso e
+                                            li a
+                                            Declaração de Privacidade.
+                                        </p>
+                                    </div> 
+                                    <div>
+                                        <button type="submit" class="btn-sing-in">CADASTRAR</button>
+                                    </div>
+                                    {%endif%}
                                 </form>
 
 
