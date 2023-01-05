@@ -61,7 +61,7 @@ main{
     top: 263px;
 }
 
-h1{
+.titlecreatestage{
     font-weight: var(--font-weight--Bold);
     color: var(--color-menu);
     text-align: center;
@@ -132,7 +132,7 @@ header li{
     padding-right: 0px;
 }
 
-.row{
+form .row{
     margin-right: 0px;
     padding-right: 0px;
 }
@@ -227,18 +227,17 @@ header li{
 .tags{
     margin-bottom: 0.7em;
     margin-top: 1em;
-    
 }
 .tags div{
     padding: 3px 10px 3px 0px;
     width: auto;
+    background: var(--color-alert-light);
 }
 .tags p{
     color: var(--color-white);
     font-weight: var(--font-weight--Bold);
 }
 .new-tag{
-    background: var(--color-tag-new);
     margin-right: 5px;
     border-radius: 24px;
 }
@@ -273,7 +272,6 @@ header li{
     border: none;
     border-radius: 10px;
     transition: 0.2s;
-    color: var(--color-alert-light);
 }
 .benefits textarea:focus, .activities textarea:focus, .description textarea:focus{
     outline: none;
@@ -305,7 +303,6 @@ header li{
     border: none;
     border-radius: 10px;
     transition: 0.2s;
-    color: var(--color-alert-light);
 }
 
 .contact-form{

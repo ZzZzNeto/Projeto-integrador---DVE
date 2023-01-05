@@ -126,84 +126,37 @@
                 </div>
             </section>
             <section class="resultsCards">
+            {% for stage in object_list %}
                 <div class="row cardStage">
                     <div class="col-sm-3 imageCardStage">
-                        <img src="{% static 'imgs/Programmer.png' %}" alt="">
+                        <img src="{{stage.image_annoucement.url}}" alt="">
                     </div>
                     <div class="col-sm-9 contentCardStage">
                         <a href=""><img class="addfavoritos" src="{% static 'imgs/Fav.png' %}" alt=""></a>
                         <div>
-                            <h1>BrisaNet</h1>
+                            <h1>{{stage.name_of_company}}</h1>
                         </div>
                         <div>
                             <div class="d-flex tags">
+                                {% for tag in stage.tags.all %}
                                 <div class="d-flex align-items-center new-tag">
-                                    <img src="{% static 'imgs/star.png' %}" alt="icon de estrela">
-                                    <p class="m-0">Novo</p>
+                                    <img src="{{tag.image.url}}" alt="icon de estrela">
+                                    <p class="m-0">{{tag.tag}}</p>
                                 </div>
-                                <div class="d-flex align-items-center technology-tag">
-                                    <img src="{% static 'imgs/tagTecnologia.png' %}" alt="icon de estrela">
-                                    <p class="m-0">Tecnologia</p>
-                                </div>
-                                <div class="d-flex align-items-center network-tag">
-                                    <img src="{% static 'imgs/tagRedes.png' %}" alt="icon de estrela">
-                                    <p class="m-0">Redes</p>
-                                </div>
-                                <div class="d-flex align-items-center cipher-tag">
-                                    <img src="{% static 'imgs/tagRemunerado.png' %}" alt="icon de estrela">
-                                    <p class="m-0">Remunerado</p>
-                                </div>
+                                {%endfor%}
                             </div>
                         </div>
                         <div class="d-flex">
-                            <P class="p1">25h/semana</P>
-                            <p class="p2">Pau dos ferros/RN</p>
-                            <p class="p3"><span>15</span> vagas</p>
+                            <P class="p1">{{stage.workload}}h/semana</P>
+                            <p class="p2">{{stage.creator.usercompany.city}}</p>
+                            <p class="p3"><span>{{stage.vacancies}}</span> vagas</p>
                         </div>
                         <div class="seeMoreCard">
                             <a href="{% url 'announcement' %}">Ver Mais</a>
                         </div>
                     </div>
                 </div>
-                <div class="row cardStage">
-                    <div class="col-sm-3 imageCardStage">
-                        <img src="{% static 'imgs/Programmer.png' %}" alt="">
-                    </div>
-                    <div class="col-sm-9 contentCardStage">
-                        <a href=""><img class="addfavoritos" src="{% static 'imgs/Fav.png' %}" alt=""></a>
-                        <div>
-                            <h1>BrisaNet</h1>
-                        </div>
-                        <div>
-                            <div class="d-flex tags">
-                                <div class="d-flex align-items-center new-tag">
-                                    <img src="{% static 'imgs/star.png' %}" alt="icon de estrela">
-                                    <p class="m-0">Novo</p>
-                                </div>
-                                <div class="d-flex align-items-center technology-tag">
-                                    <img src="{% static 'imgs/tagTecnologia.png' %}" alt="icon de estrela">
-                                    <p class="m-0">Tecnologia</p>
-                                </div>
-                                <div class="d-flex align-items-center network-tag">
-                                    <img src="{% static 'imgs/tagRedes.png' %}" alt="icon de estrela">
-                                    <p class="m-0">Redes</p>
-                                </div>
-                                <div class="d-flex align-items-center cipher-tag">
-                                    <img src="{% static 'imgs/tagRemunerado.png' %}" alt="icon de estrela">
-                                    <p class="m-0">Remunerado</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <P class="p1">25h/semana</P>
-                            <p class="p2">Pau dos ferros/RN</p>
-                            <p class="p3"><span>15</span> vagas</p>
-                        </div>
-                        <div class="seeMoreCard">
-                            <a href="{% url 'announcement' %}">Ver Mais</a>
-                        </div>
-                    </div>
-                </div>
+            {% endfor %}
             </section>
         </div>
     </section>

@@ -21,10 +21,13 @@ class AnnoucementView(LoginRequiredMixin, DetailView):
 class AnnoucementCreate(LoginRequiredMixin, CreateView):
     template_name = 'announcementCreateEdit.html'
     model = Annoucement
-    fields = '__all__'
-    success_url = reverse_lazy('/Login/profile')
-    
-    login_url = '/Login/login'
+    fields = 'image_annoucement', 'name_of_company', 'street', 'district', 'number','registration_deadline', 'tags', 'workload', 'vacancies', 'period', 'benefits', 'activities', 'email', 'phone','whatsapp', 'linkedin', 'instagram', 'description'
+    success_url = reverse_lazy('profile')
+    login_url = '/login'
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        return super(AnnoucementCreate, self).form_valid(form)
 
 class AnnoucementUpdate(UpdateView):
     template_name = 'profile.html'

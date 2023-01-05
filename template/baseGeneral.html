@@ -99,8 +99,13 @@
         </nav>
     </header>
     <main>
+        <input type="text" id="'senha2">
+        <input type="text">
+
         {%if messages%}
         {%for message in messages%}
+
+
         {%endfor%}
         {%endif%}
         {%block main %}
@@ -179,16 +184,17 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-
+<script src="{% static 'script/notify.min.css' %}"></script>
 <script src="{% static 'Glider.js-master/glider.min.js' %}"></script>
 <script src="{% static 'script/index.js' %}"></script>
 <script src="{% static 'script/message.js' %}"></script>
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script>
     {% for flashmsg in messages %}
-        alertify.set('notifier','position', 'top-center');
-        alertify.success('{{flashmsg}}');
-    {%endfor%}
+    <p style="color: black"> dsads</p>
+    {% endfor %}
 </script>
 
 </html>
