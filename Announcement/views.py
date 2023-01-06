@@ -1,12 +1,13 @@
 from django.shortcuts import (HttpResponseRedirect, get_object_or_404,
                               redirect, render)
 from django.urls import reverse, reverse_lazy
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView, View)
 
 from .models import Annoucement, Tags
-
+from .forms import AnnouncementForm
 
 class StagesView(LoginRequiredMixin, ListView):
     template_name = 'stages.html'
@@ -14,33 +15,48 @@ class StagesView(LoginRequiredMixin, ListView):
     login_url = '/user/login'
 
 class AnnoucementView(LoginRequiredMixin, DetailView):
-    template_name = 'Annoucement.html'
+    template_name = 'announcementView.html'
     queryset = Annoucement.objects.all()
     model = Annoucement
 
 class AnnoucementCreate(LoginRequiredMixin, CreateView):
     template_name = 'announcementCreateEdit.html'
+    form_class = AnnouncementForm
     model = Annoucement
-    fields = 'image_annoucement', 'name_of_company', 'street', 'district', 'number','registration_deadline', 'tags', 'workload', 'vacancies', 'period', 'benefits', 'activities', 'email', 'phone','whatsapp', 'linkedin', 'instagram', 'description'
     success_url = reverse_lazy('profile')
     login_url = '/login'
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
+        messages.success(self.request, "Anúncio criados com sucesso!")
         return super(AnnoucementCreate, self).form_valid(form)
 
-class AnnoucementUpdate(UpdateView):
-    template_name = 'profile.html'
+class AnnouncementUpdate(LoginRequiredMixin,UpdateView):
+    template_name = 'announcementCreateEdit.html'
     model = Annoucement
-    fields = '__all__'
-    success_url = reverse_lazy('Login:profile')
+    form_class = AnnouncementForm
+    success_url = reverse_lazy('profile')
+    login_url = '/login'
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Anúncio editado com sucesso!")
+        return response
+        
 
-class AnnoucementDelete(DeleteView):
-    template_name = 'profile.html'
-    queryset = Annoucement.objects.all()
+class AnnouncementDelete(LoginRequiredMixin, DeleteView):
     model = Annoucement
-    fields = '__all__'
-    success_url = reverse_lazy('Login:profile')
+    queryset = Annoucement.objects.all()
+    success_url = reverse_lazy('profile')
+
+    login_url = 'login'
+    template_name = 'deleteConfirm.html'
+
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Anúncio excluído com sucesso!")
+        return response
 
 class CandidatesView(ListView):
     template_name = 'seeCandidates.html'

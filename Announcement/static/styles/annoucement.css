@@ -57,8 +57,8 @@ main{
     position: absolute;
     padding-left: 0px;
     border-radius: 0px;
-    left: 760px;
-    top: 263px;
+    left: 41%;
+    top: 28%;
 }
 
 .titlecreatestage{
@@ -348,6 +348,17 @@ form .row{
 .button-estagios{
     margin-bottom: 20px;
 }
+
+.button-estagios form .cancelsubs{
+    background-color: var(--color-error-light);
+}
+
+.button-estagios form{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 30px;
+}
+
 .button-estagios button{
     border: none;
     background: var(--color-buttom);
@@ -365,7 +376,113 @@ form .row{
     margin:0;
     padding: 6px 30px;
 }
+.subscribe, .deletestage{
+    color: var(--color-white) !important;
+    text-decoration: none;
+    font-weight: var(--font-weight--ExtraBold);
+    background: var(--color-buttom);
+    font-size: 20px;
+    text-align: center;
+    margin:0;
+    padding: 6px 30px;
+    border: none;
+    border-radius: 30px;
+    transition: 0.5s;
+}
 
+.tags .dropdown{
+    background-color: var(--color-white);
+    padding: 0px;
+}
+
+.tagselector:hover{
+    color: var(--color-white);
+}
+
+.dropdown-menu{
+    padding: 0px;
+}
+
+.dropdown-menu div{
+    background-color: var(--color-white);
+}
+
+.dropdown label{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 30px;
+    margin-bottom: 0px;
+    font-weight: var(--font-weight--Bold);
+    font-size: 15px;
+}
+
+#id_tags{
+    padding: 0px;
+    border-bottom: none;
+}
+
+.dropdown label input{
+    width: 20px;
+    margin: 0px 20px;
+    margin-bottom: 0px;
+}
+
+.dropdown-menu{
+    width: 200px;
+}
+
+.tagselector{
+    background-color: var(--color-alert-light);
+    text-decoration: none;
+    color: var(--color-white);
+    font-size: 20px;
+    font-weight: var(--font-weight--Bold);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+
+.deletescreen{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px 0px;
+}
+
+.deletescreen h1{
+    font-weight: var(--font-weight--Bold);
+    margin-bottom: 50px;
+}
+
+.deletescreen div{
+    display: flex;
+    justify-content: center;
+}
+
+.deletescreen input, .deletescreen a{
+    padding: 0px;
+    border-radius: 15px;
+    width: 80px;
+    height: 50px;
+    background-color: var(--color-buttom);
+    color: var(--color-white);
+    text-align: center;
+}
+
+.deletescreen a{
+    background-color: var(--color-red);
+    text-decoration: none;
+    padding: 14px 20px;
+    margin-left: 20px;
+}
+
+.deletestage{
+    background-color: var(--color-red);
+    margin-right: 20px;
+}
 
 footer {
     background: var(--background-gradient);

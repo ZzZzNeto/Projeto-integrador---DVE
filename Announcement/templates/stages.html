@@ -4,7 +4,7 @@
 {%block main%}
     <section class="searchbar d-flex">
         <input type="text">
-        <button><img src="{% static 'imgs/lupa.png' %}" alt=""> Buscar</button>
+        <button><img class="buttonimg" src="{% static 'imgs/lupa.png' %}" alt=""> Buscar</button>
     </section>
     <section class="row data">
         <div class="col-sm-3 filter">
@@ -132,7 +132,17 @@
                         <img src="{{stage.image_annoucement.url}}" alt="">
                     </div>
                     <div class="col-sm-9 contentCardStage">
-                        <a href=""><img class="addfavoritos" src="{% static 'imgs/Fav.png' %}" alt=""></a>
+                        {% if stage in user.userexternal.favorites.all %}
+                        <form action="{% url 'removeFavorite' stage.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button class="buttonaddfav" type="submit" name="object_id" value="{{stage.id}}"><img class="addfavoritosremove" src="{% static 'imgs/x.png' %}" alt=""><img class="addfavoritos " src="{% static 'imgs/Fav.png' %}" alt=""></button>
+                        </form>
+                        {%else%}
+                        <form action="{% url 'favorite' stage.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button class="buttonaddfav" type="submit" name="object_id" value="{{stage.id}}"><img class="addfavoritos" src="{% static 'imgs/Fav.png' %}" alt=""></button>
+                        </form>
+                        {% endif%}
                         <div>
                             <h1>{{stage.name_of_company}}</h1>
                         </div>
@@ -152,7 +162,7 @@
                             <p class="p3"><span>{{stage.vacancies}}</span> vagas</p>
                         </div>
                         <div class="seeMoreCard">
-                            <a href="{% url 'announcement' %}">Ver Mais</a>
+                            <a href="{% url 'announcement' stage.id %}">Ver Mais</a>
                         </div>
                     </div>
                 </div>

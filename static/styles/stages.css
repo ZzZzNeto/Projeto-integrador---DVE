@@ -194,7 +194,7 @@ main{
     text-align: center;
 }
 
-button img{
+.buttonImage{
     width: 18%;
     margin-right: 10px;
 }

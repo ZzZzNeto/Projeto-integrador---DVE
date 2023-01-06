@@ -1,0 +1,15 @@
+{% extends 'baseGeneral.html'%}
+
+{%block main%}
+
+<div class="deletescreen">
+    <h1>Tem certeza que quer deletar esse anuncio?</h1>
+    <form method="post">
+    {%csrf_token%}
+        <div class="buttonsDetails">
+            <input class="confirmDelete" type="submit" value="Sim">
+            <p class="cancelDelete"><a href="{% url 'announcement' object.id %}">Não</a></p>
+        </div>
+    </form>
+</div>
+{%endblock%}

@@ -77,6 +77,11 @@
     margin-right: 80px;
 }
 
+.container-profile .havenotting{
+    color: var(--color-alert-light);
+    margin: 50px 0px;
+}
+
 .btn-style {
     background-color: var(--color-buttom);
     border-radius: 1em;
@@ -437,10 +442,24 @@ form input:focus::placeholder {
     margin-left: 5%;
 }
 
+.favorites h2{
+    font-weight: var(--font-weight--Bold);
+    color: var(--color-text-input-ad-font);
+    margin-bottom: 0;
+}
+
+.myData, .myInscriptions, .favorites , .topContent{
+    margin: 50px 8%;
+}
 
 .link-see-more{
     top: 3%;
     right: 12%;
+}
+
+.backgroundcardsprofile{
+    border-radius: 20px;
+    height: 100%;
 }
 
 .link-see-more a{
@@ -467,14 +486,16 @@ form input:focus::placeholder {
     color: var(--color-white);
     background-color: var(--color-buttom);
     border-radius: 20px;
+    width: 200px;
+    height: 40px;
     bottom: 20%;
-    left: 5%;
+    left: 0%;
 }
 
 .name-company p{
     padding: 6px 12px;
     font-weight: var(--font-weight--Bold);
-    font-size: 14px;
+    font-size: 20px;
     margin-bottom: 0;
 }
 
@@ -487,13 +508,14 @@ form input:focus::placeholder {
     background-color: var(--color-green-dark);
     border-radius:  0px 0px 20px 20px;
     color: var(--color-white);
-    bottom: 12%;
-    left: 12%;
+    width: 150px;
+    bottom: 10%;
+    left: 4%;
 }
 
 .name-city p{
     margin: 0;
-    font-size: 14px;
+    font-size: 18px;
     padding: 1px 8px;
     font-weight: var(--font-weight--Regular);
 }

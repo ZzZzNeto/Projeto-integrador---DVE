@@ -22,8 +22,8 @@ class Annoucement(models.Model):
     ("ALIMENTOS", "Alimentos"),
     )
 
-    creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    inscrits = models.ManyToManyField(UserExternal, blank=True)
+    creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="creator", editable=False)
+    inscrits = models.ManyToManyField(CustomUser, blank=True)
     image_annoucement = models.ImageField('Imagem do estagio', upload_to='imgs/StagesPictures/')
     name_of_company = models.CharField(max_length=50, verbose_name='Nome da empresa')
     district = models.CharField(max_length=80, verbose_name='Bairro')

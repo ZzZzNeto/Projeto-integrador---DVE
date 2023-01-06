@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,UpdateView, View)
 from .models import UserCompany, UserExternal, CustomUser
+from Announcement.models import Annoucement
 from . import forms
 
 class SignUpExternalView(CreateView):
@@ -21,7 +22,7 @@ class SignUpExternalView(CreateView):
 
 class SignUpInternalView(CreateView):
     model = CustomUser
-    form_class = forms.CustomUserExternalCreateForm
+    form_class = forms.CustomUserInternalCreateForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signIn.html'
 
@@ -41,9 +42,10 @@ class SignUpCompanyView(CreateView):
         messages.success(self.request, "Usuário cadastrado com sucesso!")
         return response
         
-class UserView(LoginRequiredMixin, DetailView):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'profile.html')
+class UserView(LoginRequiredMixin, ListView):
+    template_name = 'profile.html'
+    queryset = Annoucement.objects.all()
+    model = Annoucement
 
 class UpdateUserCompanyView(LoginRequiredMixin, UserFormKwargsMixin, UpdateView):
     form_class = forms.CompanyChangeForm
@@ -71,6 +73,30 @@ class UpdateUserExternalView(LoginRequiredMixin, UserFormKwargsMixin ,UpdateView
         response = super().form_valid(form)
         messages.success(self.request, "Usuário editado com sucesso!")
         return response
+
+def Subscribe(request, pk):
+    announcement = Annoucement.objects.get(id=pk)
+    announcement.inscrits.add(request.user)
+    messages.success(request, "Inscrição realizada!")
+    return HttpResponseRedirect(reverse('announcement', args=[str(pk)]))
+
+def RemoveSubscribe(request, pk):
+    announcement = Annoucement.objects.get(id=pk)
+    announcement.inscrits.remove(request.user)
+    messages.success(request, "Inscrição removida!")
+    return HttpResponseRedirect(reverse('announcement', args=[str(pk)]))
+
+def Favorite(request, pk):
+    announcement = Annoucement.objects.get(id=pk)
+    request.user.userexternal.favorites.add(announcement)
+    messages.success(request, "Adicionado aos favritos!")
+    return HttpResponseRedirect(reverse('stages'))
+
+def RemoveFavorite(request, pk):
+    announcement = Annoucement.objects.get(id=pk)
+    request.user.userexternal.favorites.remove(announcement)
+    messages.success(request, "Removido dos favoritos")
+    return HttpResponseRedirect(reverse('stages'))
 
 class ForgotPasswordView(View):
 

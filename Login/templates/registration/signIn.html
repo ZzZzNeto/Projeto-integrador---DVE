@@ -15,6 +15,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Slab:wght@900&display=swap"
         rel="stylesheet">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <title>DVE</title>
 </head>
@@ -126,7 +127,8 @@
                                     {{message}}
                                     {%endfor%}
                                     {%endif%}
-                                    {%if user.first_name %}
+                                    {%if user.get_full_name %}
+                                  
                                     <div>
                                         <label for="">Nome</label>
                                         <div class="input-container">
@@ -225,5 +227,14 @@
         </section>
     </main>
 </body>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    {% for msg in messages %}
+    swal({
+        title: "{{msg}}",
+        icon: "{{msg.tags}}",
+        button: "Fechar",
+    });
+    {% endfor %}
+</script>
 </html>

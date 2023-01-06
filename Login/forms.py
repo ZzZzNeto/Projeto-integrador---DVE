@@ -7,7 +7,6 @@ from django.db import transaction
 from .models import UserExternal, UserCompany, UserInternal, CustomUser, City, Schooling
 
 class CustomUserInternalCreateForm(UserCreationForm):
-    
     name = forms.CharField(required=True)
 
     class Meta(UserCreationForm.Meta):
@@ -16,17 +15,17 @@ class CustomUserInternalCreateForm(UserCreationForm):
 
     @transaction.atomic
     def save(self, commit=True):
-        group = Group.objects.get(name="Estudante")
+        group = Group.objects.get(name="EstudanteIFRN")
         user = super().save(commit=False)
-        user.is_external = True
+        user.is_internal = True
         user.name = self.cleaned_data.get('name')
         user.email = self.cleaned_data["email"]
         user.username = user.email
         user.set_password(self.cleaned_data["password1"])
         user.save()
         user.groups.add(group)
-        external = UserExternal.objects.create(user=user)
-        external.save()
+        internal = UserInternal.objects.create(user=user)
+        internal.save()
         return user
 
 class CustomUserExternalCreateForm(UserCreationForm):

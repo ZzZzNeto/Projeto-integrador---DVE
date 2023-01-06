@@ -16,12 +16,6 @@ class City(models.Model):
     def __str__(self):
         return self.city
 
-class Tags(models.Model):
-    tags = models.CharField(max_length=25, verbose_name='Tags de interesse')
-
-    def __str__(self):
-
-        return self.tags
 class Course(models.Model):
     course = models.CharField(max_length=50, verbose_name='course')
 
@@ -60,6 +54,7 @@ class CustomUser(AbstractUser):
     username = None
     is_external = models.BooleanField(default=False)
     is_company = models.BooleanField(default=False)
+    is_internal = models.BooleanField(default=False)
     name = models.CharField(max_length=50)
     email = models.EmailField("E-mail", unique=True)
     is_staff = models.BooleanField('Membro da equipe', default=True)
@@ -91,27 +86,28 @@ class UserCompany(models.Model):
 
 class UserExternal(models.Model):
     user = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
+    favorites = models.ManyToManyField("Announcement.Annoucement", related_name="favoritosExternal")
     linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
     birth_date = models.DateField(null=True)
     city = models.ForeignKey(City, on_delete= models.CASCADE, null=True)
     schooling = models.ForeignKey(Schooling, on_delete= models.CASCADE, null=True)
     institution = models.CharField(max_length=50, verbose_name='Institution', default="Institution")
-    tags = models.ManyToManyField(Tags)
+    tags = models.ManyToManyField("Announcement.Tags", related_name="tagsExternal")
 
     def __str__(self):
         return self.user.name
 
 class UserInternal(models.Model):
     user = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
+    favorites = models.ManyToManyField("Announcement.Annoucement", related_name="favoritosInternal")
     registration = models.CharField(max_length=50, verbose_name='Matricula')
     linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
     birth_date = models.DateField(null=True)
     city = models.ForeignKey(City, on_delete= models.CASCADE, null=True)
     schooling = models.ForeignKey(Schooling, on_delete= models.CASCADE, null=True)
-    tags = models.ForeignKey(Tags, on_delete= models.CASCADE, null=True)
     course = models.ForeignKey(Course, on_delete= models.CASCADE, null=True)
     period = models.ForeignKey(Period, on_delete= models.CASCADE, null=True)
-    tags = models.ManyToManyField(Tags)
+    tags = models.ManyToManyField("Announcement.Tags", related_name="tagsInternal")
 
     def __str__(self):
         return self.user.name

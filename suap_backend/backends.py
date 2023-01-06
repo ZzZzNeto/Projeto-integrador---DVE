@@ -44,3 +44,5 @@ class SuapOAuth2(BaseOAuth2):
             'email': response['email'],
             
         }
+
+        

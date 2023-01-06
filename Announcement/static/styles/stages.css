@@ -193,7 +193,7 @@ main{
     text-align: center;
 }
 
-button img{
+.buttonimg{
     width: 18%;
     margin-right: 10px;
 }
@@ -201,6 +201,7 @@ button img{
 .filter{
     background-color: var(--color-filter);
     border-radius: 15px;
+    height: fit-content;
 }
 
 .results, .resultsCards{
@@ -381,7 +382,7 @@ input[type="range"]::-webkit-slider-thumb {
 
  .cardStage img{
     width: 90%;
-    height: 100%;
+    height: 240px;
     border-radius: 20px 0px 0px 20px;
  }
 
@@ -440,10 +441,32 @@ input[type="range"]::-webkit-slider-thumb {
     margin-right: 5px;
 }
 
-.cardStage .addfavoritos{
+.buttonaddfav{
     position: absolute;
     right: 13%;
     width: 50px;
     border-radius: 0px;
+    border: none;
     height: 50px;
+    background-color: var(--color-seachbar);
+}
+
+.cardStage .addfavoritosremove{
+    position: absolute;
+    right: 35%;
+    width: 30px;
+    border-radius: 0px;
+    height: 30px;
+    top: 5px;
+    z-index: 100;
+}
+
+.cardStage .addfavoritos{
+    top: 0px;
+    position: absolute;
+    right: 14%;
+    width: 50px;
+    border-radius: 0px;
+    height: 50px;
+    top: 0px;
 }

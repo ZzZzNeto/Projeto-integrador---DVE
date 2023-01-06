@@ -1,103 +1,88 @@
 {% extends 'baseGeneral.html'%}
+
 {% load static %}
 
 {%block main%}
     <div class="container p-0 mt-3">
-        <form class="form-sign-in" action="">
-            <div class="row">
+        <form class="form-sign-in" enctype="multipart/form-data" action="">
+             <div class="row">
                 <div class="col">
                     <div class="d-flex tags">
-                        <div class="d-flex align-items-center new-tag">
-                            <img src="../imgs/star.png" alt="icon de estrela">
-                            <p class="m-0">Novo</p>
-                        </div>
-                        <div class="d-flex align-items-center technology-tag">
-                            <img src="../imgs/computerIcon.png" alt="icon de estrela">
-                            <p class="m-0">Tecnologia</p>
-                        </div>
-                        <div class="d-flex align-items-center network-tag">
-                            <img src="../imgs/redesIcon.png" alt="icon de estrela">
-                            <p class="m-0">Redes</p>
-                        </div>
-                        <div class="d-flex align-items-center cipher-tag">
-                            <img src="../imgs/cifraoIco.png" alt="icon de estrela">
-                            <p class="m-0">Remunerado</p>
-                        </div>
-
+                        {% for tag in object.tags.all %}
+                            <div class="d-flex align-items-center new-tag">
+                                <img src="{{tag.image.url}}" alt="icon de estrela">
+                                <p class="m-0">{{tag.tag}}</p>
+                            </div>
+                        {%endfor%}
                     </div>
 
-                    <img width="100%" src="../imgs/Programmer.png" alt="imagem do anuncio">
+                    <img width=100% height=550 src="{{object.image_annoucement.url}}" alt="imagem do anuncio">
 
                 </div>
                 <div class="col">
-                    <h1>Sobre o estágio</h1>
+                    <h1 class="titlecreatestage">Sobre o estágio</h1>
 
                     <div class="container">
                         <div class="row">
                             <div class="col">
                                 <label for="">Empresa</label>
-                                <input type="text" placeholder="Insira o nome da empresa">
+                                <input type="text" disabled value="{{object.name_of_company}}" name="name_of_company" id="name_of_company" placeholder="Insira o nome da empresa">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
                                 <label for="">Logradouro</label>
-                                <input type="text" placeholder="Insira o nome do logradouro">
+                                <input type="text" disabled value="{{object.street}}" name="street" id="street" placeholder="Insira o nome do logradouro">
                             </div>
                         </div>
 
-                        <div class="row d-flex">
+                        <div class="row d-flex testeing">
                             <div class="size-district-input">
                                 <label for="">Bairro</label>
-                                <input type=" text" placeholder="nome do bairro">
+                                <input type="text" disabled value="{{object.district}}" name="district" id="district" placeholder="nome do bairro">
                             </div>
                             <div class="size-number-input">
                                 <label for="">N°</label>
-                                <input type="text" placeholder="N° do local">
+                                <input type="text" disabled value="{{object.number}}" name="number" id="number" placeholder="N° do local">
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col">
-                                <label for="">Tags</label>
-                                <input type="text" placeholder="insira as tags">
+                                <label for="">Requisitos</label>
+                                <input type="text" value="{{object.requirements}}" id="requirements" disabled name="requirements" placeholder="Requisitos">           
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <label for="">Prazo de inscrições</label>
-                                <input type="text" placeholder="insira o prazo">
+                                <input type="text" disabled value="{{object.registration_deadline}}" id="registration_deadline" name="registration_deadline" placeholder="insira o prazo">
                             </div>
                         </div>
-                        <div class="row d-flex">
+                        <div class="row d-flex testeing">
                             <div class="ch-input">
                                 <label for="">Carga horária</label>
-                                <input type=" text" placeholder="CH do estágio">
+                                <input type="text" disabled id="workload" value="{{object.workload}}" name="workload" placeholder="CH do estágio">
                             </div>
                             <div class="vacancies-input">
                                 <label for="">Vagas</label>
-                                <input type="text" placeholder="Vagas">
+                                <input type="text" disabled id="vacancies" value="{{object.vacancies}}" name="vacancies" placeholder="Vagas">
                             </div>
                             <div class="period-input">
                                 <label for="">Periodo</label>
-                                <input type="text" placeholder="Periodo de expediente">
+                                <input type="text" disabled id="period" disabled value="{{object.period}}" name="period" placeholder="Periodo">
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
-
             </div>
-            <div class="d-flex">
+            <div class="d-flex midcontainer">
 
                 <div class="benefits">
                     <label for="">Benefícios</label>
                     <div class="input-container">
-                        <textarea type="text" class=""
-                            placeholder="Fale um pouco sobre os benefícios do estágio"></textarea>
+                        <textarea type="text" disabled class="" name="benefits" id="benefits"
+                            placeholder="Fale um pouco sobre os benefícios do estágio">{{object.benefits}}</textarea>
                     </div>
                 </div>
 
@@ -105,8 +90,8 @@
                 <div class="activities">
                     <label for="">Atividades a serem desenvolvidas</label>
                     <div class="input-container">
-                        <textarea type="text" class=""
-                            placeholder="Fale um pouco sobre as atividades a serem desenvolvidas"></textarea>
+                        <textarea type="text" disabled class="" name="activities" id="activities"
+                            placeholder="Fale um pouco sobre as atividades a serem desenvolvidas">{{object.activities}}</textarea>
                     </div>
 
                 </div>
@@ -118,49 +103,59 @@
 
 
                 <div class="input-container">
-                    <img src="../imgs/emailIcon.png" alt="">
-                    <input type="text" placeholder="Email">
+                    <img src="{% static 'imgs/emailIcon.png' %}" alt="">
+                    <input type="text" disabled value="{{object.email}}" id="email" name="email" placeholder="Email">
                 </div>
 
-
-
                 <div class="input-container">
-                    <img src="../imgs/TelefoneIcon.png" alt="">
-                    <input type="text" placeholder="Telefone">
+                    <img src="{% static 'imgs/TelefoneIcon.png' %}" alt="">
+                    <input type="text" disabled id="phone" value="{{object.phone}}" name="phone" placeholder="Telefone">
                 </div>
 
-
                 <div class="input-container">
-                    <img src="../imgs/whatsappIcon.png" alt="">
-                    <input type="text" placeholder="Whatsapp">
+                    <img src="{% static 'imgs/whatsappIcon.png' %}" alt="">
+                    <input type="text" disabled id="whatsapp" value="{{object.whatsapp}}" name="whatsapp" placeholder="Whatsapp">
                 </div>
 
-
                 <div class="input-container">
-                    <img src="../imgs/LinkedinIcon.png" alt="">
-                    <input type="text" placeholder="Linkedin">
+                    <img src="{% static 'imgs/LinkedinIcon.png' %}" alt="">
+                    <input type="text" disabled id="linkedin" value="{{object.linkedin}}" name="linkedin" placeholder="Linkedin">
                 </div>
 
-
                 <div class="input-container">
-                    <img src="../imgs/InstagramIcon.png" alt="">
-                    <input type="text" placeholder="Instagram">
+                    <img src="{% static 'imgs/InstagramIcon.png' %}" alt="">
+                    <input type="text" disabled id="instagram" value="{{object.instagram}}" name="instagram" placeholder="Instagram">
                 </div>
 
             </div>
 
-            <div class="description">
+            <div class="descriptione">
                 <label for="">Descrição</label>
                 <div class="input-container">
-                    <textarea type="text" class="" placeholder="Fale um pouco sobre os estágios"></textarea>
+                    <textarea type="text" disabled class="" id="description" name="description" placeholder="Fale um pouco sobre os estágios">{{object.description}}</textarea>
                 </div>
             </div>
-            <div class="d-flex justify-content-end button-estagios">
-
-                <button type="submit">
-                    <p>Criar anúncio</p>
-                </button>
-            </div>
         </form>
+        <div class="d-flex justify-content-end button-estagios">
+            {% for group in user.groups.all %}
+            {% if group.name == "Estudante"%}
+            {% if user in object.inscrits.all %}
+            <form action="{% url 'removeInscription' object.pk %}" method="POST">
+                {% csrf_token %}
+                <button class="subscribe cancelsubs" type="submit" name="object_id" value="{{object.id}}">Cancelar inscrição</button>
+            </form>
+            {%else%}
+            <form action="{% url 'subscribe' object.pk %}" method="POST">
+                {% csrf_token %}
+                <button class="subscribe" type="submit" name="object_id" value="{{object.id}}">Inscrever-se</button>
+            </form>
+            {% endif%}
+            {% endif%}
+            {% if user.id == object.creator.id%}
+            <a href="{%url 'announcementDelete' object.id %}" class="deletestage">Excluir</a>
+            <a href="{%url 'announcementUpdate' object.id %}" class="subscribe">Editar</a>
+            {% endif%}
+            {%endfor%}
+        </div>
     </div>
 {%endblock%}

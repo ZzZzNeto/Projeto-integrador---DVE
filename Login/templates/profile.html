@@ -239,8 +239,8 @@
                     </div>
                     </div>
             </section>
-            {% endfor %}
 
+            {% if group.name == 'EmpresaCoordenacao' %}
             <div class="myAnnouncements" id="myAnnouncements">
                 <h2>Meus anúncios</h2>
             </div>
@@ -251,117 +251,107 @@
                     </button>
                 </div>
                 <div class="glider">
-                    <div class="d-flex justify-content-center align-items-center position-relative size-box">
+                    {% for announce in object_list %}
+                    {% if announce.creator.id == user.id %}
+                    <div class="d-flex justify-content-center align-items-center position-relative size-box divbackcardspro">
                         <div class="position-absolute link-see-more">
-                            <a href="">Ver mais</a>
+                            <a href="{% url 'announcement' announce.id %}">Ver mais</a>
                         </div>
 
                         <div class="position-absolute name-company">
-                            <p>Agua na boca <span>30h/s</span></p>
-
+                            <p>{{announce.name_of_company}}<span>{{announce.workload}}h/s</span></p>
                         </div>
                         <div class="position-absolute name-city">
-                            <p>Pau dos Ferros/RN</p>
+                            <p>{{announce.creator.usercompany.city}}</p>
 
                         </div>
-                        <img width="300px" height="300px" src="{% static 'imgs/Programmer.png' %}" alt="">
+                        <img class="backgroundcardsprofile" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
                     </div>
-                    <div class="d-flex justify-content-center align-items-center position-relative size-box">
-                        <div class="position-absolute link-see-more">
-                            <a href="">Ver mais</a>
-                        </div>
-
-                        <div class="position-absolute name-company">
-                            <p>Agua na boca <span>30h/s</span></p>
-
-                        </div>
-                        <div class="position-absolute name-city">
-                            <p>Pau dos Ferros/RN</p>
-
-                        </div>
-                        <img width="300px" height="300px" src="{% static 'imgs/Programmer.png' %}" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center position-relative size-box">
-                        <div class="position-absolute link-see-more">
-                            <a href="">Ver mais</a>
-                        </div>
-
-                        <div class="position-absolute name-company">
-                            <p>Agua na boca <span>30h/s</span></p>
-
-                        </div>
-                        <div class="position-absolute name-city">
-                            <p>Pau dos Ferros/RN</p>
-
-                        </div>
-                        <img width="300px" height="300px" src="{% static 'imgs/Programmer.png' %}" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center position-relative size-box">
-                        <div class="position-absolute link-see-more">
-                            <a href="">Ver mais</a>
-                        </div>
-
-                        <div class="position-absolute name-company">
-                            <p>Agua na boca <span>30h/s</span></p>
-
-                        </div>
-                        <div class="position-absolute name-city">
-                            <p>Pau dos Ferros/RN</p>
-
-                        </div>
-                        <img width="300px" height="300px" src="{% static 'imgs/Programmer.png' %}" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center position-relative size-box">
-                        <div class="position-absolute link-see-more">
-                            <a href="">Ver mais</a>
-                        </div>
-
-                        <div class="position-absolute name-company">
-                            <p>Agua na boca <span>30h/s</span></p>
-
-                        </div>
-                        <div class="position-absolute name-city">
-                            <p>Pau dos Ferros/RN</p>
-
-                        </div>
-                        <img width="300px" height="300px" src="{% static 'imgs/Programmer.png' %}" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center position-relative size-box">
-                        <div class="position-absolute link-see-more">
-                            <a href="">Ver mais</a>
-                        </div>
-
-                        <div class="position-absolute name-company">
-                            <p>Agua na boca <span>30h/s</span></p>
-
-                        </div>
-                        <div class="position-absolute name-city">
-                            <p>Pau dos Ferros/RN</p>
-
-                        </div>
-                        <img width="300px" height="300px" src="{% static 'imgs/Programmer.png' %}" alt="">
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center position-relative size-box">
-                        <div class="position-absolute link-see-more">
-                            <a href="">Ver mais</a>
-                        </div>
-
-                        <div class="position-absolute name-company">
-                            <p>Agua na boca <span>30h/s</span></p>
-
-                        </div>
-                        <div class="position-absolute name-city">
-                            <p>Pau dos Ferros/RN</p>
-
-                        </div>
-                        <img width="300px" height="300px" src="{% static 'imgs/Programmer.png' %}" alt="">
-                    </div>
+                    {%endif%}
+                    {%endfor%}
                 </div>
                 <div>
                     <button class="mt-5 glider-next"><img src="{% static 'imgs/caret-right-fill.svg' %}" alt=""></button>
                 </div>
-            </section> 
+            </section>
+            {% elif group.name == 'Estudante' %}
+            <div class="favorites">
+                <h2>Minhas Inscrições</h2>
+            </div>
+            {% if user.annoucement_set.count == 0 %}
+            <div class="d-flex justify-content-center align-items-center">
+                <h3 class="havenotting">Você não possui nenhuma inscrição</h3>
+            </div>
+            {% else %}
+            <section class="carousel-container">
+                <div>
+                    <button class="mt-5 glider-prev"><img src="{% static 'imgs/caret-left-fill.svg' %}" alt="">
+                    </button>
+                </div>
+                <div class="glider">
+                    {% for announce in object_list %}
+                    {% if user in announce.inscrits.all %}
+                    <div class="d-flex justify-content-center align-items-center position-relative size-box divbackcardspro">
+                        <div class="position-absolute link-see-more">
+                            <a href="{% url 'announcement' announce.id %}">Ver mais</a>
+                        </div>
+
+                        <div class="position-absolute name-company">
+                            <p>{{announce.name_of_company}}<span>{{announce.workload}}h/s</span></p>
+                        </div>
+                        <div class="position-absolute name-city">
+                            <p>{{announce.creator.usercompany.city}}</p>
+                        </div>
+                        <img class="backgroundcardsprofile" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
+                    </div>
+                    {%endif%}
+                    {%endfor%}
+                </div>
+                <div>
+                    <button class="mt-5 glider-next"><img src="{% static 'imgs/caret-right-fill.svg' %}" alt=""></button>
+                </div>
+            </section>
+            {%endif%}
+            <div class="favorites">
+                <h2>Meus favoritos</h2>
+                <p>{{user.favorites.all}}</p>
+            </div>
+            {% if user.userexternal.favorites.count == 0 %}
+            <div class="d-flex justify-content-center align-items-center">
+                <h3 class="havenotting">Você não possui nenhum favorito</h3>
+            </div>
+            {% else %}
+            <section class="carousel-container">
+                <div>
+                    <button class="mt-5 glider-prev"><img src="{% static 'imgs/caret-left-fill.svg' %}" alt="">
+                    </button>
+                </div>
+                <div class="glider">
+                    {% for announce in object_list %}
+                    {% if announce in user.userexternal.favorites.all %}
+                    <div class="d-flex justify-content-center align-items-center position-relative size-box divbackcardspro">
+                        <div class="position-absolute link-see-more">
+                            <a href="{% url 'announcement' announce.id %}">Ver mais</a>
+                        </div>
+                        <div class="position-absolute name-company">
+                            <p>{{announce.name_of_company}}<span>{{announce.workload}}h/s</span></p>
+                        </div>
+                        <div class="position-absolute name-city">
+                            <p>{{announce.creator.usercompany.city}}</p>
+                        </div>
+                        <img class="backgroundcardsprofile" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
+                    </div>
+                    {%endif%}
+                    {%endfor%}
+                </div>
+                <div>
+                    <button class="mt-5 glider-next"><img src="{% static 'imgs/caret-right-fill.svg' %}" alt=""></button>
+                </div>
+            </section>
+            {%endif%} 
         </section>
+        {%endif%}
+        {% endfor %}
         </div>
     </main>
 {%endblock%}
