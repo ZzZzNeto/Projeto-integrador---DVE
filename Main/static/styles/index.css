@@ -442,7 +442,8 @@ main{
 }
 
 .name-company p{
-    padding: 16px 8px;
+    padding: 10px 15px;
+    min-width: 200px;
     font-weight: var(--font-weight--Bold);
     font-size: 20px;
     margin-bottom: 0;

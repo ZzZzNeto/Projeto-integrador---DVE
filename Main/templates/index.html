@@ -29,39 +29,39 @@
                 </div>
             </section>
         </a>
-        {%if user.is_authenticated and not user.first_name%}
+        {%if user.is_authenticated%}
         <a href="{% url 'profile' %}">
             {%else%}
             <a href="{% url 'signin' %}">
                 {%endif%}
-            <section class="logincardHomepage container d-flex align-items-center justify-content-around">
-                <div>
-                    <img src="{% static 'imgs/Escola.png' %}" alt="">
-                </div>
-                <div>
-                    <h3>Sou estudante</h3>
-                    <p>Perfil para estudantes, capazes de se inscrever para vagas de estagio, perfil personalizado.
-                    </p>
-                </div>
-            </section>
-        </a>
-        {%if user.is_authenticated%}
-        <a href="{% url 'profile' %}">
-            {%else%}
-            <a href="{% url 'social:begin' 'suap' %}">
-                {%endif%}
-        
-            <section class="logincardHomepage container d-flex align-items-center justify-content-around">
-                <div>
-                    <img src="{% static 'imgs/image 13.png' %}" alt="">
-                </div>
-                <div id="textIF">
-                    <h3>Sou federal</h3>
-                    <p>Perfil para estudantes e coordenação do IFRN, encontre vagas para estagios da grade
-                        curricular do instituto.</p>
-                </div>
-            </section>
-        </a>
+                <section class="logincardHomepage container d-flex align-items-center justify-content-around">
+                    <div>
+                        <img src="{% static 'imgs/Escola.png' %}" alt="">
+                    </div>
+                    <div>
+                        <h3>Sou estudante</h3>
+                        <p>Perfil para estudantes, capazes de se inscrever para vagas de estagio, perfil personalizado.
+                        </p>
+                    </div>
+                </section>
+            </a>
+            {%if user.is_authenticated%}
+            <a href="{% url 'profile' %}">
+                {%else%}
+                <a href="{% url 'social:begin' 'suap' %}">
+                    {%endif%}
+
+                    <section class="logincardHomepage container d-flex align-items-center justify-content-around">
+                        <div>
+                            <img src="{% static 'imgs/image 13.png' %}" alt="">
+                        </div>
+                        <div id="textIF">
+                            <h3>Sou federal</h3>
+                            <p>Perfil para estudantes e coordenação do IFRN, encontre vagas para estagios da grade
+                                curricular do instituto.</p>
+                        </div>
+                    </section>
+                </a>
 </section>
 
 <section class="section3Homapage container-fluid flex-wrap d-flex align-items-center justify-content-between">
@@ -90,12 +90,19 @@
 <section class="section4Homapage container text-center d-flex-column text-white align-items-center">
     <h1>Busque estagiarios para sua empresa!</h1>
     {%if user.is_authenticated%}
-    <a href="{% url 'signincompany' %}" class='btn text-white'>Anunciar</a>
+    {% for group in user.groups.all %}
+    {% if group.name == 'EmpresaCoordenacao' %}
+    <a href="{%url 'announcementCreate' %}" class='btn text-white'>Anunciar</a>
     {%else%}
-    <a href="{% url 'profile' %}" class='btn text-white'>Anunciar</a>
+    <a href="" class='btn text-white'>Anunciar</a>
+    {%endif%}
+    {%endfor%}
+    {%else%}
+    <a href="{% url 'signincompany' %}" class='btn text-white'>Anunciar</a>
     {%endif%}
     <img class="img-fluid" src="{% static 'imgs/ImagesEmpresas.png' %}" alt="">
 </section>
+
 
 <!-- carousel -->
 <section class="section6Homapage container-fluid d-flex-column align-items-center justify-content-center pb-0">
@@ -111,132 +118,24 @@
         </button>
     </div>
     <div class="glider">
+        {% for stage in object_list %}
         <div class="d-flex justify-content-center align-items-center position-relative size-box">
             <div class="position-absolute link-see-more">
-                <a href="">Ver mais</a>
+                <a href="{% url 'announcement' stage.id %}">Ver mais</a>
             </div>
             <div class="position-absolute d-flex justify-content-around align-items-center tag-new">
                 <img src="{% static 'imgs/star.png' %}" alt="">
                 <p>Novo</p>
             </div>
             <div class="position-absolute name-company">
-                <p>Agua na boca <span>30h/s</span></p>
-
+                <p>{{stage.name_of_company}} <span>{{stage.workload}}h/s</span></p>
             </div>
             <div class="position-absolute name-city">
-                <p>Pau dos Ferros/RN</p>
-
+                <p>{{stage.creator.usercompany.city}}</p>
             </div>
-            <img width="350px" height="350px" src="{% static 'imgs/Programmer.png' %}" alt="">
+            <img width="350px" height="350px" src="{{stage.image_annoucement.url}}" alt="">
         </div>
-        <div class="d-flex justify-content-center align-items-center position-relative size-box">
-            <div class="position-absolute link-see-more">
-                <a href="">Ver mais</a>
-            </div>
-            <div class="position-absolute d-flex justify-content-around align-items-center tag-new">
-                <img src="{% static 'imgs/star.png' %}" alt="">
-                <p>Novo</p>
-            </div>
-            <div class="position-absolute name-company">
-                <p>Agua na boca <span>30h/s</span></p>
-
-            </div>
-            <div class="position-absolute name-city">
-                <p>Pau dos Ferros/RN</p>
-
-            </div>
-            <img width="350px" height="350px" src="{% static 'imgs/Programmer.png' %}" alt="">
-        </div>
-        <div class="d-flex justify-content-center align-items-center position-relative size-box">
-            <div class="position-absolute link-see-more">
-                <a href="">Ver mais</a>
-            </div>
-            <div class="position-absolute d-flex justify-content-around align-items-center tag-new">
-                <img src="{% static 'imgs/star.png' %}" alt="">
-                <p>Novo</p>
-            </div>
-            <div class="position-absolute name-company">
-                <p>Agua na boca <span>30h/s</span></p>
-
-            </div>
-            <div class="position-absolute name-city">
-                <p>Pau dos Ferros/RN</p>
-
-            </div>
-            <img width="350px" height="350px" src="{% static 'imgs/Programmer.png' %}" alt="">
-        </div>
-        <div class="d-flex justify-content-center align-items-center position-relative size-box">
-            <div class="position-absolute link-see-more">
-                <a href="">Ver mais</a>
-            </div>
-            <div class="position-absolute d-flex justify-content-around align-items-center tag-new">
-                <img src="{% static 'imgs/star.png' %}" alt="">
-                <p>Novo</p>
-            </div>
-            <div class="position-absolute name-company">
-                <p>Agua na boca <span>30h/s</span></p>
-
-            </div>
-            <div class="position-absolute name-city">
-                <p>Pau dos Ferros/RN</p>
-
-            </div>
-            <img width="350px" height="350px" src="{% static 'imgs/Programmer.png' %}" alt="">
-        </div>
-        <div class="d-flex justify-content-center align-items-center position-relative size-box">
-            <div class="position-absolute link-see-more">
-                <a href="">Ver mais</a>
-            </div>
-            <div class="position-absolute d-flex justify-content-around align-items-center tag-new">
-                <img src="{% static 'imgs/star.png' %}" alt="">
-                <p>Novo</p>
-            </div>
-            <div class="position-absolute name-company">
-                <p>Agua na boca <span>30h/s</span></p>
-
-            </div>
-            <div class="position-absolute name-city">
-                <p>Pau dos Ferros/RN</p>
-
-            </div>
-            <img width="350px" height="350px" src="{% static 'imgs/Programmer.png' %}" alt="">
-        </div>
-        <div class="d-flex justify-content-center align-items-center position-relative size-box">
-            <div class="position-absolute link-see-more">
-                <a href="">Ver mais</a>
-            </div>
-            <div class="position-absolute d-flex justify-content-around align-items-center tag-new">
-                <img src="{% static 'imgs/star.png' %}" alt="">
-                <p>Novo</p>
-            </div>
-            <div class="position-absolute name-company">
-                <p>Agua na boca <span>30h/s</span></p>
-
-            </div>
-            <div class="position-absolute name-city">
-                <p>Pau dos Ferros/RN</p>
-
-            </div>
-            <img width="350px" height="350px" src="{% static 'imgs/Programmer.png' %}" alt="">
-        </div>
-        <div class="d-flex justify-content-center align-items-center position-relative size-box">
-            <div class="position-absolute link-see-more">
-                <a href="">Ver mais</a>
-            </div>
-            <div class="position-absolute d-flex justify-content-around align-items-center tag-new">
-                <img src="{% static 'imgs/star.png' %}" alt="">
-                <p>Novo</p>
-            </div>
-            <div class="position-absolute name-company">
-                <p>Agua na boca <span>30h/s</span></p>
-
-            </div>
-            <div class="position-absolute name-city">
-                <p>Pau dos Ferros/RN</p>
-
-            </div>
-            <img width="350px" height="350px" src="{% static 'imgs/Programmer.png' %}" alt="">
-        </div>
+        {%endfor%}
     </div>
     <div>
         <button class="mt-5 glider-next"><img src="{% static 'imgs/caret-right-fill.svg' %}" alt=""></button>
@@ -248,6 +147,7 @@
         <img src="{% static 'imgs/Vector.png' %}" alt="">
         <h1>Porque usar o DVE?</h1>
     </section>
+
     <section class="d-flex align-items-center justify-content-between flex-wrap">
         <section class="text-white cardSec6 d-flex-column align-items-center">
             <img src="{% static 'imgs/Praticidade.png' %}" alt="">

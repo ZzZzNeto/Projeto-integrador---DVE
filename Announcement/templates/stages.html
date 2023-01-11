@@ -6,7 +6,7 @@
         <input type="text">
         <button><img class="buttonimg" src="{% static 'imgs/lupa.png' %}" alt=""> Buscar</button>
     </section>
-    <section class="row data">
+    <section class="row dataStages">
         <div class="col-sm-3 filter">
             <div class="d-flex titleFilter align-items-center text-white">
                 <img src="{% static 'imgs/filtericon.png' %}" alt="">
@@ -116,7 +116,7 @@
         </div>
         <div class="col-sm-9 stages">
             <section class="results d-flex align-items-center justify-content-between">
-                <p>22 resultados encontrados</p>
+                <p>{{object_list.count}} resultados encontrados</p>
                 <div class="ordenation">
                     <label for="order">Ordenar:</label>
                     <select name="order" id="order">
@@ -132,17 +132,21 @@
                         <img src="{{stage.image_annoucement.url}}" alt="">
                     </div>
                     <div class="col-sm-9 contentCardStage">
+                    {% for group in user.groups.all %}
+                        {% if group.name == "Estudante"  %}
                         {% if stage in user.userexternal.favorites.all %}
                         <form action="{% url 'removeFavorite' stage.pk %}" method="POST">
                             {% csrf_token %}
-                            <button class="buttonaddfav" type="submit" name="object_id" value="{{stage.id}}"><img class="addfavoritosremove" src="{% static 'imgs/x.png' %}" alt=""><img class="addfavoritos " src="{% static 'imgs/Fav.png' %}" alt=""></button>
+                            <button class="buttonaddfav" type="submit" name="object_id" value="{{stage.id}}"><img class="addfavoritos " src="{% static 'imgs/Fav.png' %}" alt=""></button>
                         </form>
                         {%else%}
                         <form action="{% url 'favorite' stage.pk %}" method="POST">
                             {% csrf_token %}
-                            <button class="buttonaddfav" type="submit" name="object_id" value="{{stage.id}}"><img class="addfavoritos" src="{% static 'imgs/Fav.png' %}" alt=""></button>
+                            <button class="buttonaddfav" type="submit" name="object_id" value="{{stage.id}}"><img class="addfavoritos" src="{% static 'imgs/Favun.png' %}" alt=""></button>
                         </form>
                         {% endif%}
+                        {% endif%}
+                    {%endfor%}
                         <div>
                             <h1>{{stage.name_of_company}}</h1>
                         </div>

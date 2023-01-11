@@ -4,30 +4,6 @@ from django.db.models import signals
 
 # Create your models here.
 
-class Schooling(models.Model):
-    schooling = models.CharField(max_length=50, verbose_name='schooling')
-
-    def __str__(self):
-        return self.schooling
-
-class City(models.Model):
-    city = models.CharField(max_length=50, verbose_name='city', primary_key=True)
-
-    def __str__(self):
-        return self.city
-
-class Course(models.Model):
-    course = models.CharField(max_length=50, verbose_name='course')
-
-    def __str__(self):
-        return self.course
-
-class Period(models.Model):
-    period = models.CharField(max_length=25, verbose_name='period')
-
-    def __str__(self):
-        return self.period
-
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -70,6 +46,7 @@ class CustomUser(AbstractUser):
     objects = UserManager()
 
 class UserCompany(models.Model):
+
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
     linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
     whatsapp = models.CharField(max_length=50, verbose_name='Whatsapp')
@@ -79,18 +56,19 @@ class UserCompany(models.Model):
     cep = models.CharField(max_length=9, verbose_name='CEP')
     district = models.CharField(max_length=80, verbose_name='Bairro')
     street = models.CharField(max_length=80, verbose_name='Rua')
-    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
+    city = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.user.name
 
 class UserExternal(models.Model):
+
     user = models.OneToOneField(CustomUser, on_delete = models.CASCADE)
     favorites = models.ManyToManyField("Announcement.Annoucement", related_name="favoritosExternal")
     linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
     birth_date = models.DateField(null=True)
-    city = models.ForeignKey(City, on_delete= models.CASCADE, null=True)
-    schooling = models.ForeignKey(Schooling, on_delete= models.CASCADE, null=True)
+    city = models.CharField(max_length=100, null=True)
+    schooling = models.CharField(max_length=200, null=True)
     institution = models.CharField(max_length=50, verbose_name='Institution', default="Institution")
     tags = models.ManyToManyField("Announcement.Tags", related_name="tagsExternal")
 
@@ -103,10 +81,10 @@ class UserInternal(models.Model):
     registration = models.CharField(max_length=50, verbose_name='Matricula')
     linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
     birth_date = models.DateField(null=True)
-    city = models.ForeignKey(City, on_delete= models.CASCADE, null=True)
-    schooling = models.ForeignKey(Schooling, on_delete= models.CASCADE, null=True)
-    course = models.ForeignKey(Course, on_delete= models.CASCADE, null=True)
-    period = models.ForeignKey(Period, on_delete= models.CASCADE, null=True)
+    city = models.CharField(max_length=100, null=True)
+    schooling = models.CharField(max_length=200, null=True)
+    period = models.CharField(max_length=10, null=True)
+    course = models.CharField(max_length=30, null=True)
     tags = models.ManyToManyField("Announcement.Tags", related_name="tagsInternal")
 
     def __str__(self):

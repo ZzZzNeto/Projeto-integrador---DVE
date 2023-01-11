@@ -9,12 +9,11 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
 from .models import Annoucement, Tags
 from .forms import AnnouncementForm
 
-class StagesView(LoginRequiredMixin, ListView):
+class StagesView(ListView):
     template_name = 'stages.html'
     queryset = Annoucement.objects.all()
-    login_url = '/user/login'
 
-class AnnoucementView(LoginRequiredMixin, DetailView):
+class AnnoucementView(DetailView):
     template_name = 'announcementView.html'
     queryset = Annoucement.objects.all()
     model = Annoucement
@@ -24,7 +23,7 @@ class AnnoucementCreate(LoginRequiredMixin, CreateView):
     form_class = AnnouncementForm
     model = Annoucement
     success_url = reverse_lazy('profile')
-    login_url = '/login'
+    login_url = 'login'
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -43,7 +42,6 @@ class AnnouncementUpdate(LoginRequiredMixin,UpdateView):
         messages.success(self.request, "Anúncio editado com sucesso!")
         return response
         
-
 class AnnouncementDelete(LoginRequiredMixin, DeleteView):
     model = Annoucement
     queryset = Annoucement.objects.all()
@@ -58,7 +56,10 @@ class AnnouncementDelete(LoginRequiredMixin, DeleteView):
         messages.success(self.request, "Anúncio excluído com sucesso!")
         return response
 
-class CandidatesView(ListView):
+class CandidatesView(DetailView):
     template_name = 'seeCandidates.html'
+    
     model = Annoucement
     queryset = Annoucement.objects.all()
+
+

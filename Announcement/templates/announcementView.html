@@ -137,25 +137,29 @@
             </div>
         </form>
         <div class="d-flex justify-content-end button-estagios">
-            {% for group in user.groups.all %}
-            {% if group.name == "Estudante"%}
-            {% if user in object.inscrits.all %}
-            <form action="{% url 'removeInscription' object.pk %}" method="POST">
-                {% csrf_token %}
-                <button class="subscribe cancelsubs" type="submit" name="object_id" value="{{object.id}}">Cancelar inscrição</button>
-            </form>
+            {%if user.is_authenticated%}
+                {% for group in user.groups.all %}
+                {% if group.name == "Estudante"%}
+                {% if user in object.inscrits.all %}
+                <form action="{% url 'removeInscription' object.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button class="subscribe cancelsubs" type="submit" name="object_id" value="{{object.id}}">Cancelar inscrição</button>
+                </form>
+                {%else%}
+                <form action="{% url 'subscribe' object.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button class="subscribe" type="submit" name="object_id" value="{{object.id}}">Inscrever-se</button>
+                </form>
+                {% endif%}
+                {% endif%}
+                {% if user.id == object.creator.id%}
+                <a href="{%url 'announcementDelete' object.id %}" class="deletestage">Excluir</a>
+                <a href="{%url 'announcementUpdate' object.id %}" class="subscribe">Editar</a>
+                {% endif%}
+                {%endfor%}
             {%else%}
-            <form action="{% url 'subscribe' object.pk %}" method="POST">
-                {% csrf_token %}
-                <button class="subscribe" type="submit" name="object_id" value="{{object.id}}">Inscrever-se</button>
-            </form>
-            {% endif%}
-            {% endif%}
-            {% if user.id == object.creator.id%}
-            <a href="{%url 'announcementDelete' object.id %}" class="deletestage">Excluir</a>
-            <a href="{%url 'announcementUpdate' object.id %}" class="subscribe">Editar</a>
-            {% endif%}
-            {%endfor%}
+                <a href="{%url 'signin' %}" class="subscribe">Inscrever-se</a>
+            {%endif%}
         </div>
     </div>
 {%endblock%}

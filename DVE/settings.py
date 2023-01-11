@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Announcement',
     'Login',
     'social_django',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [

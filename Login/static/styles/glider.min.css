@@ -11,7 +11,9 @@
 
 .glider-dot,
 .glider-next,
-.glider-prev {
+.glider-prev,
+.prev-favorite,
+.next-favorite {
     border: 0;
     padding: 0;
     user-select: none;
@@ -70,7 +72,9 @@
 }
 
 .glider-next,
-.glider-prev {
+.glider-prev,
+.prev-favorite,
+.next-favorite {
     position: absolute;
     background: 0 0;
     z-index: 2;
@@ -88,17 +92,25 @@
 .glider-next:focus,
 .glider-next:hover,
 .glider-prev:focus,
-.glider-prev:hover {
+.glider-prev:hover,
+.next-favorite:focus,
+.next-favorite:hover,
+.prev-favorite:focus,
+.prev-favorite:hover
+
+{
     color: #ccc
 }
 
-.glider-next {
+.glider-next, .next-favorite {
     right: -23px;
     left: auto
 }
 
 .glider-next.disabled,
-.glider-prev.disabled {
+.glider-prev.disabled,
+.next-favorite.disabled,
+.prev-favorite.disabled {
     opacity: .25;
     color: #666;
     cursor: default

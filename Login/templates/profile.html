@@ -75,7 +75,23 @@
 
             <section class="myData" id="myData">
                 <h2>Meus dados</h2>
-    
+
+                <!-- <p> 
+                    nome: {{user.social_auth.get.extra_data.vinculo.nome}}
+                    <br>
+                    cpf: {{user.social_auth.get.extra_data.cpf}}
+                    <br>
+                    Data de nascimento: {{user.social_auth.get.extra_data.data_nascimento}}
+                    <br>
+                    email: {{user.email}}
+                    <br>
+                    curso: {{user.social_auth.get.extra_data.vinculo.curso}}
+                    <br>
+                    endereço img 75x100: {{user.social_auth.get.extra_data.url_foto_75x100}}
+                    <br>
+                    endereço img 150x200: {{user.social_auth.get.extra_data.url_foto_150x200}}
+                </p> -->
+
                 <div class="container p-0">
                     <form action="">
                         {% for group in user.groups.all %}
@@ -193,6 +209,17 @@
                                         <input type="text" value="{{user.userexternal.city}}" disabled placeholder="Cidade">
                                     </div>
                                 </div>
+                                <div> 
+                                    <label for="">Tags preferenciais</label>
+                                    <div class="d-flex flex-wrap">
+                                    {% for tag in user.userexternal.tags.all %}
+                                        <div class="d-flex align-items-center new-tag profiletags">
+                                            <img src="{{tag.image.url}}" alt="icon de estrela">
+                                            <p class="m-0">{{tag.tag}}</p>
+                                        </div>
+                                    {%endfor%}
+                                    </div>  
+                                </div>
                                 {% endif %}
                                 {% if group.name == 'EmpresaCoordenacao' %}
                                 <div>
@@ -230,7 +257,7 @@
                         </div>
                     </form>
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                        <button type="submit" class="btn-sing-in exclude">Excluir Perfil</button>
+                        <a type="submit" href="{%  url 'deleteuser' user.id %}" class="btn-sing-in exclude">Excluir Conta</a>
                         {% if group.name == 'EmpresaCoordenacao' %}
                         <a class="btn-sing-in" href="{% url 'updateCompany'%}">Editar Perfil</a>
                         {% elif group.name == 'Estudante' %}
@@ -244,7 +271,11 @@
             <div class="myAnnouncements" id="myAnnouncements">
                 <h2>Meus anúncios</h2>
             </div>
-
+            {% if user.annoucement_set.count == 0 %}
+            <div class="d-flex justify-content-center align-items-center">
+                <h3 class="havenotting">Você não possui nenhum anuncio publicado</h3>
+            </div>
+            {% else %}
             <section class="carousel-container">
                 <div>
                     <button class="mt-5 glider-prev"><img src="{% static 'imgs/caret-left-fill.svg' %}" alt="">
@@ -253,9 +284,12 @@
                 <div class="glider">
                     {% for announce in object_list %}
                     {% if announce.creator.id == user.id %}
-                    <div class="d-flex justify-content-center align-items-center position-relative size-box divbackcardspro">
+                    <div class="d-flex flex-column justify-content-center align-items-center position-relative size-box divbackcardspro">
                         <div class="position-absolute link-see-more">
                             <a href="{% url 'announcement' announce.id %}">Ver mais</a>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center quantityinscripts">
+                            <a href="{% url 'candidates' announce.id %}">Ver Inscritos</a>
                         </div>
 
                         <div class="position-absolute name-company">
@@ -274,8 +308,9 @@
                     <button class="mt-5 glider-next"><img src="{% static 'imgs/caret-right-fill.svg' %}" alt=""></button>
                 </div>
             </section>
+            {% endif %}
             {% elif group.name == 'Estudante' %}
-            <div class="favorites">
+            <div class="favorites" id="myInscriptions">
                 <h2>Minhas Inscrições</h2>
             </div>
             {% if user.annoucement_set.count == 0 %}
@@ -308,11 +343,11 @@
                     {%endfor%}
                 </div>
                 <div>
-                    <button class="mt-5 glider-next"><img src="{% static 'imgs/caret-right-fill.svg' %}" alt=""></button>
+                    <button class="mt-5 glider-next" ><img src="{% static 'imgs/caret-right-fill.svg' %}" alt=""></button>
                 </div>
             </section>
             {%endif%}
-            <div class="favorites">
+            <div class="favorites" id="favorites">
                 <h2>Meus favoritos</h2>
                 <p>{{user.favorites.all}}</p>
             </div>
@@ -323,16 +358,22 @@
             {% else %}
             <section class="carousel-container">
                 <div>
-                    <button class="mt-5 glider-prev"><img src="{% static 'imgs/caret-left-fill.svg' %}" alt="">
+                    <button class="mt-5 prev-favorite"><img src="{% static 'imgs/caret-left-fill.svg' %}" alt="">
                     </button>
                 </div>
-                <div class="glider">
+                <div class="glider1">
                     {% for announce in object_list %}
                     {% if announce in user.userexternal.favorites.all %}
                     <div class="d-flex justify-content-center align-items-center position-relative size-box divbackcardspro">
                         <div class="position-absolute link-see-more">
                             <a href="{% url 'announcement' announce.id %}">Ver mais</a>
                         </div>
+                        <form action="{% url 'removeFavoriteprofile' announce.pk %}" class="position-absolute" method="POST">
+                            {% csrf_token %}
+                            <div class="d-flex align-items-center justify-content-center removefav">
+                                <button class="buttonaddfav" type="submit" name="object_id" value="{{announce.id}}"><img src="{% static 'imgs/x.png' %}" alt=""></button>
+                            </div>
+                        </form>
                         <div class="position-absolute name-company">
                             <p>{{announce.name_of_company}}<span>{{announce.workload}}h/s</span></p>
                         </div>
@@ -345,7 +386,7 @@
                     {%endfor%}
                 </div>
                 <div>
-                    <button class="mt-5 glider-next"><img src="{% static 'imgs/caret-right-fill.svg' %}" alt=""></button>
+                    <button class="mt-5 next-favorite"><img src="{% static 'imgs/caret-right-fill.svg' %}" alt=""></button>
                 </div>
             </section>
             {%endif%} 

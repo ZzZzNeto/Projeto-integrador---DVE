@@ -1,10 +1,10 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
-from braces.forms import UserKwargModelFormMixin
 from django import forms
 from django.db import transaction
-
-from .models import UserExternal, UserCompany, UserInternal, CustomUser, City, Schooling
+from braces.forms import UserKwargModelFormMixin
+from Announcement.models import Tags
+from .models import UserExternal, UserCompany, UserInternal, CustomUser
 
 class CustomUserInternalCreateForm(UserCreationForm):
     name = forms.CharField(required=True)
@@ -75,7 +75,13 @@ class CustomUserCompanyCreateForm(UserCreationForm):
         return user
 
 class CompanyChangeForm(UserKwargModelFormMixin, UserChangeForm):
-    cnpj = forms.CharField(max_length=18)
+    CHOICES_CITY = (
+    ("Pau dos Ferros", "Pau dos Ferros"),
+    ("Sousa", "Sousa"),
+    ("Natal", "Natal"),
+    )
+
+    cnpj = forms.CharField(max_length=18) 
     linkedin = forms.CharField(max_length=50)
     whatsapp = forms.CharField(max_length=50)
     instagram = forms.CharField(max_length=50)
@@ -83,7 +89,7 @@ class CompanyChangeForm(UserKwargModelFormMixin, UserChangeForm):
     cep = forms.CharField(max_length=9)
     district = forms.CharField(max_length=80)
     street = forms.CharField(max_length=80)
-    city = forms.ModelChoiceField(required=False,queryset=City.objects.all())
+    city = forms.ChoiceField(required=False,choices=CHOICES_CITY, initial="Sousa")
 
     class Meta:
         model = CustomUser
@@ -104,21 +110,34 @@ class CompanyChangeForm(UserKwargModelFormMixin, UserChangeForm):
         using.cep = self.cleaned_data["cep"]
         using.district = self.cleaned_data["district"]
         using.street = self.cleaned_data["street"]
-        using.city = self.cleaned_data["city"]
+        using.city = self.cleaned_data['city']
         using.save()
         return user
 
 class ExternalChangeForm(UserKwargModelFormMixin, UserChangeForm):
+    CHOICES_SCHOOLING = (
+    ("Ensino medio completo", "Ensino medio completo"),
+    ("Ensino superior completo", "Ensino superior completo"),
+    ("Ensino fundamental completo", "Ensino fundamental completo"),
+    )
+
+    CHOICES_CITY = (
+    ("Pau dos Ferros", "Pau dos Ferros"),
+    ("Sousa", "Sousa"),
+    ("Natal", "Natal"),
+    )
+
     linkedin = forms.CharField(max_length=50)
     birth_date = forms.DateField()
-    schooling = forms.ModelChoiceField(required=False,queryset=Schooling.objects.all())
+    schooling = forms.ChoiceField(required=False,choices=CHOICES_SCHOOLING)
     institution = forms.CharField(max_length=50)
-    city = forms.ModelChoiceField(required=False,queryset=City.objects.all())
+    city = forms.ChoiceField(required=False,choices=CHOICES_CITY)
+    tags = forms.ModelMultipleChoiceField(queryset=Tags.objects.all(),widget=forms.CheckboxSelectMultiple, required = False)
 
     class Meta:
         model = CustomUser
         fields = ['name','email','description', 'photo']
-    
+
     def __init__(self, *args, **kwargs):
         super(ExternalChangeForm, self).__init__(*args, **kwargs)
         self.fields['city'].initial=self.user.userexternal.city
@@ -128,7 +147,6 @@ class ExternalChangeForm(UserKwargModelFormMixin, UserChangeForm):
         user = super().save(commit)
         using = user.userexternal
         using.linkedin = self.cleaned_data['linkedin']
-        print(self.cleaned_data['birth_date'])
         using.birth_date = self.cleaned_data['birth_date']
         using.schooling = self.cleaned_data['schooling']
         using.institution = self.cleaned_data['institution']

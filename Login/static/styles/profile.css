@@ -69,12 +69,49 @@
     font-size: var(--font-size-link-nav);
 }
 
+.removefav{
+    position: absolute;
+    top: -115px;
+    left: 23.1%;
+    width: fit-content;
+    height: fit-content;
+}
+
+.removefav button{
+    border-radius: 20px 0px 10px 0px;
+    background-color: #CD4C4C;
+    padding: 15px 12px;
+    width: 50px;
+}
+
+.quantityinscripts{
+    position: absolute;
+    top: 3%;
+    left: 12%;
+    width: fit-content;
+}
+
+.quantityinscripts a{
+    text-decoration: none;
+    color: var(--color-white);
+    background-color: var(--color-buttom);
+    padding: 6px 12px;
+    border-radius: 30px;
+}
+
 .btn {
     font-size: var(--font-size-link-nav)
 }
 
 .space-right {
     margin-right: 80px;
+}
+
+.havenotting{
+    color: var(--color-alert-light);
+    width: 100%;
+    text-align: center;
+    margin: 50px 0px;
 }
 
 .container-profile .havenotting{
@@ -453,7 +490,7 @@ form input:focus::placeholder {
 }
 
 .link-see-more{
-    top: 3%;
+    top: 5%;
     right: 12%;
 }
 
@@ -468,8 +505,6 @@ form input:focus::placeholder {
     background-color: var(--color-buttom);
     padding: 6px 12px;
     border-radius: 30px;
-    font-size: 12px;
-    font-weight: var(--font-weight--Bold);
 }
 
 .link-see-more a:hover{
@@ -486,25 +521,37 @@ form input:focus::placeholder {
     color: var(--color-white);
     background-color: var(--color-buttom);
     border-radius: 20px;
-    width: 200px;
+    min-width: 200px;
+    width: fit-content;
     height: 40px;
     bottom: 20%;
     left: 0%;
 }
 
 .name-company p{
+    display: flex;
+    justify-content: space-between;
     padding: 6px 12px;
     font-weight: var(--font-weight--Bold);
     font-size: 20px;
     margin-bottom: 0;
 }
 
+.profiletags{
+    background-color: var(--color-text-input-ad-font);
+    padding: 5px 10px 5px 5px;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
 .name-company span{
-    padding-left: 20px;
+    margin-left: 20px;
     font-weight: var(--font-weight--Regular);
 }
 
 .name-city{
+    display: flex;
+    justify-content: center;
     background-color: var(--color-green-dark);
     border-radius:  0px 0px 20px 20px;
     color: var(--color-white);

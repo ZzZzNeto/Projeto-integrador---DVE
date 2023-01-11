@@ -62,9 +62,8 @@ class UpdateUserCompanyView(LoginRequiredMixin, UserFormKwargsMixin, UpdateView)
 
 class UpdateUserExternalView(LoginRequiredMixin, UserFormKwargsMixin ,UpdateView):
     form_class = forms.ExternalChangeForm
-    model = CustomUser
     template_name = 'profileEdit.html'
-    success_url = reverse_lazy('profile')
+    success_url = reverse_lazy('stages')
 
     def get_object(self):
         return self.request.user
@@ -73,6 +72,13 @@ class UpdateUserExternalView(LoginRequiredMixin, UserFormKwargsMixin ,UpdateView
         response = super().form_valid(form)
         messages.success(self.request, "Usuário editado com sucesso!")
         return response
+
+class DeleteUserView(LoginRequiredMixin, DeleteView):
+    model = CustomUser
+    success_url = reverse_lazy('login')
+
+    login_url = 'login'
+    template_name = 'deleteConfirmUser.html'
 
 def Subscribe(request, pk):
     announcement = Annoucement.objects.get(id=pk)
@@ -97,6 +103,12 @@ def RemoveFavorite(request, pk):
     request.user.userexternal.favorites.remove(announcement)
     messages.success(request, "Removido dos favoritos")
     return HttpResponseRedirect(reverse('stages'))
+
+def RemoveFavoriteProfile(request, pk):
+    announcement = Annoucement.objects.get(id=pk)
+    request.user.userexternal.favorites.remove(announcement)
+    messages.success(request, "Removido dos favoritos")
+    return HttpResponseRedirect(reverse('profile'))
 
 class ForgotPasswordView(View):
 
