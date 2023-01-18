@@ -35,7 +35,6 @@
     --font-weight--Bold: 700;
     --font-weight--ExtraBold: 800;
     --font-weight--Black: 900;
-
     --font-size-link-nav: 24px;
 }
 
@@ -54,6 +53,8 @@
     margin: 0px 8%;
 }
 
+
+
 .nav-li-regular {
     font-weight: var(--font-weight--Regular);
     font-size: var(--font-size-link-nav);
@@ -71,17 +72,20 @@
 
 .removefav{
     position: absolute;
-    top: -115px;
+    top: -110px;
     left: 23.1%;
     width: fit-content;
     height: fit-content;
 }
 
 .removefav button{
-    border-radius: 20px 0px 10px 0px;
+    border-radius: 20px;
     background-color: #CD4C4C;
     padding: 15px 12px;
-    width: 50px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
 }
 
 .quantityinscripts{
@@ -245,7 +249,6 @@ html {
     background-color: var(--color-red);
 }
 
-
 .teste {
     width: 80%;
     display: flex;
@@ -254,6 +257,8 @@ html {
 
 .sidebar {
     height: 700px;
+    position: sticky;
+    top: 30px;
     background-color: var(--background-sidebar);
     width: 20%;
     border-radius: 20px;
@@ -326,9 +331,12 @@ html {
 
 .profilePicture {
     border-radius: 50%;
-    border: solid var(--color-text-blue-dark) 5px;
     height: 200px;
     width: 200px;
+}
+
+.profilePicture img{
+    object-fit: cover;
 }
 
 .exitButton {

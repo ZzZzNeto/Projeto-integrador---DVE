@@ -53,8 +53,9 @@ body {
 }
 
 .main-login-empresa{
-    height: 90vh;
+    height: 85vh;
     display: flex;
+    margin-top: 30px;
     justify-content: center;
     align-items: center;
 }

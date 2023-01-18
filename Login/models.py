@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import Group
 from django.contrib.auth.models import BaseUserManager, AbstractUser, AbstractBaseUser
 from django.db.models import signals
 
@@ -14,6 +15,14 @@ class UserManager(BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+        if user.is_superuser:
+            group = Group.objects.get(name="coordenacao")
+            user.groups.add(group)
+            user.name = "Coordenação"
+            user.photo = "https://ead.ifrn.edu.br/ajuda/wp-content/uploads/2022/05/ifrn-logo.png"
+            user.save()
+            cordenacao = CoordinationUser.objects.create(user=user)
+            cordenacao.save()
         return user
 
     def create_user(self, email, password=None, **extra_fields):
@@ -28,9 +37,6 @@ class UserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     username = None
-    is_external = models.BooleanField(default=False)
-    is_company = models.BooleanField(default=False)
-    is_internal = models.BooleanField(default=False)
     name = models.CharField(max_length=50)
     email = models.EmailField("E-mail", unique=True)
     is_staff = models.BooleanField('Membro da equipe', default=True)
@@ -57,6 +63,7 @@ class UserCompany(models.Model):
     district = models.CharField(max_length=80, verbose_name='Bairro')
     street = models.CharField(max_length=80, verbose_name='Rua')
     city = models.CharField(max_length=100, null=True)
+    Qcreated = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.name
@@ -82,13 +89,22 @@ class UserInternal(models.Model):
     linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
     birth_date = models.DateField(null=True)
     city = models.CharField(max_length=100, null=True)
-    schooling = models.CharField(max_length=200, null=True)
-    period = models.CharField(max_length=10, null=True)
-    course = models.CharField(max_length=30, null=True)
+    period = models.CharField(max_length=50, null=True)
+    course = models.CharField(max_length=100, null=True)
     tags = models.ManyToManyField("Announcement.Tags", related_name="tagsInternal")
 
     def __str__(self):
         return self.user.name
+
+class CoordinationUser(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete= models.CASCADE)
+    instagram = models.CharField(max_length=50, verbose_name='Instagram')
+    phone = models.CharField(max_length=13, verbose_name='Telefone')
+    linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
+    Qcreated = models.IntegerField(default=0)
+
+    def __str__(self):
+        return "Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte | Campus Pau dos Ferros"
 
 """class Course(models.Model):
     course = models.CharField(max_length=50, verbose_name='course')
@@ -144,13 +160,4 @@ class CompanyUser(models.Model):
     city = models.OneToOneField(City, on_delete= models.CASCADE)
 
     def __str__(self):
-        return self.name
-
-class CoordinationUser(models.Model):
-    email = models.CharField(max_length=100, verbose_name='E-mail')
-    instagram = models.CharField(max_length=50, verbose_name='Instagram')
-    phone = models.CharField(max_length=13, verbose_name='Telefone')
-    linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
-
-    def __str__(self):
-        return "Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte | Campus Pau dos Ferros"""
+        return self.name"""

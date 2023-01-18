@@ -13,7 +13,14 @@
 .glider-next,
 .glider-prev,
 .prev-favorite,
-.next-favorite {
+.next-favorite,
+.prev-favorite1,
+.next-favorite1,
+.prev-favorite2,
+.next-favorite2,
+.prev-favorite3,
+.next-favorite3
+ {
     border: 0;
     padding: 0;
     user-select: none;
@@ -24,7 +31,8 @@
     width: 100%
 }
 
-.glider {
+.glider, .glider1, .glider2, .glider3, .glider4
+ {
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none
@@ -74,7 +82,14 @@
 .glider-next,
 .glider-prev,
 .prev-favorite,
-.next-favorite {
+.next-favorite,
+.prev-favorite1,
+.next-favorite1,
+.prev-favorite2,
+.next-favorite2,
+.prev-favorite3,
+.next-favorite3
+{
     position: absolute;
     background: 0 0;
     z-index: 2;
@@ -96,13 +111,25 @@
 .next-favorite:focus,
 .next-favorite:hover,
 .prev-favorite:focus,
-.prev-favorite:hover
+.prev-favorite:hover,
+.next-favorite1:focus,
+.next-favorite1:hover,
+.prev-favorite1:focus,
+.prev-favorite1:hover,
+.next-favorite2:focus,
+.next-favorite2:hover,
+.prev-favorite2:focus,
+.prev-favorite2:hover,
+.next-favorite3:focus,
+.next-favorite3:hover,
+.prev-favorite3:focus,
+.prev-favorite3:hover
 
 {
     color: #ccc
 }
 
-.glider-next, .next-favorite {
+.glider-next, .next-favorite, .next-favorite1, .next-favorite2, .next-favorite3 {
     right: -23px;
     left: auto
 }
@@ -110,7 +137,13 @@
 .glider-next.disabled,
 .glider-prev.disabled,
 .next-favorite.disabled,
-.prev-favorite.disabled {
+.prev-favorite.disabled,
+.next-favorite1.disabled,
+.prev-favorite1.disabled,
+.next-favorite2.disabled,
+.prev-favorite2.disabled,
+.next-favorite3.disabled,
+.prev-favorite3.disabled {
     opacity: .25;
     color: #666;
     cursor: default

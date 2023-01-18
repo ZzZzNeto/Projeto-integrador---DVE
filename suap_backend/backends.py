@@ -1,7 +1,8 @@
 # coding: utf-8
 
 from social_core.backends.oauth import BaseOAuth2
-
+from Login.models import CustomUser, UserInternal
+from django.contrib.auth.models import Group
 
 class SuapOAuth2(BaseOAuth2):
     name = 'suap'
@@ -36,6 +37,24 @@ class SuapOAuth2(BaseOAuth2):
         você pode fazer aqui outras coisas, como salvar os dados do usuário
         (`response`) em algum outro model.
         """
+
+        if UserInternal.objects.filter(registration=response[self.ID_KEY]).count() == 0:
+            group = Group.objects.get(name="EstudanteIFRN")
+            user = CustomUser.objects.create_user(name=response['nome_usual'],email=response['email'])
+            user.set_unusable_password()
+            user.username = user.email
+            user.photo = response['url_foto_150x200']
+            user.save()
+            user.groups.add(group)
+            print("skadajsbhdfd" , response['url_foto_150x200'])
+            internal = UserInternal.objects.create(user=user)
+            internal.registration = response[ self.ID_KEY]
+            internal.course = response['vinculo']['curso']
+            internal.birth_date = response['data_nascimento']
+            internal.save()
+        else: 
+            pass
+
         splitted_name = response['nome_usual'].split()
         first_name, last_name = splitted_name[0], ''
         if len(splitted_name) > 1:

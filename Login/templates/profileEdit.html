@@ -27,25 +27,10 @@
                         <li><a class="nav-link font-bold-ul p-0 mb-3" href="#myData">
                                 <p class="m-0 text-white"> Meus dados</p>
                             </a></li>
-                        {% if group.name == 'EmpresaCoordenacao' %}
-                        <li><a class="nav-link font-bold-ul p-0 mb-3" href="#myAnnouncements">
-                                <p class="m-0 text-white"> Meus anúncios</p>
-                            </a></li>
-                        {% endif %}
-                        {% if group.name == 'EmpresaCoordenacao' %}
+                        {% if group.name == 'Empresa' or group.name == 'coordenacao' %}
                         <li><a class="nav-link font-bold-ul p-0 mb-3" href="announcement.html">
-                                <p class="m-0 text-white"> Criar anúncios</p>
+                                <p class="m-0 text-white"> Criar anúncio</p>
                             </a></li>
-                        {% endif %}
-                        {% if group.name == 'Estudante' %}
-                        <li><a class="nav-link font-bold-ul p-0 mb-3" href="#myInscriptions">
-                            <p class="m-0 text-white"> Minhas inscrições</p>
-                        </a></li>
-                        {% endif %}
-                        {% if group.name == 'Estudante' %}
-                        <li><a class="nav-link font-bold-ul p-0 mb-3" href="#favorites">
-                            <p class="m-0 text-white"> Favoritos</p>
-                        </a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -69,15 +54,45 @@
                 <h2>Meus dados</h2>
     
                 <div class="container p-0">
+                    
+                    
+                   
+                    {% for error in form.errors.as_data.values %}
+                        
+                    <script>
+                       
+                       
+                        swal({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text:  'Alguns campos estão inválidos.',
+                            button: "Fechar",
+                        })
+                    
+                    </script>
+
+                 
+                    {%endfor%}
+                    
+                
                     <form action="" enctype="multipart/form-data" method="post">
                         {%csrf_token%}
                         <div class="profilePicture imageedit d-flex justify-content-center align-items-center">
                             {% if user.photo %}
-                            <img width=100% height=100% class="rounded-circle" src="{{user.photo.url}}" alt="">
+                                {% for group in user.groups.all %}
+                                {% if group.name == "EstudanteIFRN" %}
+                                <img width=100% height=100% class="rounded-circle" src="https://suap.ifrn.edu.br{{user.photo}}" alt="">
+                                {% elif group.name == "coordenacao" %}
+                                <img width=100% height=100% class="rounded-circle" src="{{user.photo}}" alt="">
+                                {% else %}
+                                <img width=100% height=100% class="rounded-circle" src="{{user.photo.url}}" alt="">
+                                <input class="inputphoto" type="file" name="photo" accept="image/*" id="id_photo">
+                                {%endif%}
+                                {%endfor%}
                             {% else %}
-                            <img width=50% height=50% src="{% static 'imgs/PerfilPicture.png' %}" alt="">
+                                <img width=50% height=50% src="{% static 'imgs/PerfilPicture.png' %}" alt="">
+                                <input class="inputphoto" type="file" name="photo" accept="image/*" id="id_photo">
                             {% endif %}
-                            <input class="inputphoto" type="file" name="photo" accept="image/*" id="id_photo">
                         </div>
                         <div class="row">
                             <div class="col-sm">
@@ -85,33 +100,64 @@
                                     <label for="">Nome</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/userIcon.png' %}" alt="">
-                                        {{form.name}}
+                                        <input type="text" value="{{user.name}}" id="name" name="name" placeholder="Nome">
+                                        {%for error in form.errors.as_data.name%}
+                                        {{error.message}}
+                                        {%endfor%}
                                     </div>
                                 </div>
-                                {% if group.name == 'EmpresaCoordenacao' %}
+                                {% if group.name == 'Empresa' %}
                                 <div>
                                     <label for="">CNPJ</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/cnpjIcon.png' %}" alt="">
                                         <input type="text" value="{{user.usercompany.cnpj}}" id="cnpj" name="cnpj" placeholder="CNPJ">
+                                        {%for error in form.errors.as_data.CNPJ%}
+                                        {{error.message}}
+                                        {%endfor%}
                                     </div>
                                 </div>
                                 {% endif %}
-                                {% if group.name == 'Estudante' %}
+                                {% if group.name == 'EstudanteIFRN' %}
+                                <div>
+                                    <label for="">Matricula</label>
+                                    <div class="input-container">
+                                        <img src="{% static 'imgs/cnpjIcon.png' %}" alt="">
+                                        <input type="text" value="{{user.userinternal.registration}}" disabled placeholder="Matricula">
+                                        {%for error in form.errors.as_data.registration%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if group.name == 'Estudante' or group.name == 'EstudanteIFRN'%}
                                 <div>
                                     <label for="">Data de nascimento</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/calendarioIcon.png' %}" alt="">
-                                        <input type="date" value="{{user.userexternal.birth_date|date:"Y-m-d" }}" id="birth_date" name="birth_date">
+                                        {% if group.name == 'Estudante' %}
+                                        <input type="date" value="{{user.userexternal.birth_date|date:"Y-m-d" }}" id="birth_date" name="birth_date" >
+                                        {%for error in form.errors.as_data.birth_date%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                        {% elif group.name == "EstudanteIFRN"%}
+                                        <input type="date" value="{{user.userinternal.birth_date|date:"Y-m-d" }}" id="birth_date" name="birth_date" >
+                                        {%for error in form.errors.as_data.birth_date%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                        {%endif%}
                                     </div>
                                 </div>
                                 {% endif %}
-                                {% if group.name == 'Estudante' %}
+                                {% if group.name == 'Estudante'%}
                                 <div>
                                     <label for="">Escolaridade</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/escolaridadeIcon.png' %}" class="escolaridadeIMG" alt="">
                                         {{form.schooling}}
+                                        {%for error in form.errors.as_data.schooling%}
+                                        {{error.message}}
+                                        {%endfor%}
                                     </div>
                                 </div>
                                 {% endif %}
@@ -121,110 +167,196 @@
                                     <div class="input-container">
                                         <img src="{% static 'imgs/cityIcon.png' %}" alt="">
                                         <input type="text"  value="{{user.userexternal.institution}}" id="institution" name="institution" placeholder="Instituição">
+                                        {%for error in form.errors.as_data.institution%}
+                                        {{error.message}}
+                                        {%endfor%}
                                     </div>
                                 </div>
                                 {% endif %}
-                                {% if group.name == 'EmpresaCoordenacao' %}
+                                {% if group.name == 'Empresa' %}
                                 <div>
                                     <label for="">Logradouro</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/logradouroIcon.png' %}" class="logradouroIMG" alt="">
                                         <input type="text" value="{{user.usercompany.street}}" placeholder="Logradouro" id="street" name="street">
+                                        {%for error in form.errors.as_data.street%}
+                                        {{error.message}}
+                                        {%endfor%}
                                     </div>
                                 </div>
                                 {% endif %}
-                                {% if group.name == 'EmpresaCoordenacao' %}
+                                {% if group.name == 'Empresa' %}
                                 <div>
                                     <label for="">Bairro</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/bairroIcon.png' %}" alt="">
                                         <input type="text" value="{{user.usercompany.district}}" id="district" name="district" placeholder="Bairro">
+                                        {%for error in form.errors.as_data.district%}
+                                        {{error.message}}
+                                        {%endfor%}
                                     </div>
                                 </div>
                                 {% endif %}
-                                {% if group.name == 'EmpresaCoordenacao' %}
+                                {% if group.name == 'Empresa' or group.name == "coordenacao"%}
                                 <div>
                                     <label for="">Telefone</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/TelefoneIcon.png' %}" alt="">
+                                        {% if group.name == 'Empresa' %}
                                         <input type="text" value="{{user.usercompany.phone}}" id="phone" name="phone" placeholder="Nº de telefone">
+                                        {%for error in form.errors.as_data.phone%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                        {% elif group.name == "coordenacao"%}
+                                        <input type="text" value="{{user.coordinationuser.phone}}" id="phone" name="phone" placeholder="Nº de telefone">
+                                        {%for error in form.errors.as_data.phone%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                        {%endif%}
                                     </div>
                                 </div>
-                                {% endif %}
-                                {% if group.name == 'EmpresaCoordenacao' %}
                                 <div>
                                     <label for="">Linkedin</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/LinkedinIcon.png' %}" alt="">
+                                        {% if group.name == 'Empresa' %}
                                         <input type="text" value="{{user.usercompany.linkedin}}" id="linkedin" name="linkedin" placeholder="Link">
+                                        {%for error in form.errors.as_data.linkedin%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                        {% elif group.name == "coordenacao"%}
+                                        <input type="text" value="{{user.coordinationuser.linkedin}}" id="linkedin" name="linkedin" placeholder="Link">
+                                        {%for error in form.errors.as_data.linkedin%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                        {%endif%}
                                     </div>
                                 </div>
-                                {% elif group.name == 'Estudante' %}
+                                {% elif group.name == 'Estudante' or group.name == 'EstudanteIFRN' %}
                                 <div>
                                     <label for="">Linkedin</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/LinkedinIcon.png' %}" alt="">
+                                        {% if group.name == 'Estudante' %}
                                         <input type="text" value="{{user.userexternal.linkedin}}" id="linkedin" name="linkedin" placeholder="Link">
+                                        {%for error in form.errors.as_data.linkedin%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                        {% elif group.name == "EstudanteIFRN"%}
+                                        <input type="text" value="{{user.userinternal.linkedin}}" id="linkedin" name="linkedin" placeholder="Link">
+                                        {%for error in form.errors.as_data.linkedin%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                        {%endif%}
                                     </div>
                                 </div>
                                 {% endif %}
                             </div>
+                            
                             <div class="col-sm">
                                 <div>
                                     <label for="">E-mail</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/emailIcon.png' %}" alt="">
                                         <input type="text" value="{{user.email}}" id="email" name="email" placeholder="Email">
+                                        {%for error in form.errors.as_data.email%}
+                                        {{error.message}}
+                                        {%endfor%}
                                     </div>
                                 </div>
-                                {% if group.name == 'EmpresaCoordenacao' %}
+                                {% if group.name == 'Empresa' %}
                                 <div>
                                     <label for="">Cidade</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/cityIcon.png' %}" alt="">
                                         {{form.city}}
+                                        {%for error in form.errors.as_data.city%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                    </div>
                                     </div>
                                 </div>
-                                {% elif group.name == 'Estudante' %}
+                                {% elif group.name == 'Estudante' or group.name == 'EstudanteIFRN' %}
                                 <div>
                                     <label for="">Cidade</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/cityIcon.png' %}" alt="">
                                         {{form.city}}
+                                        {%for error in form.errors.as_data.city%}
+                                        {{error.message}}
+                                        {%endfor%}
                                     </div>
                                 </div>
+                                {% if group.name == 'EstudanteIFRN' %}
+                                <div>
+                                    <label for="">Curso</label>
+                                    <div class="input-container">
+                                        <img src="{% static 'imgs/cityIcon.png' %}" alt="">
+                                        {{form.course}}
+                                        {%for error in form.errors.as_data.course%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="">Período / Ano</label>
+                                    <div class="input-container">
+                                        <img src="{% static 'imgs/cityIcon.png' %}" alt="">
+                                        {{form.period}}
+                                        {%for error in form.errors.as_data.period%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                    </div>
+                                </div>
+                                {%endif%}
                                 <div class="dropdown">
-                                    <label for="" style="margin-bottom: 10px;">Tags preferenciais</label>
+                                    <label for="" style="margin-bottom: 10px;">Tags de interesse</label>
                                     <a class="dropdown-toggle tagselector" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tags</a>
                                     <ul class="dropdown-menu">
                                         {{form.tags}}
                                     </ul>
                                 </div>
                                 {% endif %}
-                                {% if group.name == 'EmpresaCoordenacao' %}
+                                {% if group.name == 'Empresa' %}
                                 <div>
                                     <label for="">CEP</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/cepIcon.png' %}" alt="">
                                         <input type="text" value="{{user.usercompany.cep}}" id="cep" name="cep" placeholder="CEP">
+                                        {%for error in form.errors.as_data.cep%}
+                                        {{error.message}}
+                                        {%endfor%}
                                     </div>
                                 </div>
                                 {% endif %}
-                                {% if group.name == 'EmpresaCoordenacao' %}
+                                {% if group.name == 'Empresa' %}
                                 <div>
                                     <label for="">Whatsapp</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/whatsappIcon.png' %}" alt="">
                                         <input type="text" value="{{user.usercompany.whatsapp}}" id="whatsapp" name="whatsapp" placeholder="Whatsapp">
+                                        {%for error in form.errors.as_data.whatsapp%}
+                                        {{error.message}}
+                                        {%endfor%}
                                     </div>
                                 </div>
                                 {% endif %} 
-                                {% if group.name == 'EmpresaCoordenacao' %}
+                                {% if group.name == 'Empresa' or group.name == 'coordenacao'%}
                                 <div>
                                     <label for="">Instagram</label>
                                     <div class="input-container">
                                         <img src="{% static 'imgs/InstagramIcon.png' %}" alt="">
+                                        {% if group.name == 'Empresa' %}
                                         <input type="text" value="{{user.usercompany.instagram}}" id="instagram" name="instagram" placeholder="Instagram">
+                                        {%for error in form.errors.as_data.instagram%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                        {% elif group.name == "coordenacao"%}
+                                        <input type="text" value="{{user.coordinationuser.instagram}}" id="instagram" name="instagram" placeholder="Instagram">
+                                        {%for error in form.errors.as_data.instagram%}
+                                        {{error.message}}
+                                        {%endfor%}
+                                        {%endif%}
                                     </div>
                                 </div>
                                 {% endif %}
@@ -233,13 +365,21 @@
                             <label for="">Descrição</label>
                             <div class="input-container">
                                 <textarea type="text" class="description" placeholder="Descrição" id="description" name="description">{{user.description}}</textarea>
+                                {%for error in form.errors.as_data.description%}
+                                {{error.message}}
+                                {%endfor%}
                             </div>
                         </div>
                         {% endfor %}
                         <div class="d-flex justify-content-between align-items-center mt-3">
-                            <button type="submit" class="btn-sing-in">Salvar Edição</button>
+                            
+                            <a href="{% url 'profile'%}" class="btn-sing-in exclude">Cancelar</a>
+                            <button type="submit" class="btn-sing-in">Salvar</button>
                         </div>
+                        
                     </form>
+                 
+                 
                     </div>
             </section>
 {%endblock%}

@@ -146,6 +146,19 @@
                         </form>
                         {% endif%}
                         {% endif%}
+                        {% if group.name == "EstudanteIFRN"  %}
+                        {% if stage in user.userinternal.favorites.all %}
+                        <form action="{% url 'removeFavorite' stage.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button class="buttonaddfav" type="submit" name="object_id" value="{{stage.id}}"><img class="addfavoritos " src="{% static 'imgs/Fav.png' %}" alt=""></button>
+                        </form>
+                        {%else%}
+                        <form action="{% url 'favorite' stage.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button class="buttonaddfav" type="submit" name="object_id" value="{{stage.id}}"><img class="addfavoritos" src="{% static 'imgs/Favun.png' %}" alt=""></button>
+                        </form>
+                        {% endif%}
+                        {% endif%}
                     {%endfor%}
                         <div>
                             <h1>{{stage.name_of_company}}</h1>
@@ -171,6 +184,25 @@
                     </div>
                 </div>
             {% endfor %}
+            <div class="d-flex align-items-center justify-content-center pagination">
+                {%if page_obj.has_previous%}
+                <a href="?page=1"><img src="{% static 'imgs/previousendicon.png' %}" alt=""></a>
+                <a href="?page={{ page_obj.previous_page_number }}"><img src="{% static 'imgs/previousicon.png' %}" alt=""></a>
+                {%else%}
+                <a class="disabledpagination" onClick="return false;" href="#"><img src="{% static 'imgs/previousendicon.png' %}" alt=""></a>
+                <a class="disabledpagination" onClick="return false;" href="#"><img src="{% static 'imgs/previousicon.png' %}" alt=""></a>
+                {%endif%}
+                <span>
+                    Página {{page_obj.number}} de {{page_obj.paginator.num_pages}}
+                </span>
+                {%if page_obj.has_next%}
+                <a href="?page={{ page_obj.next_page_number }}"><img src="{% static 'imgs/nexticon.png' %}" alt=""></a>
+                <a href="?page={{ page_obj.paginator.num_pages }}"><img src="{% static 'imgs/nextendicon.png' %}" alt=""></a>
+                {%else%}
+                <a class="disabledpagination" onClick="return false;" href="#"><img src="{% static 'imgs/nexticon.png' %}" alt=""></a>
+                <a class="disabledpagination" onClick="return false;" href="#"><img src="{% static 'imgs/nextendicon.png' %}" alt=""></a>
+                {%endif%}
+            </div>
             </section>
         </div>
     </section>

@@ -305,13 +305,16 @@ form .row{
     transition: 0.2s;
 }
 
+.labelcurricular{
+    font-size: 20px !important;
+}
+
 .contact-form{
     justify-content: space-between;
 }
 
 .contact-form div{
     width: 17.6% !important;
-    margin-right: 20px;
 }
 
 .contacts p{
@@ -457,9 +460,45 @@ form .row{
     margin-bottom: 50px;
 }
 
+.cursocurricular, .workloadcurricular{
+    width: 350px !important;
+}
+
+.cursocurricular select, .period-input select{
+    padding-left: 10px ;
+}
+
 .deletescreen div{
     display: flex;
     justify-content: center;
+}
+
+.checkcurricular{
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.checkcurricular{
+    height: fit-content;
+    width: 500px !important;
+}
+
+.checkcurricular label{
+    font-size: 18px;
+    font-weight: var(--font-weight--Bold);
+}
+
+.checkcurricular input{
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.deletescreen input:focus{
+    padding-left: 0px;
 }
 
 .deletescreen input, .deletescreen a{
@@ -470,6 +509,7 @@ form .row{
     background-color: var(--color-buttom);
     color: var(--color-white);
     text-align: center;
+    transition: none;
 }
 
 .deletescreen a{

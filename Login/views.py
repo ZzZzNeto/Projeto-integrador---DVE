@@ -63,7 +63,33 @@ class UpdateUserCompanyView(LoginRequiredMixin, UserFormKwargsMixin, UpdateView)
 class UpdateUserExternalView(LoginRequiredMixin, UserFormKwargsMixin ,UpdateView):
     form_class = forms.ExternalChangeForm
     template_name = 'profileEdit.html'
-    success_url = reverse_lazy('stages')
+    success_url = reverse_lazy('profile')
+
+    def get_object(self):
+        return self.request.user
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Usuário editado com sucesso!")
+        return response
+
+class UpdateUserInternalView(LoginRequiredMixin, UserFormKwargsMixin ,UpdateView):
+    form_class = forms.InternalChangeForm
+    template_name = 'profileEdit.html'
+    success_url = reverse_lazy('profile')
+
+    def get_object(self):
+        return self.request.user
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Usuário editado com sucesso!")
+        return response
+
+class UpdateCoordinationUserView(LoginRequiredMixin, UserFormKwargsMixin ,UpdateView):
+    form_class = forms.CoordinationChangeForm
+    template_name = 'profileEdit.html'
+    success_url = reverse_lazy('profile')
 
     def get_object(self):
         return self.request.user
@@ -82,8 +108,11 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
 
 def Subscribe(request, pk):
     announcement = Annoucement.objects.get(id=pk)
-    announcement.inscrits.add(request.user)
-    messages.success(request, "Inscrição realizada!")
+    if request.user.groups.filter(name="Estudante") or request.user.groups.filter(name="EstudanteIFRN"):
+        announcement.inscrits.add(request.user)
+        messages.success(request, "Inscrição realizada!")
+    else:
+        messages.success(request, "Usuarios empresa não podem se inscrever em anuncios!")
     return HttpResponseRedirect(reverse('announcement', args=[str(pk)]))
 
 def RemoveSubscribe(request, pk):
@@ -94,19 +123,28 @@ def RemoveSubscribe(request, pk):
 
 def Favorite(request, pk):
     announcement = Annoucement.objects.get(id=pk)
-    request.user.userexternal.favorites.add(announcement)
+    if request.user.groups.filter(name="EstudanteIFRN"):
+        request.user.userinternal.favorites.add(announcement)
+    else:
+        request.user.userexternal.favorites.add(announcement)
     messages.success(request, "Adicionado aos favritos!")
     return HttpResponseRedirect(reverse('stages'))
 
 def RemoveFavorite(request, pk):
     announcement = Annoucement.objects.get(id=pk)
-    request.user.userexternal.favorites.remove(announcement)
+    if request.user.groups.filter(name="EstudanteIFRN"):
+        request.user.userinternal.favorites.remove(announcement)
+    else:
+        request.user.userexternal.favorites.remove(announcement)
     messages.success(request, "Removido dos favoritos")
     return HttpResponseRedirect(reverse('stages'))
 
 def RemoveFavoriteProfile(request, pk):
     announcement = Annoucement.objects.get(id=pk)
-    request.user.userexternal.favorites.remove(announcement)
+    if request.user.groups.filter(name="EstudanteIFRN"):
+        request.user.userinternal.favorites.remove(announcement)
+    else:
+        request.user.userexternal.favorites.remove(announcement)
     messages.success(request, "Removido dos favoritos")
     return HttpResponseRedirect(reverse('profile'))
 

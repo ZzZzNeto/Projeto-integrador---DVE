@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import (UserView, ForgotPasswordView,
-                    RedefinePasswordView, SignUpCompanyView, SignUpExternalView, UpdateUserCompanyView, DeleteUserView, UpdateUserExternalView,
+                    RedefinePasswordView, SignUpCompanyView, SignUpExternalView, UpdateUserCompanyView, DeleteUserView, UpdateUserExternalView, UpdateUserInternalView, UpdateCoordinationUserView,
                     VerificationView, Subscribe, RemoveSubscribe, Favorite, RemoveFavorite, RemoveFavoriteProfile)
 
 urlpatterns = [
@@ -13,6 +13,8 @@ urlpatterns = [
     path('profile/>', UserView.as_view(), name="profile"),
     path('updateCompany/', UpdateUserCompanyView.as_view(), name="updateCompany"),
     path('updateExternal/', UpdateUserExternalView.as_view(), name="updateExternal"),
+    path('updateInternal/', UpdateUserInternalView.as_view(), name="updateInternal"),
+    path('updateCoordenacao/', UpdateCoordinationUserView.as_view(), name="updateCoordenacao"),
     path('deleteuser/<int:pk>', DeleteUserView.as_view(), name="deleteuser"),
     path('subscribe/<int:pk>', Subscribe, name="subscribe"),
     path('removeInscription/<int:pk>', RemoveSubscribe, name="removeInscription"),

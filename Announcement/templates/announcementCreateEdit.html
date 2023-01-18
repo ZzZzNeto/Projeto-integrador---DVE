@@ -18,7 +18,7 @@
                     </div>
                     
                     {% if object%}
-                    <img width=100% height=550 src="{{object.image_annoucement.url}}" alt="imagem do anuncio">
+                    <img width=100% height=550 style="border-radius: 20px;" src="{{object.image_annoucement.url}}" alt="imagem do anuncio">
                     <input class="inputphoto" type="file" name="image_annoucement" accept="image/*" id="id_image_annoucement"> 
                     {%else%}
                     <img width=100% height=550 src="{% static 'imgs/default.jpg' %}" alt="imagem do anuncio">
@@ -36,7 +36,13 @@
                                 {% if object%}
                                 <input type="text" value="{{object.name_of_company}}" name="name_of_company" id="name_of_company" placeholder="Insira o nome da empresa">
                                 {%else%}
+                                {% for group in user.groups.all %}
+                                {% if group.name == 'coordenacao'%}
+                                <input type="text" name="name_of_company" id="name_of_company" placeholder="Insira o nome da empresa">
+                                {% else %}
                                 <input type="text" value="{{user.name}}" name="name_of_company" id="name_of_company" placeholder="Insira o nome da empresa">
+                                {%endif%}
+                                {%endfor%}
                                 {%endif%}
                             </div>
                         </div>
@@ -83,7 +89,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="">Prazo de inscrições</label>
+                                <label for="">Prazo de inscrições (dias)</label>
                                 {% if object%}
                                 <input type="text" value="{{object.registration_deadline}}" id="registration_deadline" name="registration_deadline" placeholder="insira o prazo">
                                 {%else%}
@@ -93,7 +99,7 @@
                         </div>
                         <div class="row d-flex testeing">
                             <div class="ch-input">
-                                <label for="">Carga horária</label>
+                                <label for="">Carga horária semanal</label>
                                 {% if object%}
                                 <input type="text" id="workload" value="{{object.workload}}" name="workload" placeholder="CH do estágio">
                                 {%else%}
@@ -152,16 +158,13 @@
             <div class="contacts">
                 <p>Formas de contato</p>
             </div>
-            <div class="d-flex contact-form">
-
-
+            <div class="d-flex contact-form justify-content-between">
                 <div class="input-container">
                     <img src="{% static 'imgs/emailIcon.png' %}" alt="">
                     {% if object%}
                     <input type="text" value="{{object.email}}" id="email" name="email" placeholder="Email">
                     {%else%}
                     <input type="text" value="{{user.email}}" id="email" name="email" placeholder="Email">
-
                     {%endif%}
                 </div>
 
@@ -187,7 +190,7 @@
                     <img src="{% static 'imgs/LinkedinIcon.png' %}" alt="">
                     {% if object%}
                     <input type="text" id="linkedin" value="{{object.linkedin}}" name="linkedin" placeholder="Linkedin">
-                    {%else%}
+                    {% else %}
                     <input type="text" id="linkedin" value="{{user.usercompany.linkedin}}" name="linkedin" placeholder="Linkedin">
                     {%endif%}
                 </div>
@@ -200,16 +203,38 @@
                     <input type="text" id="instagram" value="{{user.usercompany.instagram}}" name="instagram" placeholder="Instagram">
                     {%endif%}
                 </div>
-
             </div>
+
+            {% for group in user.groups.all %}
+            {% if group.name == 'coordenacao'%}
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="input-container checkcurricular justify-content-between"> 
+                    <label for="id_curricular">Estagio competente a grade curricular do IFRN</label>
+                    {{form.curricular}}
+                </div>
+                <div class="input-container cursocurricular">
+                    <label for="id_course">Curso</label>
+                    {{form.course}}
+                </div>
+                <div class="input-container workloadcurricular">   
+                    <label for="id_course">Carga horaria total do estagio</label>
+                    {% if object%}
+                    <input type="text" id="total_workload" value="{{object.total_workload}}" name="total_workload" placeholder="Carga horaria total">
+                    {%else%}
+                    <input type="text" id="total_workload" name="total_workload" placeholder="Carga horaria total">
+                    {%endif%}
+                </div>
+            </div>
+            {%endif%}
+            {%endfor%}
 
             <div class="descriptione">
                 <label for="">Descrição</label>
                 <div class="input-container">
                     {% if object%}
-                    <textarea type="text" class="" id="description" name="description" placeholder="Fale um pouco sobre os estágios">{{object.description}}</textarea>
+                    <textarea type="text" class="" id="description" name="description" placeholder="Fale um pouco sobre o estágio">{{object.description}}</textarea>
                     {%else%}
-                    <textarea type="text" class="" id="description" name="description" placeholder="Fale um pouco sobre os estágios"></textarea>
+                    <textarea type="text" class="" id="description" name="description" placeholder="Fale um pouco sobre o estágio"></textarea>
                     {%endif%}
                 </div>
             </div>

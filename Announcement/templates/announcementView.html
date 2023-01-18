@@ -16,7 +16,7 @@
                         {%endfor%}
                     </div>
 
-                    <img width=100% height=550 src="{{object.image_annoucement.url}}" alt="imagem do anuncio">
+                    <img width=100% height=550 style="border-radius: 20px;" src="{{object.image_annoucement.url}}" alt="imagem do anuncio">
 
                 </div>
                 <div class="col">
@@ -55,13 +55,13 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="">Prazo de inscrições</label>
+                                <label for="">Prazo de inscrições (dias)</label>
                                 <input type="text" disabled value="{{object.registration_deadline}}" id="registration_deadline" name="registration_deadline" placeholder="insira o prazo">
                             </div>
                         </div>
                         <div class="row d-flex testeing">
                             <div class="ch-input">
-                                <label for="">Carga horária</label>
+                                <label for="">Carga horária semanal</label>
                                 <input type="text" disabled id="workload" value="{{object.workload}}" name="workload" placeholder="CH do estágio">
                             </div>
                             <div class="vacancies-input">
@@ -126,8 +126,23 @@
                     <img src="{% static 'imgs/InstagramIcon.png' %}" alt="">
                     <input type="text" disabled id="instagram" value="{{object.instagram}}" name="instagram" placeholder="Instagram">
                 </div>
-
             </div>
+
+            {%if object.curricular %}
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="input-container checkcurricular justify-content-between"> 
+                    <label for="id_curricular" class="labelcurricular">Estagio competente a grade curricular do IFRN</label>
+                </div>
+                <div class="input-container cursocurricular">
+                    <label for="course">Curso</label>
+                    <input type="text" disabled id="course" disabled value="{{object.course}}" name="course" placeholder="Curso">
+                </div>
+                <div class="input-container workloadcurricular">   
+                    <label for="id_course">Carga horaria total do estagio</label>
+                    <input type="text" disabled id="total_workload" value="{{object.total_workload}}" name="total_workload" placeholder="Carga horaria total">
+                </div>
+            </div>
+            {%endif%}
 
             <div class="descriptione">
                 <label for="">Descrição</label>
@@ -139,7 +154,7 @@
         <div class="d-flex justify-content-end button-estagios">
             {%if user.is_authenticated%}
                 {% for group in user.groups.all %}
-                {% if group.name == "Estudante"%}
+                {% if group.name == "Estudante" or group.name == "EstudanteIFRN" %}
                 {% if user in object.inscrits.all %}
                 <form action="{% url 'removeInscription' object.pk %}" method="POST">
                     {% csrf_token %}
