@@ -74,7 +74,7 @@
                         </li>
 
                         <li class="nav-item space-right">
-                            <a class="nav-link nav-li-bold text-white" href="{% url 'stages' %}">Anúncios</a>
+                            <a class="nav-link nav-li-bold text-white" href="{% url 'stages'%}">Anúncios</a>
                         </li>
                         <li>
                             {%if user.is_authenticated%}
@@ -103,11 +103,8 @@
         </nav>
     </header>
     <main>
-
-
         {%block main %}
         {%endblock %}
-
     </main>
     <footer>
         <footer class="text-white text-center">
@@ -190,6 +187,12 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type=text/javascript>
+    submitForms = function(){
+        document.forms["form1"].submit();
+        document.forms["form2"].submit();
+    }
+</script>
 <script>
     {% for msg in messages %}
     swal({
@@ -198,10 +201,5 @@
         button: "Fechar",
     });
     {% endfor %}
-
-
-    
-  
 </script>
-
 </html>

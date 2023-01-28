@@ -168,11 +168,11 @@ class InternalChangeForm(UserKwargModelFormMixin, UserChangeForm):
 
     CHOICES_COURSE = (
     ("Não informado", "Não informado"),
-    ("ADS", "ADS"),
+    ("Tecnologia em Análise e Desenvolvimento de Sistemas", "Tecnologia em Análise e Desenvolvimento de Sistemas"),
     ("Alimentos", "Alimentos"),
     ("Apicultura", "Apicultura"),
     ("Quimica", "Quimica"),
-    ("Informatica", "Informatica"),
+    ("Técnico de Nível Médio em Informática", "Informatica"),
     )
 
     CHOICES_PERIOD = (

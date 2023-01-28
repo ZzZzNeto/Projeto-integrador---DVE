@@ -4,10 +4,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import UserFormKwargsMixin
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,UpdateView, View)
 from .models import UserCompany, UserExternal, CustomUser
 from Announcement.models import Annoucement
 from . import forms
+
+class ChangePassowordView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('profile')
+    template_name = 'registration/changePassword.html'
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Senha alterada com sucesso!")
+        return response
 
 class SignUpExternalView(CreateView):
     model = CustomUser
@@ -19,6 +31,8 @@ class SignUpExternalView(CreateView):
         response = super().form_valid(form)
         messages.success(self.request, "Usuário cadastrado com sucesso!")
         return response
+
+        
 
 class SignUpInternalView(CreateView):
     model = CustomUser
@@ -105,14 +119,17 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
 
     login_url = 'login'
     template_name = 'deleteConfirmUser.html'
-
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Usuário excluído com sucesso!")
+        return response
 def Subscribe(request, pk):
     announcement = Annoucement.objects.get(id=pk)
     if request.user.groups.filter(name="Estudante") or request.user.groups.filter(name="EstudanteIFRN"):
         announcement.inscrits.add(request.user)
         messages.success(request, "Inscrição realizada!")
     else:
-        messages.success(request, "Usuarios empresa não podem se inscrever em anuncios!")
+        messages.error(request, "Usuarios empresa não podem se inscrever em anuncios!")
     return HttpResponseRedirect(reverse('announcement', args=[str(pk)]))
 
 def RemoveSubscribe(request, pk):

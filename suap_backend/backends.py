@@ -46,7 +46,6 @@ class SuapOAuth2(BaseOAuth2):
             user.photo = response['url_foto_150x200']
             user.save()
             user.groups.add(group)
-            print("skadajsbhdfd" , response['url_foto_150x200'])
             internal = UserInternal.objects.create(user=user)
             internal.registration = response[ self.ID_KEY]
             internal.course = response['vinculo']['curso']

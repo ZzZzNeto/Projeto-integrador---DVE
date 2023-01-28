@@ -417,7 +417,6 @@ form input, form select {
     border: none;
     border-radius: 10px;
     transition: 0.2s;
-    color: var(--color-alert-light);
 }
 
 .description::placeholder {
@@ -573,4 +572,7 @@ form input:focus::placeholder {
     font-size: 18px;
     padding: 1px 8px;
     font-weight: var(--font-weight--Regular);
+}
+.error-message{
+    color:var(--color-red) !important;
 }

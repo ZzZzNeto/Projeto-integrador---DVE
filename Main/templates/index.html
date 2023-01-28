@@ -119,6 +119,7 @@
     </div>
     <div class="glider">
         {% for stage in object_list %}
+        {%if stage.status == 'ATIVO'%}
         <div class="d-flex justify-content-center align-items-center position-relative size-box">
             <div class="position-absolute link-see-more">
                 <a href="{% url 'announcement' stage.id %}">Ver mais</a>
@@ -131,10 +132,15 @@
                 <p>{{stage.name_of_company}} <span>{{stage.workload}}h/s</span></p>
             </div>
             <div class="position-absolute name-city">
+                {% if stage.creator.usercompany.city %}
                 <p>{{stage.creator.usercompany.city}}</p>
+                {% else %}
+                <p>Curricular IFRN</p>
+                {% endif %}
             </div>
-            <img width="350px" height="350px" src="{{stage.image_annoucement.url}}" alt="">
+            <img style="object-fit: cover; border-radius: 20px;" width="350px" height="350px" src="{{stage.image_annoucement.url}}" alt="">
         </div>
+        {%endif%}
         {%endfor%}
     </div>
     <div>

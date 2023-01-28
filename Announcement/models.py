@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
-from Login.models import CustomUser, UserExternal
+from Login.models import CustomUser
+from django.utils import timezone
+from django.contrib import messages
+from django.core.exceptions import ValidationError
 
 class Tags(models.Model):
     tag = models.CharField(max_length=25, verbose_name='Tag', default="")
@@ -10,6 +13,12 @@ class Tags(models.Model):
         return self.tag
 
 class Annoucement(models.Model):
+    CHOICES_STATUS = (
+    ("ATIVO", "Ativo"),
+    ("FINALIZADO", "Finalizado"),
+    ("PAUSADO", "Pausado"),
+    )
+
     CHOICES_PERIOD = (
     ("MATUTINO", "Matutino"),
     ("VESPERTINO", "Vespertino"),
@@ -20,6 +29,7 @@ class Annoucement(models.Model):
     ("ADS", "Ads"),
     ("APICULTURA", "Apicultura"),
     ("ALIMENTOS", "Alimentos"),
+    ("AGROINDUSTRIA", 'Agroindustria'),
     )
 
     creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="creator", editable=False)
@@ -30,7 +40,9 @@ class Annoucement(models.Model):
     street = models.CharField(max_length=80, verbose_name='Rua')
     number = models.CharField(max_length=10, verbose_name="N°")
     tags = models.ManyToManyField(Tags)
-    registration_deadline = models.IntegerField(verbose_name='Prazo de inscrções')
+    status = models.CharField(max_length=20, choices=CHOICES_STATUS, default="ATIVO")
+    creation_time = models.DateField(verbose_name='Data de criação', default=timezone.now)
+    registration_time = models.DateField(verbose_name='Prazo de inscricao', null=True)
     requirements = models.CharField(max_length=500, verbose_name="Requisitos", default="Requisitos")
     workload = models.CharField(max_length=2, verbose_name='CH semanal')
     vacancies = models.CharField(max_length=3, verbose_name='Vagas')
@@ -44,7 +56,7 @@ class Annoucement(models.Model):
     instagram = models.CharField(max_length=50, verbose_name='Instagram')
     phone = models.CharField(max_length=13, verbose_name='Telefone')
     curricular = models.BooleanField(default=False, null=True)
-    course = models.CharField(max_length=30, choices=CHOICES_COURSE)
+    course = models.CharField(max_length=30, choices=CHOICES_COURSE, null=True)
     total_workload = models.CharField(max_length=5, verbose_name="CH total", null=True)
 
     def __str__(self):

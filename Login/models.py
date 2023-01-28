@@ -41,7 +41,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField("E-mail", unique=True)
     is_staff = models.BooleanField('Membro da equipe', default=True)
     photo = models.ImageField('Imagem do perfil', upload_to='imgs/ProfilePictures/', null=True, blank=True, default=None)
-    description = models.CharField(max_length=1000, default="Descrição")
+    description = models.CharField(max_length=1000)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

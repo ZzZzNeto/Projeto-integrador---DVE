@@ -47,6 +47,9 @@
                             <p class="m-0 text-white"> Favoritos</p>
                         </a></li>
                         {% endif %}
+                        <li><a class="nav-link font-bold-ul p-0 mb-3" href="{% url 'passwordChange' %}">
+                            <p class="m-0 text-white"> Mudar senha</p>
+                        </a></li>
                     </ul>
                     {% endfor %}
                 </div>
@@ -123,7 +126,7 @@
                                         {% elif group.name == "EstudanteIFRN"%}
                                         <input type="date" value="{{user.userinternal.birth_date|date:"Y-m-d" }}" disabled>
                                         {%endif%}
-                                    </div>
+                                    </div> 
                                 </div>
                                 {% endif %}
                                 {% if group.name == 'Estudante' %}
@@ -341,9 +344,11 @@
                         <div class="position-absolute link-see-more">
                             <a href="{% url 'announcement' announce.id %}">Ver mais</a>
                         </div>
+                        {% if annouce.status == 'finalizado' %}
                         <div class="d-flex align-items-center justify-content-center quantityinscripts">
                             <a href="{% url 'candidates' announce.id %}">Ver Inscritos</a>
                         </div>
+                        {%endif%}
 
                         <div class="position-absolute name-company">
                             <p>{{announce.name_of_company}}<span>{{announce.workload}}h/s</span></p>
@@ -355,7 +360,7 @@
                             <p>Curricular IFRN</p>
                             {%endif%}
                         </div>
-                        <img class="backgroundcardsprofile" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
+                        <img class="backgroundcardsprofile announcementimage" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
                     </div>
                     {%endif%}
                     {%endfor%}
@@ -386,17 +391,18 @@
                         <div class="position-absolute link-see-more">
                             <a href="{% url 'announcement' announce.id %}">Ver mais</a>
                         </div>
+                        {% if announce.status == 'finalizado' %}
                         <div class="d-flex align-items-center justify-content-center quantityinscripts">
                             <a href="{% url 'candidates' announce.id %}">Ver Inscritos</a>
                         </div>
-
+                        {%endif%}
                         <div class="position-absolute name-company">
                             <p>{{announce.name_of_company}}<span>{{announce.workload}}h/s</span></p>
                         </div>
                         <div class="position-absolute name-city">
                             <p>Pau dos Ferros</p>
                         </div>
-                        <img class="backgroundcardsprofile" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
+                        <img class="backgroundcardsprofile announcementimage" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
                     </div>
                     {%endif%}
                     {%endfor%}
@@ -438,7 +444,7 @@
                             <p>Curricular IFRN</p>
                             {%endif%}
                         </div>
-                        <img class="backgroundcardsprofile" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
+                        <img class="backgroundcardsprofile announcementimage" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
                     </div>
                     {%endif%}
                     {%endfor%}
@@ -485,7 +491,7 @@
                             <p>Curricular IFRN</p>
                             {%endif%}
                         </div>
-                        <img class="backgroundcardsprofile" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
+                        <img class="backgroundcardsprofile announcementimage" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
                     </div>
                     {%endif%}
                     {%endfor%}
@@ -529,7 +535,7 @@
                             <p>Curricular IFRN</p>
                             {%endif%}
                         </div>
-                        <img class="backgroundcardsprofile" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
+                        <img class="backgroundcardsprofile announcementimage" width="300px" height="300px" src="{{announce.image_annoucement.url}}" alt="">
                     </div>
                     {%endif%}
                     {%endfor%}

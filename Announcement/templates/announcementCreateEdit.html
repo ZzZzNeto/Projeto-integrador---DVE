@@ -3,253 +3,504 @@
 {% load static %}
 
 {%block main%}
-    <div class="container p-0 mt-3">
-        <form class="form-sign-in" enctype="multipart/form-data" action="" method="post">
-            {%csrf_token%}
-            <div class="row">
-                <div class="col">
-                    <div class="d-flex tags">
-                        <div class="dropdown">
-                            <a class="dropdown-toggle tagselector" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tags</a>
-                            <ul class="dropdown-menu">
-                                {{form.tags}}
-                            </ul>
-                        </div>
+
+{% for error in form.errors.as_data.values %}
+
+<script>
+
+
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Alguns campos estão inválidos.',
+        button: "Fechar",
+    })
+
+</script>
+
+
+{%endfor%}
+<div class="container p-0 mt-3">
+
+    <form class="form-sign-in" enctype="multipart/form-data" action="" method="post">
+        {%csrf_token%}
+        <div class="row">
+            <div class="col">
+                <div class="d-flex tags">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle tagselector" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Tags</a>
+                        <ul class="dropdown-menu">
+                            {{form.tags}}
+                            {%for error in form.tags.errors%}
+                            <p class="error-message">
+                                {{error}}
+                            <p>
+                                {%endfor%}
+                        </ul>
                     </div>
-                    
-                    {% if object%}
-                    <img width=100% height=550 style="border-radius: 20px;" src="{{object.image_annoucement.url}}" alt="imagem do anuncio">
-                    <input class="inputphoto" type="file" name="image_annoucement" accept="image/*" id="id_image_annoucement"> 
+                </div>
+
+                {% if object%}
+                <img class="announcementimage" width=100% height=550 style="border-radius: 20px;"
+                    src="{{object.image_annoucement.url}}" alt="imagem do anuncio">
+                <input class="inputphoto" type="file" name="image_annoucement" accept="image/*"
+                    id="id_image_annoucement">
+                {%for error in form.image_annoucement.errors%}
+                <p class="error-message">
+                    {{error}}
+                <p>
+                    {%endfor%}
                     {%else%}
                     <img width=100% height=550 src="{% static 'imgs/default.jpg' %}" alt="imagem do anuncio">
-                    <input class="inputphoto" type="file" name="image_annoucement" required accept="image/*" id="id_image_annoucement"> 
+                    <input class="inputphoto" type="file" name="image_annoucement" accept="image/*"
+                        id="id_image_annoucement">
+                        {%for error in form.image_annoucement.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
                     {%endif%}
 
-                </div>
-                <div class="col">
-                    <h1 class="titlecreatestage">Sobre o estágio</h1>
+            </div>
+            <div class="col">
+                <h1 class="titlecreatestage">Sobre o estágio</h1>
 
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <label for="">Empresa</label>
-                                {% if object%}
-                                <input type="text" value="{{object.name_of_company}}" name="name_of_company" id="name_of_company" placeholder="Insira o nome da empresa">
-                                {%else%}
-                                {% for group in user.groups.all %}
-                                {% if group.name == 'coordenacao'%}
-                                <input type="text" name="name_of_company" id="name_of_company" placeholder="Insira o nome da empresa">
-                                {% else %}
-                                <input type="text" value="{{user.name}}" name="name_of_company" id="name_of_company" placeholder="Insira o nome da empresa">
-                                {%endif%}
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Empresa</label>
+                            {% if object%}
+                            <input type="text" value="{{object.name_of_company}}" name="name_of_company"
+                                id="name_of_company" placeholder="Insira o nome da empresa">
+                                {%for error in form.name_of_company.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%else%}
+                            {% for group in user.groups.all %}
+                            {% if group.name == 'coordenacao'%}
+                            <input type="text" name="name_of_company" id="name_of_company"
+                                placeholder="Insira o nome da empresa">
+                                {%for error in form.name_of_company.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {% else %}
+                            <input type="text" value="{{user.name}}" name="name_of_company" id="name_of_company"
+                                placeholder="Insira o nome da empresa">
+                                {%for error in form.name_of_company.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%endif%}
+                            {%endfor%}
+                            {%endif%}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Logradouro</label>
+                            {% if object%}
+                            <input type="text" value="{{object.street}}" name="street" id="street"
+                                placeholder="Insira o nome do logradouro">
+                                {%for error in form.street.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%else%}
+                            <input type="text" value="{{user.usercompany.street}}" name="street" id="street"
+                                placeholder="Insira o nome do logradouro">
+                                {%for error in form.street.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%endif%}
+                        </div>
+                    </div>
+
+                    <div class="row d-flex testeing">
+                        <div class="size-district-input">
+                            <label for="">Bairro</label>
+                            {% if object%}
+                            <input type="text" value="{{object.district}}" name="district" id="district"
+                                placeholder="nome do bairro">
+                                {%for error in form.district.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%else%}
+                            <input type="text" value="{{user.usercompany.district}}" name="district" id="district"
+                                placeholder="nome do bairro">
+                                {%for error in form.district.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%endif%}
+                        </div>
+                        <div class="size-number-input">
+                            <label for="">N°</label>
+                            {% if object%}
+                            <input type="text"  value="{{object.number}}" name="number" id="number"
+                                placeholder="N° do local" required>
+                                {%for error in form.number.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%else%}
+                            <input type="text"  name="number" id="number" placeholder="N° do local">
+                            {%for error in form.number.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%endif%}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Requisitos</label>
+                            {% if object%}
+                            <input type="text" value="{{object.requirements}}" id="requirements" name="requirements"
+                                placeholder="Requisitos">
+                                {%for error in form.requirements.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%else%}
+                            <input type="text" id="requirements" name="requirements" placeholder="Requisitos">
+                            {%for error in form.requirements.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%endif%}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Prazo de inscrições</label>
+                            {% if object%}
+                            <input type="date" value="{{object.registration_time|date:"Y-m-d"}}" id="registration_time"
+                                name="registration_time" placeholder="insira o prazo">
+                                {%for error in form.registration_time.errors%}
+                                <p class="error-message">
+                                    {{error.message}}
+                                <p>
+                                    {%endfor%}
+                            {%else%}
+                            <input type="date" id="registration_time" name="registration_time"
+                                placeholder="insira o prazo">
+                                {%for error in form.registration_time.errors%}
+                                <p class="error-message">
+                                    {{error.message}}
+                                <p>
+                                    {%endfor%}
+                            {%endif%}
+                        </div>
+                    </div>
+                    <div class="row d-flex testeing">
+                        <div class="ch-input">
+                            <label for="">Carga horária semanal</label>
+                            {% if object%}
+                            <input type="text" id="workload" value="{{object.workload}}" name="workload"
+                                placeholder="CH do estágio">
+                                {%for error in form.workload.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%else%}
+                            <input type="text" id="workload" name="workload" placeholder="CH do estágio">
+                            {%for error in form.workload.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%endif%}
+                        </div>
+                        <div class="vacancies-input">
+                            <label for="">Vagas</label>
+                            {% if object%}
+                            <input type="text" style="padding: 10px" id="vacancies" value="{{object.vacancies}}" name="vacancies"
+                                placeholder="Vagas" required>
+                                {%for error in form.vacancies.errors%}
+                                <p class="error-message">
+                                    {{error}}
+                                <p>
+                                    {%endfor%}
+                            {%else%}
+                            <input type="text" style="padding: 10px" id="vacancies" name="vacancies" placeholder="Vagas" required>
+                            {%for error in form.vacancies.errors%}
+                            <p class="error-message">
+                                {{error}}
+                            <p>
                                 {%endfor%}
-                                {%endif%}
-                            </div>
+                            {%endif%}
                         </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <label for="">Logradouro</label>
-                                {% if object%}
-                                <input type="text" value="{{object.street}}" name="street" id="street" placeholder="Insira o nome do logradouro">
-                                {%else%}
-                                <input type="text" value="{{user.usercompany.street}}" name="street" id="street" placeholder="Insira o nome do logradouro">
-                                {%endif%}
-                            </div>
-                        </div>
-
-                        <div class="row d-flex testeing">
-                            <div class="size-district-input">
-                                <label for="">Bairro</label>
-                                {% if object%}
-                                <input type="text" value="{{object.district}}" name="district" id="district" placeholder="nome do bairro">
-                                {%else%}
-                                <input type="text" value="{{user.usercompany.district}}" name="district" id="district" placeholder="nome do bairro">
-                                {%endif%}
-                            </div>
-                            <div class="size-number-input">
-                                <label for="">N°</label>
-                                {% if object%}
-                                <input type="text" value="{{object.number}}" name="number" id="number" placeholder="N° do local">
-                                {%else%}
-                                <input type="text" name="number" id="number" placeholder="N° do local">
-                                {%endif%}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <label for="">Requisitos</label>
-                                {% if object%}
-                                <input type="text" value="{{object.requirements}}" id="requirements" name="requirements" placeholder="Requisitos">
-                                {%else%}
-                                <input type="text" id="requirements" name="requirements" placeholder="Requisitos">
-                                {%endif%}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="">Prazo de inscrições (dias)</label>
-                                {% if object%}
-                                <input type="text" value="{{object.registration_deadline}}" id="registration_deadline" name="registration_deadline" placeholder="insira o prazo">
-                                {%else%}
-                                <input type="text" id="registration_deadline" name="registration_deadline" placeholder="insira o prazo">
-                                {%endif%}
-                            </div>
-                        </div>
-                        <div class="row d-flex testeing">
-                            <div class="ch-input">
-                                <label for="">Carga horária semanal</label>
-                                {% if object%}
-                                <input type="text" id="workload" value="{{object.workload}}" name="workload" placeholder="CH do estágio">
-                                {%else%}
-                                <input type="text" id="workload" name="workload" placeholder="CH do estágio">
-                                {%endif%}
-                            </div>
-                            <div class="vacancies-input">
-                                <label for="">Vagas</label>
-                                {% if object%}
-                                <input type="text" id="vacancies" value="{{object.vacancies}}" name="vacancies" placeholder="Vagas">
-                                {%else%}
-                                <input type="text" id="vacancies" name="vacancies" placeholder="Vagas">
-                                {%endif%}
-                            </div>
-                            <div class="period-input">
-                                <label for="">Periodo</label>
-                                {{form.period}}
-                            </div>
+                        <div class="period-input">
+                            <label for="">Periodo</label>
+                            {{form.period}}
+                            {%for error in form.period.errors%}
+                            <p class="error-message">
+                                {{error}}
+                            <p>
+                                {%endfor%}
                         </div>
                     </div>
-
-
-
                 </div>
+
+
 
             </div>
-            <div class="d-flex midcontainer">
 
-                <div class="benefits">
-                    <label for="">Benefícios</label>
-                    <div class="input-container">
-                        {% if object%}
-                        <textarea type="text" class="" name="benefits" id="benefits"
-                            placeholder="Fale um pouco sobre os benefícios do estágio">{{object.benefits}}</textarea>
-                        {%else%}
-                        <textarea type="text" class="" name="benefits" id="benefits"
-                            placeholder="Fale um pouco sobre os benefícios do estágio"></textarea>
-                        {%endif%}
-                    </div>
-                </div>
+        </div>
+        <div class="d-flex midcontainer">
 
-
-                <div class="activities">
-                    <label for="">Atividades a serem desenvolvidas</label>
-                    <div class="input-container">
-                        {% if object%}
-                        <textarea type="text" class="" name="activities" id="activities"
-                            placeholder="Fale um pouco sobre as atividades a serem desenvolvidas">{{object.activities}}</textarea>
-                        {%else%}
-                        <textarea type="text" class="" name="activities" id="activities"
-                            placeholder="Fale um pouco sobre as atividades a serem desenvolvidas"></textarea>
-                        {%endif%}
-                    </div>
-                </div>
-            </div>
-            <div class="contacts">
-                <p>Formas de contato</p>
-            </div>
-            <div class="d-flex contact-form justify-content-between">
+            <div class="benefits">
+                <label for="">Benefícios</label>
                 <div class="input-container">
-                    <img src="{% static 'imgs/emailIcon.png' %}" alt="">
                     {% if object%}
-                    <input type="text" value="{{object.email}}" id="email" name="email" placeholder="Email">
+                    <textarea type="text" class="" name="benefits" id="benefits"
+                        placeholder="Fale um pouco sobre os benefícios do estágio">{{object.benefits}}</textarea>
+
+                        {%for error in form.benefits.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
                     {%else%}
-                    <input type="text" value="{{user.email}}" id="email" name="email" placeholder="Email">
-                    {%endif%}
-                </div>
-
-                <div class="input-container">
-                    <img src="{% static 'imgs/TelefoneIcon.png' %}" alt="">
-                    {% if object%}
-                    <input type="text" id="phone" value="{{object.phone}}" name="phone" placeholder="Telefone">
-                    {%else%}
-                    <input type="text" id="phone" value="{{user.usercompany.phone}}" name="phone" placeholder="Telefone">
-                    {%endif%}
-                </div>
-
-                <div class="input-container">
-                    <img src="{% static 'imgs/whatsappIcon.png' %}" alt="">
-                    {% if object%}
-                    <input type="text" id="whatsapp" value="{{object.whatsapp}}" name="whatsapp" placeholder="Whatsapp">
-                    {%else%}
-                    <input type="text" id="whatsapp" value="{{user.usercompany.whatsapp}}" name="whatsapp" placeholder="Whatsapp">
-                    {%endif%}
-                </div>
-
-                <div class="input-container">
-                    <img src="{% static 'imgs/LinkedinIcon.png' %}" alt="">
-                    {% if object%}
-                    <input type="text" id="linkedin" value="{{object.linkedin}}" name="linkedin" placeholder="Linkedin">
-                    {% else %}
-                    <input type="text" id="linkedin" value="{{user.usercompany.linkedin}}" name="linkedin" placeholder="Linkedin">
-                    {%endif%}
-                </div>
-
-                <div class="input-container">
-                    <img src="{% static 'imgs/InstagramIcon.png' %}" alt="">
-                    {% if object%}
-                    <input type="text" id="instagram" value="{{object.instagram}}" name="instagram" placeholder="Instagram">
-                    {%else%}
-                    <input type="text" id="instagram" value="{{user.usercompany.instagram}}" name="instagram" placeholder="Instagram">
+                    <textarea type="text" class="" name="benefits" id="benefits"
+                        placeholder="Fale um pouco sobre os benefícios do estágio"></textarea>
+                        {%for error in form.benefits.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
                     {%endif%}
                 </div>
             </div>
 
-            {% for group in user.groups.all %}
-            {% if group.name == 'coordenacao'%}
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="input-container checkcurricular justify-content-between"> 
-                    <label for="id_curricular">Estagio competente a grade curricular do IFRN</label>
-                    {{form.curricular}}
-                </div>
-                <div class="input-container cursocurricular">
-                    <label for="id_course">Curso</label>
-                    {{form.course}}
-                </div>
-                <div class="input-container workloadcurricular">   
-                    <label for="id_course">Carga horaria total do estagio</label>
-                    {% if object%}
-                    <input type="text" id="total_workload" value="{{object.total_workload}}" name="total_workload" placeholder="Carga horaria total">
-                    {%else%}
-                    <input type="text" id="total_workload" name="total_workload" placeholder="Carga horaria total">
-                    {%endif%}
-                </div>
-            </div>
-            {%endif%}
-            {%endfor%}
 
-            <div class="descriptione">
-                <label for="">Descrição</label>
+            <div class="activities">
+                <label for="">Atividades a serem desenvolvidas</label>
                 <div class="input-container">
                     {% if object%}
-                    <textarea type="text" class="" id="description" name="description" placeholder="Fale um pouco sobre o estágio">{{object.description}}</textarea>
+                    <textarea type="text" class="" name="activities" id="activities"
+                        placeholder="Fale um pouco sobre as atividades a serem desenvolvidas">{{object.activities}}</textarea>
+                        {%for error in form.activities.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
                     {%else%}
-                    <textarea type="text" class="" id="description" name="description" placeholder="Fale um pouco sobre o estágio"></textarea>
+                    <textarea type="text" class="" name="activities" id="activities"
+                        placeholder="Fale um pouco sobre as atividades a serem desenvolvidas"></textarea>
+                        {%for error in form.activities.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
                     {%endif%}
                 </div>
             </div>
-            <div class="d-flex justify-content-end button-estagios">
-                
+        </div>
+        <div class="contacts">
+            <p>Formas de contato</p>
+        </div>
+        <div class="d-flex contact-form justify-content-between">
+            <div class="input-container">
+                <img src="{% static 'imgs/emailIcon.png' %}" alt="">
                 {% if object%}
-                <button type="submit">
-                    <p>Salvar</p>
-                </button>
+                <input type="text" value="{{object.email}}" id="email" name="email" placeholder="Email">
+                {%for error in form.email.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
                 {%else%}
-                <button type="submit">
-                    <p>Criar anúncio</p>
-                </button>
+                <input type="text" value="{{user.email}}" id="email" name="email" placeholder="Email">
+                {%for error in form.email.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+                
                 {%endif%}
             </div>
-        </form>
-    </div>
+
+            <div class="input-container">
+                <img src="{% static 'imgs/TelefoneIcon.png' %}" alt="">
+                {% if object%}
+                <input type="text" id="phone" value="{{object.phone}}" name="phone" placeholder="Telefone">
+                {%for error in form.phone.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+                {%else%}
+                <input type="text" id="phone" value="{{user.usercompany.phone}}" name="phone" placeholder="Telefone">
+                {%for error in form.phone.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+                {%endif%}
+            </div>
+
+            <div class="input-container">
+                <img src="{% static 'imgs/whatsappIcon.png' %}" alt="">
+                {% if object%}
+                <input type="text" id="whatsapp" value="{{object.whatsapp}}" name="whatsapp" placeholder="Whatsapp">
+                {%for error in form.whatsapp.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+                {%else%}
+                <input type="text" id="whatsapp" value="{{user.usercompany.whatsapp}}" name="whatsapp"
+                    placeholder="Whatsapp">
+                    {%for error in form.whatsapp.errors%}
+                    <p class="error-message">
+                        {{error}}
+                    <p>
+                        {%endfor%}
+                {%endif%}
+            </div>
+
+            <div class="input-container">
+                <img src="{% static 'imgs/LinkedinIcon.png' %}" alt="">
+                {% if object%}
+                <input type="text" id="linkedin" value="{{object.linkedin}}" name="linkedin" placeholder="Linkedin">
+                {%for error in form.linkedin.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+                {% else %}
+                <input type="text" id="linkedin" value="{{user.usercompany.linkedin}}" name="linkedin"
+                    placeholder="Linkedin">
+                    {%for error in form.linkedin.errors%}
+                    <p class="error-message">
+                        {{error}}
+                    <p>
+                        {%endfor%}
+                {%endif%}
+            </div>
+
+            <div class="input-container">
+                <img src="{% static 'imgs/InstagramIcon.png' %}" alt="">
+                {% if object%}
+                <input type="text" id="instagram" value="{{object.instagram}}" name="instagram" placeholder="Instagram">
+                {%for error in form.instagram.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+                {%else%}
+                <input type="text" id="instagram" value="{{user.usercompany.instagram}}" name="instagram"
+                    placeholder="Instagram">
+                    {%for error in form.instagram.errors%}
+                    <p class="error-message">
+                        {{error}}
+                    <p>
+                        {%endfor%}
+                {%endif%}
+            </div>
+        </div>
+
+        {% for group in user.groups.all %}
+        {% if group.name == 'coordenacao'%}
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="input-container checkcurricular justify-content-between">
+                <label for="id_curricular">Estagio competente a grade curricular do IFRN</label>
+                {{form.curricular}}
+                {%for error in form.curricular.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+            </div>
+            <div class="input-container cursocurricular">
+                <label for="id_course">Curso</label>
+                {{form.course}}
+                {%for error in form.course.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+            </div>
+            <div class="input-container workloadcurricular">
+                <label for="id_course">Carga horaria total do estagio</label>
+                {% if object%}
+                <input type="text" id="total_workload" value="{{object.total_workload}}" name="total_workload"
+                    placeholder="Carga horaria total">
+                    {%for error in form.total_workload.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+                {%else%}
+                
+                <input type="text" id="total_workload" name="total_workload" placeholder="Carga horaria total">
+                {%for error in form.total_workload.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+                {%endif%}
+            </div>
+        </div>
+        {%endif%}
+        {%endfor%}
+
+        <div class="descriptione">
+            <label for="">Descrição</label>
+            <div class="input-container">
+                {% if object%}
+                <textarea type="text" class="" id="description" name="description"
+                    placeholder="Fale um pouco sobre o estágio">{{object.description}}</textarea>
+                    {%for error in form.description.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+                {%else%}
+                <textarea type="text" class="" id="description" name="description"
+                    placeholder="Fale um pouco sobre o estágio"></textarea>
+                    {%for error in form.description.errors%}
+                        <p class="error-message">
+                            {{error}}
+                        <p>
+                            {%endfor%}
+                {%endif%}
+            </div>
+        </div>
+        <div class="d-flex justify-content-end button-estagios">
+
+            <a href="{% url 'profile'%}" class="cancelannunceEdCr">Cancelar</a>
+
+            {% if object%}
+            <button type="submit">
+                <p>Salvar</p>
+            </button>
+            {%else%}
+            <button type="submit">
+                <p>Criar anúncio</p>
+            </button>
+            {%endif%}
+        </div>
+    </form>
+</div>
 {%endblock%}

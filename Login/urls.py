@@ -1,8 +1,9 @@
 from django.urls import path
 
+
 from .views import (UserView, ForgotPasswordView,
                     RedefinePasswordView, SignUpCompanyView, SignUpExternalView, UpdateUserCompanyView, DeleteUserView, UpdateUserExternalView, UpdateUserInternalView, UpdateCoordinationUserView,
-                    VerificationView, Subscribe, RemoveSubscribe, Favorite, RemoveFavorite, RemoveFavoriteProfile)
+                    VerificationView, Subscribe, RemoveSubscribe, Favorite, RemoveFavorite, RemoveFavoriteProfile, ChangePassowordView  )
 
 urlpatterns = [
     path('signin/', SignUpExternalView.as_view(), name="signin"),
@@ -21,4 +22,6 @@ urlpatterns = [
     path('favorite/<int:pk>', Favorite, name="favorite"),
     path('removeFavorite/<int:pk>', RemoveFavorite, name="removeFavorite"),
     path('removeFavoriteProfile/<int:pk>', RemoveFavoriteProfile, name="removeFavoriteprofile"),
+    path('password/', ChangePassowordView.as_view(), name='passwordChange'),
+    
 ]

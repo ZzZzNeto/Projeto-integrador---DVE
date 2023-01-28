@@ -445,6 +445,25 @@ form .row{
     border-radius: 10px;
 }
 
+.cancelannunceEdCr{
+    background-color: var(--color-red);
+    width: fit-content;
+    border: none;
+    border-radius: 30px;
+    color: var(--color-white);
+    padding: 10px 20px;
+    font-weight: var(--font-weight--Bold);
+    font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.cancelannunceEdCr:hover{
+    color: var(--color-white);
+    background-color: var(--color-error-light);
+}
 
 .deletescreen{
     width: 100%;
@@ -489,6 +508,10 @@ form .row{
     font-weight: var(--font-weight--Bold);
 }
 
+.announcementimage{
+    object-fit: cover;
+}
+
 .checkcurricular input{
     width: 25px;
     height: 25px;
@@ -523,6 +546,11 @@ form .row{
     background-color: var(--color-red);
     margin-right: 20px;
 }
+
+.errorlist li{
+    color:red;
+}
+
 
 footer {
     background: var(--background-gradient);

@@ -159,11 +159,15 @@ main{
 }
 
 .stages{
-    margin-top: 10px;
+    margin-top: 70px;
 }
 
 .searchbar{
     padding: 50px 10% 10px 10%;
+}
+
+.datacard p{
+    color: black !important;
 }
 
 .searchbar input{
@@ -176,9 +180,19 @@ main{
     outline: none;
 }
 
+.ordenation select{
+    margin: 0px;
+}
+
 .ordenation{
     display: flex;
     align-items: center;
+    width: 300px;
+    margin-right: 10px;
+}
+
+.ordenation label{
+    margin-top: 3%;
 }
 
 .disabledpagination{
@@ -187,7 +201,7 @@ main{
     cursor: default
 }
 
-.searchbar button{
+.searchbar button, .filter button{
     color: var(--color-white);
     border: none;
     border-radius: 0px 10px 10px 0px;
@@ -197,6 +211,11 @@ main{
     font-weight: var(--font-weight--Bold);
     font-size: 18px;
     text-align: center;
+}
+
+.filter button{
+    border-radius: 10px;
+    padding: 10px 30px 10px 30px;
 }
 
 .buttonimg{
@@ -217,7 +236,7 @@ main{
 
 .resultsCards{
     margin-bottom: 20px;
-    padding: 0px 20px;
+    padding-left: 20px;
 }
 
 .results p, .results label, .results select{
@@ -241,8 +260,18 @@ main{
     padding: 25px;
 }
 
+.results{
+    position: absolute;
+    justify-content: space-between;
+    align-items: center;
+    right: 11.2%;
+    top: 34%;
+    width: 57.8%;
+}
+
 .results p{
     margin: 0px;
+    margin-left: 10px;
 }
 
 .results select{
@@ -252,13 +281,10 @@ main{
 }
 
 .dataStages{
-    padding: 30px 10%;
+    padding: 30px 0px;
     width: 100%;
 }
 
-.titleFilter{
-    margin-bottom: 20px
-}
 
 .titleFilter img{
     width: 22px;
@@ -287,7 +313,11 @@ details summary{
     padding: 0px 10px;
 }
 
-details label, .range p{
+details .tagsfilter{
+    padding-left: 20px;
+}
+
+details .tagsfilter label, .range p{
     color: var(--color-white);
     font-weight: var(--font-weight--Bold);
     font-size: 20px;
@@ -297,8 +327,18 @@ details label, .range p{
     margin: 5px 0px;
 }
 
-details label img{
+details .tagsfilter label{
+    display: flex;
+    align-items: center;
+}
+
+details .tagsfilter label img{
     height: 20px;
+}
+
+details .tagsfilter label input{
+    width: 20px;
+    margin-bottom: -5px;
     margin-right: 10px;
 }
 
@@ -311,6 +351,14 @@ details label div{
     padding: 5px 10px;
 }
 
+.aplicar{
+    margin-left: 30%;
+}
+
+.filtertags{
+    margin-top: -10px;
+}
+
 details[open] summary::after {
     transform: rotate(0deg);
 }
@@ -321,7 +369,7 @@ details summary::after {
     width: 1rem;
     height: 0.625rem;
     right: 1rem;
-    background-image: url(../imgs/filterColapse.png);
+    background-image: url('imgs/filterColapse.png');
     background-size: 1rem;
     background-repeat: no-repeat;
     transform: rotate(180deg);
@@ -487,4 +535,15 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 0px;
     height: 50px;
     top: 0px;
+}
+
+.witout-stages{
+    margin-top: 16rem;
+}
+
+.witout-stages p{
+    color: var(--color-alert-light);
+    font-size: 32px;
+    font-weight: var(--font-weight--Bold);
+
 }

@@ -2,38 +2,54 @@
 {% load static %}
 
 {%block main%}
-    <section class="searchbar d-flex">
-        <input type="text">
-        <button><img class="buttonimg" src="{% static 'imgs/lupa.png' %}" alt=""> Buscar</button>
-    </section>
+    <form class="searchbar flex-column" style="gap: 0px;" action="{% url 'stages' %}" method=GET>
+        {%csrf_token%}
+        <div class="d-flex">
+            <input type="search" {% if search %} value="{{search}}" {% endif %} placeholder="Busque por empresas" name="search">
+            <button type="submit"><img class="buttonimg" src="{% static 'imgs/lupa.png' %}" alt="">Buscar</button>
+        </div>
+        <section class="results d-flex align-items-center justify-content-between">
+            <p>{{page_obj.paginator.count}} resultados encontrados</p>
+            <div class="ordenation align-items-center">
+                <label>Ordenar:</label>
+                <select name="order" id="order">
+                    <option value="crescent">Mais recentes</option>
+                    <option value="decrescent">Mais antigos</option>
+                </select>
+            </div>
+        </section>
     <section class="row dataStages">
         <div class="col-sm-3 filter">
-            <div class="d-flex titleFilter align-items-center text-white">
-                <img src="{% static 'imgs/filtericon.png' %}" alt="">
-                <h2>Filtrar por:</h2>
+            <div class="d-flex align-items-center">
+                <div class="d-flex titleFilter align-items-center text-white">
+                    <img src="{% static 'imgs/filtericon.png' %}" alt="">
+                    <h2>Filtrar por:</h2>
+                </div>    
             </div>
             <div class="options">
                 <details open>
                     <summary>Tags</summary>
-                    <div>
-                        <div>
-                            <label for="all">
-                                <input type="checkbox" class="all" name="all" id="all">
-                                <p>Todas</p>
-                            </label>
+                    <div class="tagsfilter"> 
+                        <div id="id_tags">
+                            <div>
+                                <label for="id_tags_0"><input {% if '1' in data %} checked {% endif %} onChange="this.form.submit()" class="filtertags" type="checkbox" name="tags" value="1" id="id_tags_0"><img src="{% static 'imgs/tagTecnologia.png' %}" alt="">Tecnologia</label>
+                            </div>
+                            <div>
+                                <label for="id_tags_1"><input {% if '2' in data %} checked {% endif %} onChange="this.form.submit()" class="filtertags" type="checkbox" name="tags" value="2" id="id_tags_1"><img src="{% static 'imgs/tagRedes.png' %}" alt="">Redes</label>
+                            </div>
+                            <div>
+                                <label for="id_tags_2"><input {% if '3' in data %} checked {% endif %} onChange="this.form.submit()" class="filtertags" type="checkbox" name="tags" value="3" id="id_tags_2"><img src="{% static 'imgs/tagAlimenticio.png' %}" alt="">Alimenticio</label>
+                            </div>
+                            <div>
+                                <label for="id_tags_3"><input {% if '4' in data %} checked {% endif %} onChange="this.form.submit()" class="filtertags" type="checkbox" name="tags" value="4" id="id_tags_3"><img src="{% static 'imgs/tagRemunerado.png' %}" alt="">Remunerado</label>
+                            </div>
+                            <div>
+                                <label for="id_tags_4"><input {% if '5' in data %} checked {% endif %} onChange="this.form.submit()" class="filtertags" type="checkbox" name="tags" value="5" id="id_tags_4"><img src="{% static 'imgs/star.png' %}" alt="">Novo</label>
+                            </div>
                         </div>
-                        <div>
-                            <label for="tag1">
-                                <input type="checkbox" name="tag1" id="tag1">
-                                <div class="d-flex align-items-center">
-                                    <img src="{% static 'imgs/star.png' %}" alt="">
-                                    <p class="mb-0">Novo</p>
-                                </div>
-                            </label>
-                        </div>
-                        <div>
+                        <!-- <div>
                             <label for="tag2">
-                                <input type="checkbox" name="tag2" id="tag2">
+                                <input type="checkbox" name="tag" id="tag">
                                 <div class="d-flex align-items-center">
                                     <img src="{% static 'imgs/tagAlimenticio.png' %}" alt="">
                                     <p class="mb-0">Alimenticio</p>
@@ -42,7 +58,7 @@
                         </div>
                         <div>
                             <label for="tag3">
-                                <input type="checkbox" name="tag3" id="tag3">
+                                <input type="checkbox" name="tag" id="tag">
                                 <div class="d-flex align-items-center">
                                     <img src="{% static 'imgs/tagRemunerado.png' %}" alt="">
                                     <p class="mb-0">Remunerado</p>
@@ -51,7 +67,7 @@
                         </div>
                         <div>
                             <label for="tag4">
-                                <input type="checkbox" name="tag4" id="tag4">
+                                <input type="checkbox" name="tag" id="tag">
                                 <div class="d-flex align-items-center">
                                     <img src="{% static 'imgs/tagRedes.png' %}" alt="">
                                     <p class="mb-0">Redes</p>
@@ -60,15 +76,17 @@
                         </div>
                         <div>
                             <label for="tag5">
-                                <input type="checkbox" name="tag5" id="tag5">
+                                <input type="checkbox" name="tag" id="tag">
                                 <div class="d-flex align-items-center">
                                     <img src="{% static 'imgs/tagTecnologia.png' %}" alt="">
                                     <p class="mb-0">Tecnologia</p>
                                 </div>
                             </label>
-                        </div>
+                        </div> -->
                     </div>
                 </details>
+            </div>
+                <!-- 
                 <details open>
                     <summary>Período</summary>
                     <div>
@@ -112,21 +130,19 @@
                         </div>
                     </div>
                 </details>
-            </div>
+            </div> -->
+            <!-- <button class="aplicar" type="submit">Aplicar</button>  -->
         </div>
+        </form>
         <div class="col-sm-9 stages">
-            <section class="results d-flex align-items-center justify-content-between">
-                <p>{{object_list.count}} resultados encontrados</p>
-                <div class="ordenation">
-                    <label for="order">Ordenar:</label>
-                    <select name="order" id="order">
-                        <OPtion>Mais popular</OPtion>
-                        <option>Mais recentes</option>
-                    </select>
-                </div>
-            </section>
             <section class="resultsCards">
+            {% if object_list.count == 0%}
+            <div class="d-flex justify-content-center align-items-center witout-stages">
+                <p >Nenhum resultado encontrado</p>
+            </div>
+            {%else%}
             {% for stage in object_list %}
+                {%if stage.status == 'ATIVO'%}
                 <div class="row cardStage">
                     <div class="col-sm-3 imageCardStage">
                         <img src="{{stage.image_annoucement.url}}" alt="">
@@ -173,9 +189,13 @@
                                 {%endfor%}
                             </div>
                         </div>
-                        <div class="d-flex">
+                        <div class="d-flex datacard">
                             <P class="p1">{{stage.workload}}h/semana</P>
+                            {% if stage.creator.usercompany.city %}
                             <p class="p2">{{stage.creator.usercompany.city}}</p>
+                            {% else %}
+                            <p class="p2">Curricular IFRN</p>
+                            {% endif %}
                             <p class="p3"><span>{{stage.vacancies}}</span> vagas</p>
                         </div>
                         <div class="seeMoreCard">
@@ -183,6 +203,7 @@
                         </div>
                     </div>
                 </div>
+                {%endif%}
             {% endfor %}
             <div class="d-flex align-items-center justify-content-center pagination">
                 {%if page_obj.has_previous%}
@@ -203,6 +224,7 @@
                 <a class="disabledpagination" onClick="return false;" href="#"><img src="{% static 'imgs/nextendicon.png' %}" alt=""></a>
                 {%endif%}
             </div>
+            {%endif%}
             </section>
         </div>
     </section>

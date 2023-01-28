@@ -1,23 +1,60 @@
-from django.shortcuts import (HttpResponseRedirect, get_object_or_404,
-                              redirect, render)
+from django.shortcuts import (HttpResponseRedirect, get_object_or_404, redirect, render)
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  UpdateView, View)
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,UpdateView, View)
 from .models import Annoucement, Tags
-from .forms import AnnouncementForm
+from .forms import AnnouncementForm, FilterForm
 
 class StagesView(ListView):
     template_name = 'stages.html'
+    model = Annoucement
     paginate_by = 2
+
+    def get_context_data(self, **kwargs):
+        context = super(StagesView, self).get_context_data(**kwargs)
+        context['form'] = FilterForm()
+        if self.request.GET:
+            tags = self.request.GET.getlist("tags")
+            search = self.request.GET.get("search")
+            context['search'] = search
+            context['data'] = tags
+        return context
+
     def get_queryset(self):
-        for group in self.request.user.groups.all():
-            if group.name == "Estudante":
-                return Annoucement.objects.filter(curricular=False)
+        if self.request.GET:
+            kwargs = {}
+            
+            search = self.request.GET.get("search")
+            if search:
+                kwargs['name_of_company__icontains'] = search
+
+            tags = self.request.GET.getlist("tags")
+            if tags:    
+                queryset = Annoucement.objects.all()
+                for tag in tags:
+                    ids = list(queryset.filter(tags__id=tag).values_list("id", flat=True))
+                    queryset = queryset.filter(id__in=ids)
+                kwargs['id__in'] = ids
+
+            if self.request.user.is_authenticated:
+                for group in self.request.user.groups.all():
+                    if group.name == "Estudante":
+                        return Annoucement.objects.filter(curricular=False).filter(status = "ATIVO", **kwargs)
+                    else:
+                        return Annoucement.objects.all().filter(status = "ATIVO", **kwargs)
             else:
-                return Annoucement.objects.all()
+                return Annoucement.objects.all().filter(status = "ATIVO", **kwargs)
+        else:
+            if self.request.user.is_authenticated:
+                for group in self.request.user.groups.all():
+                    if group.name == "Estudante":
+                        return Annoucement.objects.filter(curricular=False).filter(status = "ATIVO")
+                    else:
+                        return Annoucement.objects.all().order_by("-registration_time").filter(status = "ATIVO")
+            else:
+                return Annoucement.objects.all().filter(status = "ATIVO")
 
 class AnnoucementView(DetailView):
     template_name = 'announcementView.html'
@@ -64,6 +101,14 @@ class AnnouncementDelete(LoginRequiredMixin, DeleteView):
     template_name = 'deleteConfirm.html'
 
     def form_valid(self, form):
+        form.instance.creator = self.request.user
+        for group in self.request.user.groups.all():
+            if group.name == "coordenacao":
+                self.request.user.coordinationuser.Qcreated -= 1
+                self.request.user.coordinationuser.save()
+            else:
+                self.request.user.usercompany.Qcreated -= 1
+                self.request.user.usercompany.save()
         response = super().form_valid(form)
         messages.success(self.request, "Anúncio excluído com sucesso!")
         return response

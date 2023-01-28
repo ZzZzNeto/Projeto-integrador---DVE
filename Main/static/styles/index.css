@@ -450,7 +450,7 @@ main{
 }
 
 .name-company span{
-    padding-left: 40px;
+    padding-left: 60px;
     font-weight: var(--font-weight--Regular);
 }
 
