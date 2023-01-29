@@ -15,16 +15,24 @@ class StagesView(ListView):
     def get_context_data(self, **kwargs):
         context = super(StagesView, self).get_context_data(**kwargs)
         context['form'] = FilterForm()
-        if self.request.GET:
-            tags = self.request.GET.getlist("tags")
-            search = self.request.GET.get("search")
-            context['search'] = search
-            context['data'] = tags
+        if self.request.GET: 
+            context['search'] = self.request.GET.get("search")
+            context['data'] = self.request.GET.getlist("tags")
+            context['order'] = self.request.GET.get("order")
+            context['period'] = self.request.GET.get("period")
         return context
 
     def get_queryset(self):
         if self.request.GET:
             kwargs = {}
+
+            period = self.request.GET.get("period")
+            if period:
+                kwargs['period'] = period
+
+            order = self.request.GET.get("order")
+            if not order:
+                order = "creation_time"
             
             search = self.request.GET.get("search")
             if search:
@@ -41,11 +49,11 @@ class StagesView(ListView):
             if self.request.user.is_authenticated:
                 for group in self.request.user.groups.all():
                     if group.name == "Estudante":
-                        return Annoucement.objects.filter(curricular=False).filter(status = "ATIVO", **kwargs)
+                        return Annoucement.objects.filter(curricular=False).filter(status = "ATIVO", **kwargs).order_by(order)
                     else:
-                        return Annoucement.objects.all().filter(status = "ATIVO", **kwargs)
+                        return Annoucement.objects.all().filter(status = "ATIVO", **kwargs).order_by(order)
             else:
-                return Annoucement.objects.all().filter(status = "ATIVO", **kwargs)
+                return Annoucement.objects.all().filter(status = "ATIVO", **kwargs).order_by(order)
         else:
             if self.request.user.is_authenticated:
                 for group in self.request.user.groups.all():

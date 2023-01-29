@@ -12,24 +12,25 @@
             <p>{{page_obj.paginator.count}} resultados encontrados</p>
             <div class="ordenation align-items-center">
                 <label>Ordenar:</label>
-                <select name="order" id="order">
-                    <option value="crescent">Mais recentes</option>
-                    <option value="decrescent">Mais antigos</option>
+                <select onChange="this.form.submit()" name="order" id="order">
+                    <option {% if order == "creation_time" %} selected {% endif %} value="creation_time">Mais recentes</option>
+                    <option {% if order == "-creation_time" %} selected {% endif %} value="-creation_time">Mais antigos</option>
                 </select>
             </div>
         </section>
     <section class="row dataStages">
         <div class="col-sm-3 filter">
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center justify-content-between topfilter">
                 <div class="d-flex titleFilter align-items-center text-white">
                     <img src="{% static 'imgs/filtericon.png' %}" alt="">
                     <h2>Filtrar por:</h2>
-                </div>    
+                </div>
+                <a class="btn-sing-in exclude removefilter" href="{% url 'stages' %}">Reset</a> 
             </div>
             <div class="options">
                 <details open>
                     <summary>Tags</summary>
-                    <div class="tagsfilter"> 
+                    <div class="tagsfilter">
                         <div id="id_tags">
                             <div>
                                 <label for="id_tags_0"><input {% if '1' in data %} checked {% endif %} onChange="this.form.submit()" class="filtertags" type="checkbox" name="tags" value="1" id="id_tags_0"><img src="{% static 'imgs/tagTecnologia.png' %}" alt="">Tecnologia</label>
@@ -47,91 +48,25 @@
                                 <label for="id_tags_4"><input {% if '5' in data %} checked {% endif %} onChange="this.form.submit()" class="filtertags" type="checkbox" name="tags" value="5" id="id_tags_4"><img src="{% static 'imgs/star.png' %}" alt="">Novo</label>
                             </div>
                         </div>
-                        <!-- <div>
-                            <label for="tag2">
-                                <input type="checkbox" name="tag" id="tag">
-                                <div class="d-flex align-items-center">
-                                    <img src="{% static 'imgs/tagAlimenticio.png' %}" alt="">
-                                    <p class="mb-0">Alimenticio</p>
-                                </div>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="tag3">
-                                <input type="checkbox" name="tag" id="tag">
-                                <div class="d-flex align-items-center">
-                                    <img src="{% static 'imgs/tagRemunerado.png' %}" alt="">
-                                    <p class="mb-0">Remunerado</p>
-                                </div>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="tag4">
-                                <input type="checkbox" name="tag" id="tag">
-                                <div class="d-flex align-items-center">
-                                    <img src="{% static 'imgs/tagRedes.png' %}" alt="">
-                                    <p class="mb-0">Redes</p>
-                                </div>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="tag5">
-                                <input type="checkbox" name="tag" id="tag">
-                                <div class="d-flex align-items-center">
-                                    <img src="{% static 'imgs/tagTecnologia.png' %}" alt="">
-                                    <p class="mb-0">Tecnologia</p>
-                                </div>
-                            </label>
-                        </div> -->
                     </div>
                 </details>
-            </div>
-                <!-- 
                 <details open>
                     <summary>Período</summary>
-                    <div>
-                        <div>
-                            <label for="qaalquer">
-                                <input type="checkbox" class="all" name="qualquer" id="qualquer">
-                                <p>Qualquer</p>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="matutino">
-                                <input type="checkbox" class="all" name="matutino" id="matutino">
-                                <p>Matutino</p>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="vespertino">
-                                <input type="checkbox" class="all" name="vespertino" id="vespertino">
-                                <p>Vespertino</p>
-                            </label>
-                        </div>
-                        <div>
-                            <label for="noturno">
-                                <input type="checkbox" class="all" name="noturno" id="noturno">
-                                <p>Noturno</p>
-                            </label>
-                        </div>
-                    </div>
-                </details>
-                <details open>
-                    <summary>CH semanal</summary>
-                    <div>
-                        <input type="range" name="" id="">
-                        <div class="range d-flex justify-content-between">
+                    <div class="tagsfilter">
+                        <div id="id_period">
                             <div>
-                                <p>8h</p>
+                                <label for="id_period_0"><input type="radio" onChange="this.form.submit()" name="period" value="MATUTINO" id="id_period_0">Matutino</label>
                             </div>
                             <div>
-                                <p>21h</p>
+                                <label for="id_period_1"><input type="radio" onChange="this.form.submit()" name="period" value="VESPERTINO" id="id_period_1">Vespertino</label>
+                            </div>
+                            <div>
+                                <label for="id_period_2"><input type="radio" onChange="this.form.submit()" name="period" value="NOTURNO" id="id_period_2">Noturno</label>
                             </div>
                         </div>
                     </div>
                 </details>
-            </div> -->
-            <!-- <button class="aplicar" type="submit">Aplicar</button>  -->
+            </div> 
         </div>
         </form>
         <div class="col-sm-9 stages">

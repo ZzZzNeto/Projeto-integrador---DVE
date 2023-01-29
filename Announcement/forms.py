@@ -26,6 +26,13 @@ class AnnouncementForm(ModelForm):
                 fields = 'image_annoucement', 'requirements' ,'name_of_company', 'street', 'district', 'number','registration_time', 'tags', 'workload', 'vacancies', 'period', 'benefits', 'activities', 'email', 'phone','whatsapp', 'linkedin', 'instagram', 'description', 'curricular', 'course', 'total_workload'
 
 class FilterForm(forms.Form):
+        CHOICES_PERIOD = (
+        ("MATUTINO", "Matutino"),
+        ("VESPERTINO", "Vespertino"),
+        ("NOTURNO", "Noturno"),
+        )
+
+        period = forms.ChoiceField(choices=CHOICES_PERIOD,widget=forms.RadioSelect, required=False)
         tags = forms.ModelMultipleChoiceField(queryset=Tags.objects.all(),widget=forms.CheckboxSelectMultiple)
 
         def __init__(self ,*args, **kwargs):

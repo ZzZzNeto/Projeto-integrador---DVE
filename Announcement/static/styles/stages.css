@@ -260,6 +260,11 @@ main{
     padding: 25px;
 }
 
+.topfilter .removefilter{
+    border-radius: 5px;
+    padding: 5px 2px;
+}
+
 .results{
     position: absolute;
     justify-content: space-between;
