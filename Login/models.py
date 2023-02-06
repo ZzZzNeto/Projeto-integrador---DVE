@@ -75,8 +75,8 @@ class UserExternal(models.Model):
     linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
     birth_date = models.DateField(null=True)
     city = models.CharField(max_length=100, null=True)
-    schooling = models.CharField(max_length=200, null=True)
-    institution = models.CharField(max_length=50, verbose_name='Institution', default="Institution")
+    schooling = models.CharField(max_length=200, null=True, default="Não Informado")
+    institution = models.CharField(max_length=50, verbose_name='Institution', default="Não Informado")
     tags = models.ManyToManyField("Announcement.Tags", related_name="tagsExternal")
 
     def __str__(self):

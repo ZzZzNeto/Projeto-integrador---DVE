@@ -80,7 +80,7 @@
 
 .removefav button{
     border-radius: 20px;
-    background-color: #CD4C4C;
+    background-color: #CD4C4C !important;
     padding: 15px 12px;
     width: 40px;
     height: 40px;

@@ -156,10 +156,12 @@
                 {% for group in user.groups.all %}
                 {% if group.name == "Estudante" or group.name == "EstudanteIFRN" %}
                 {% if user in object.inscrits.all %}
+                {% if object.status == "ATIVO"%}
                 <form action="{% url 'removeInscription' object.pk %}" method="POST">
                     {% csrf_token %}
                     <button class="subscribe cancelsubs" type="submit" name="object_id" value="{{object.id}}">Cancelar inscrição</button>
                 </form>
+                {%endif%}
                 {%else%}
                 <form action="{% url 'subscribe' object.pk %}" method="POST">
                     {% csrf_token %}

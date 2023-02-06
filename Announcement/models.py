@@ -56,7 +56,7 @@ class Annoucement(models.Model):
     instagram = models.CharField(max_length=50, verbose_name='Instagram')
     phone = models.CharField(max_length=13, verbose_name='Telefone')
     curricular = models.BooleanField(default=False, null=True)
-    course = models.CharField(max_length=30, choices=CHOICES_COURSE, null=True)
+    course = models.CharField(max_length=30, choices=CHOICES_COURSE, null=True, default=False)
     total_workload = models.CharField(max_length=5, verbose_name="CH total", null=True)
 
     def __str__(self):

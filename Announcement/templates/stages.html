@@ -25,7 +25,7 @@
                     <img src="{% static 'imgs/filtericon.png' %}" alt="">
                     <h2>Filtrar por:</h2>
                 </div>
-                <a class="btn-sing-in exclude removefilter" href="{% url 'stages' %}">Reset</a> 
+                <a class="btn-sing-in exclude removefilter" href="{% url 'stages' %}">Limpar</a> 
             </div>
             <div class="options">
                 <details open>
@@ -55,13 +55,13 @@
                     <div class="tagsfilter">
                         <div id="id_period">
                             <div>
-                                <label for="id_period_0"><input type="radio" onChange="this.form.submit()" name="period" value="MATUTINO" id="id_period_0">Matutino</label>
+                                <label for="id_period_0"><input type="radio" {% if period == "MATUTINO" %} checked {% endif %} onChange="this.form.submit()" name="period" value="MATUTINO" id="id_period_0">Matutino</label>
                             </div>
                             <div>
-                                <label for="id_period_1"><input type="radio" onChange="this.form.submit()" name="period" value="VESPERTINO" id="id_period_1">Vespertino</label>
+                                <label for="id_period_1"><input type="radio" {% if period == "VESPERTINO" %} checked {% endif %} onChange="this.form.submit()" name="period" value="VESPERTINO" id="id_period_1">Vespertino</label>
                             </div>
                             <div>
-                                <label for="id_period_2"><input type="radio" onChange="this.form.submit()" name="period" value="NOTURNO" id="id_period_2">Noturno</label>
+                                <label for="id_period_2"><input type="radio" {% if period == "NOTURNO" %} checked {% endif %} onChange="this.form.submit()" name="period" value="NOTURNO" id="id_period_2">Noturno</label>
                             </div>
                         </div>
                     </div>

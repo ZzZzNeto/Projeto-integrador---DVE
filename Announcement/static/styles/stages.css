@@ -252,6 +252,35 @@ main{
     margin: 0px 10px 0px 10px;
 }
 
+.navbar-nav{
+    align-items: center;
+}
+
+.navimageprofile{
+    background-color: transparent !important;
+    width: fit-content !important;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navimageprofile img{
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+}
+
+.navimageprofile p{
+    font-size: 22px;
+    margin-bottom: 0px;
+    font-weight: var(--font-weight--Bold);
+}
+
+.navimageprofile p:hover{
+    transition: .5s ease-in-out,background-color .5s ease-in-out,border-color .5s ease-in-out;
+    color: var(--color-text-blue-dark);
+}
+
 .pagination a{
     margin: 0px 10px 0px 10px;
 }
@@ -262,7 +291,7 @@ main{
 
 .topfilter .removefilter{
     border-radius: 5px;
-    padding: 5px 2px;
+    padding: 5px 3px;
 }
 
 .results{
@@ -505,6 +534,11 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 0px;
 }
 
+.profilenavbar{
+    background-color: 'white';
+    border-radius: 50%;
+}
+
 .technology-tag, .network-tag, .cipher-tag{
     background: var(--color-alert-light);
     margin-right: 2px;
@@ -517,6 +551,7 @@ input[type="range"]::-webkit-slider-thumb {
     right: 13%;
     width: 50px;
     border-radius: 0px;
+    background-color: transparent !important;
     border: none;
     height: 50px;
     background-color: var(--color-seachbar);

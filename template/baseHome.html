@@ -18,7 +18,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="../imgs/favicon-32x32.png" />
 
     <link rel="stylesheet" href="{% static 'styles/index.css' %}">
-    
+    <link rel="stylesheet" href="{% static 'styles/stages.css' %}">
+
     <link rel="stylesheet" href="{% static 'Glider.js-master/glider.min.css' %}">
     <link rel="stylesheet" href="{% static 'Glider.js-master/glider.css' %}">
 
@@ -59,18 +60,9 @@
                         </li>
                         <li>
                             {%if user.is_authenticated%}
-                            {%if messages%}
-                            {%for message in messages%}
-                            {{message}}
-                            {%endfor%}
-                            {%endif%}
-                            <a class="btn btn-style text-white" href="{% url 'profile' %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                                    class="bi bi-person-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                </svg>
-                                <span>Perfil</span>
+                            <a class=" navimageprofile d-flex text-white" href="{% url 'profile' %}">
+                                <img class="profilenavbar"  src="{% static 'imgs/defuser.png' %}" alt="">
+                                <p>{{user.name}}</p>
                             </a>
                             {%else%}
                             <a class="btn btn-style text-white" href="{% url 'signin' %}">

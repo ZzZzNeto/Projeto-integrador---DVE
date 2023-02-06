@@ -26,7 +26,11 @@
             <div>
                 {% for group in candidate.groups.all %}
                 {% if group.name == "Estudante" %}
-                <img src="{{candidate.photo.url}}" class="imageseeinscripts" alt="">
+                    {% if candidate.photo%}
+                    <img src="{{candidate.photo.url}}" class="imageseeinscripts" alt="">
+                    {% else %}
+                    <img src="{% static 'imgs/default.jpg' %}" class="imageseeinscripts" alt="">
+                    {% endif %}
                 {% else %}
                 <img src="https://suap.ifrn.edu.br{{candidate.photo}}" class="imageseeinscripts" alt="">
                 {% endif %}
@@ -52,12 +56,16 @@
                         <p class="data">{{current_year|sub:candidate.userinternal.birth_date.year}}</p>
                         {%endif%}
                         {% else %}
+                        {% if candidate.userexternal.birth_date %}
                         {% if current_month|add:"0" < candidate.userexternal.birth_date.month %}
                         {% with current_year|sub:1 as current%}
                         <p class="data">{{current|sub:candidate.userexternal.birth_date.year}}</p>
                         {%endwith%}
                         {%else%}
                         <p class="data">{{current_year|sub:candidate.userexternal.birth_date.year}}</p>
+                        {%endif%}
+                        {% else%}
+                        <p class="data"> --- </p>
                         {%endif%}
                         {% endif %}
                         {% endfor %}
@@ -92,8 +100,8 @@
                         <p class="data">IFRN</p>
                     </div>
                     <div>
-                        <p class="label">Escolaridade</p>
-                        <p class="data">{{candidate.userinternal.schooling}}</p>
+                        <p class="label">Curso</p>
+                        <p class="data">{{candidate.userinternal.course}}</p>
                     </div>
                     {% else %}
                     <div>

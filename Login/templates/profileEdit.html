@@ -81,7 +81,7 @@
                             {% if user.photo %}
                             {% for group in user.groups.all %}
                             {% if group.name == "EstudanteIFRN" %}
-                            <img width=100% height=100% class="rounded-circle"
+                            <img width=100% height="100%" class="rounded-circle"
                                 src="https://suap.ifrn.edu.br{{user.photo}}" alt="">
                             {% elif group.name == "coordenacao" %}
                             <img width=100% height=100% class="rounded-circle" src="{{user.photo}}" alt="">
