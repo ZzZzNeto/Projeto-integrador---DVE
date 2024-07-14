@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import Group
-from django.contrib.auth.models import BaseUserManager, AbstractUser, AbstractBaseUser
-from django.db.models import signals
+from django.contrib.auth.models import BaseUserManager, AbstractUser
+from auditlog.registry import auditlog
+from DVE.models import BaseModel
 
 # Create your models here.
 
@@ -35,7 +36,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_staff', True)
         return self._create_user(email, password, **extra_fields)
 
-class CustomUser(AbstractUser):
+class CustomUser(AbstractUser, BaseModel):
     username = None
     name = models.CharField(max_length=50)
     email = models.EmailField("E-mail", unique=True)
@@ -106,58 +107,8 @@ class CoordinationUser(models.Model):
     def __str__(self):
         return "Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte | Campus Pau dos Ferros"
 
-"""class Course(models.Model):
-    course = models.CharField(max_length=50, verbose_name='course')
-
-    def __str__(self):
-        return self.course
-
-class Period(models.Model):
-    period = models.CharField(max_length=25, verbose_name='period')
-
-    def __str__(self):
-        return self.period
-
-class ExternalUser(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Nome')
-    email = models.CharField(max_length=100, verbose_name='E-mail')
-    password = models.CharField(max_length=20, verbose_name='Senha')
-    linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
-    birth_date = models.DateField()
-    city = models.OneToOneField(City, on_delete= models.CASCADE)
-    schooling = models.OneToOneField(Schooling, on_delete= models.CASCADE)
-    tags = models.ForeignKey(Tags, on_delete= models.CASCADE)
-    
-    def __str__(self):
-        return self.name
-
-class InternalUser(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Nome')
-    email = models.CharField(max_length=100, verbose_name='E-mail')
-    registration = models.CharField(max_length=30, verbose_name='Matricula')
-    birth_date = models.DateField()
-    linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
-    schooling = models.OneToOneField(Schooling, on_delete= models.CASCADE)
-    city = models.OneToOneField(City, on_delete= models.CASCADE)
-    period = models.OneToOneField(Period, on_delete= models.CASCADE)
-    course = models.OneToOneField(Course, on_delete= models.CASCADE)
-    tags = models.ForeignKey(Tags, on_delete= models.CASCADE)
-    
-    def __str__(self):
-        return self.name
-
-class CompanyUser(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Nome')
-    email = models.CharField(max_length=100, verbose_name='E-mail')
-    linkedin = models.CharField(max_length=50, verbose_name='Linkedin')
-    whatsapp = models.CharField(max_length=50, verbose_name='Whatsapp')
-    instagram = models.CharField(max_length=50, verbose_name='Instagram')
-    cnpj = models.CharField(max_length=18, verbose_name='CNPJ')
-    phone = models.CharField(max_length=13, verbose_name='Telefone')
-    cep = models.CharField(max_length=9, verbose_name='CEP')
-    district = models.CharField(max_length=80, verbose_name='Bairro')
-    street = models.CharField(max_length=80, verbose_name='Rua')
-    city = models.OneToOneField(City, on_delete= models.CASCADE)
-
-    def __str__(self):
-        return self.name"""
+auditlog.register(CustomUser)
+auditlog.register(UserCompany)
+auditlog.register(UserExternal)
+auditlog.register(UserInternal)
+auditlog.register(CoordinationUser)

@@ -1,18 +1,17 @@
 from django.db import models
-from django.conf import settings
 from Login.models import CustomUser
 from django.utils import timezone
-from django.contrib import messages
-from django.core.exceptions import ValidationError
+from auditlog.registry import auditlog
+from DVE.models import BaseModel
 
-class Tags(models.Model):
+class Tags(BaseModel):
     tag = models.CharField(max_length=25, verbose_name='Tag', default="")
     image = models.ImageField('Image TAG', upload_to='imgs/TagsPictures/', null=True, blank=True, default=None)
 
     def __str__(self):
         return self.tag
 
-class Annoucement(models.Model):
+class Annoucement(BaseModel):
     CHOICES_STATUS = (
     ("ATIVO", "Ativo"),
     ("FINALIZADO", "Finalizado"),
@@ -61,3 +60,6 @@ class Annoucement(models.Model):
 
     def __str__(self):
         return self.name_of_company
+
+auditlog.register(Tags)
+auditlog.register(Annoucement)
